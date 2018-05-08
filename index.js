@@ -41,7 +41,9 @@ export default class FreeSound {
   };
 
   checkOauth() {
-    if (!this.authHeader.includes('Bearer')) { throw ('Oauth authentication required'); }
+    if (!this.authHeader.includes('Bearer')) {
+      throw new Error('Oauth authentication required');
+    }
   }
 
   makeFD(obj, fd) {
@@ -54,15 +56,16 @@ export default class FreeSound {
 
   search(options, uri, success, error, wrapper) {
     if (options.analysis_file) {
-      makeRequest(makeUri(uri), success, error, null, wrapper, 'POST', makeFD(options));
+      this.makeRequest(this.makeUri(uri), success, error, null, wrapper, 'POST', makeFD(options));
     } else {
-      makeRequest(makeUri(uri), success, error, options, wrapper);
+      this.makeRequest(this.makeUri(uri), success, error, options, wrapper);
     }
   }
 
-  Collection(jsonObject) {
+  Collection(oldJsonObject) {
+    const jsonObject = { ...oldJsonObject };
     const nextOrPrev = (which, success, error) => {
-      makeRequest(which, success, error, {}, Collection);
+      this.makeRequest(which, success, error, {}, this.Collection);
     };
     jsonObject.nextPage = (success, error) => {
       nextOrPrev(jsonObject.next, success, error);
@@ -76,90 +79,90 @@ export default class FreeSound {
   }
 
   SoundCollection(jsonObject) {
-    const collection = Collection(jsonObject);
+    const collection = this.Collection(jsonObject);
     collection.getSound = idx => new SoundObject(collection.results[idx]);
     return collection;
   }
 
   PackCollection(jsonObject) {
-    const collection = Collection(jsonObject);
+    const collection = this.Collection(jsonObject);
     collection.getPack = idx => new PackObject(collection.results[idx]);
     return collection;
   }
 
-  SoundObject(jsonObject) {
-    jsonObject.getAnalysis = (filter, success, error, showAll) => {
-      const params = { all: showAll ? 1 : 0 };
-      makeRequest(makeUri(uris.soundAnalysis, [jsonObject.id, filter || '']), success, error);
+  SoundObject(oldJsonObject) {
+    const jsonObject = { ...oldJsonObject };
+    jsonObject.getAnalysis = (filter, success, error) => {
+      this.makeRequest(this.makeUri(this.uris.soundAnalysis, [jsonObject.id, filter || '']), success, error);
     };
 
     jsonObject.getSimilar = (success, error, params) => {
-      makeRequest(makeUri(uris.similarSounds, [jsonObject.id]), success, error, params, SoundCollection);
+      this.makeRequest(this.makeUri(this.uris.similarSounds, [jsonObject.id]), success, error, params, SoundCollection);
     };
 
     jsonObject.getComments = (success, error) => {
-      makeRequest(makeUri(uris.comments, [jsonObject.id]), success, error, {}, Collection);
+      this.makeRequest(this.makeUri(this.uris.comments, [jsonObject.id]), success, error, {}, Collection);
     };
 
     jsonObject.download = (targetWindow) => { // can be window, new, or iframe
-      checkOauth();
-      const uri = makeUri(uris.download, [jsonObject.id]);
+      this.checkOauth();
+      const uri = this.makeUri(this.uris.download, [jsonObject.id]);
       targetWindow.location = uri;
     };
 
     jsonObject.comment = (commentStr, success, error) => {
-      checkOauth();
+      this.checkOauth();
       const data = new FormData();
       data.append('comment', comment);
-      const uri = makeUri(uris.comment, [jsonObject.id]);
-      makeRequest(uri, success, error, {}, null, 'POST', data);
+      const uri = this.makeUri(this.uris.comment, [jsonObject.id]);
+      this.makeRequest(uri, success, error, {}, null, 'POST', data);
     };
 
     jsonObject.rate = (rating, success, error) => {
-      checkOauth();
+      this.checkOauth();
       const data = new FormData();
       data.append('rating', rating);
-      const uri = makeUri(uris.rate, [jsonObject.id]);
-      makeRequest(uri, success, error, {}, null, 'POST', data);
+      const uri = this.makeUri(this.uris.rate, [jsonObject.id]);
+      this.makeRequest(uri, success, error, {}, null, 'POST', data);
     };
 
     jsonObject.bookmark = (name, category, success, error) => {
-      checkOauth();
+      this.checkOauth();
       const data = new FormData();
       data.append('name', name);
       if (category) { data.append('category', category); }
-      const uri = makeUri(uris.bookmark, [jsonObject.id]);
-      makeRequest(uri, success, error, {}, null, 'POST', data);
+      const uri = this.makeUri(this.uris.bookmark, [jsonObject.id]);
+      this.makeRequest(uri, success, error, {}, null, 'POST', data);
     };
 
     jsonObject.edit = (description, success, error) => {
-      checkOauth();
-      const data = makeFD(description);
-      const uri = makeUri(uris.edit, [jsonObject.id]);
-      makeRequest(uri, success, error, {}, null, 'POST', data);
+      this.checkOauth();
+      const data = this.makeFD(description);
+      const uri = this.makeUri(this.uris.edit, [jsonObject.id]);
+      this.makeRequest(uri, success, error, {}, null, 'POST', data);
     };
 
     return jsonObject;
   }
   UserObject(jsonObject) {
     jsonObject.sounds = (success, error, params) => {
-      const uri = makeUri(uris.userSounds, [jsonObject.username]);
-      makeRequest(uri, success, error, params, SoundCollection);
+      const uri = this.makeUri(this.uris.userSounds, [jsonObject.username]);
+      this.makeRequest(uri, success, error, params, SoundCollection);
     };
 
     jsonObject.packs = (success, error) => {
-      const uri = makeUri(uris.userPacks, [jsonObject.username]);
-      makeRequest(uri, success, error, {}, PackCollection);
+      const uri = this.makeUri(this.uris.userPacks, [jsonObject.username]);
+      this.makeRequest(uri, success, error, {}, PackCollection);
     };
 
     jsonObject.bookmarkCategories = (success, error) => {
-      const uri = makeUri(uris.userBookmarkCategories, [jsonObject.username]);
-      makeRequest(uri, success, error);
+      const uri = this.makeUri(this.uris.userBookmarkCategories, [jsonObject.username]);
+      this.makeRequest(uri, success, error);
     };
 
     jsonObject.bookmarkCategorySounds = (success, error, params) => {
-      const uri = makeUri(uris.userBookmarkCategorySounds, [jsonObject.username]);
-      makeRequest(uri, success, error, params);
+      const uri = this.makeUri(this.uris.userBookmarkCategorySounds, [jsonObject.username]);
+      this.makeRequest(uri, success, error, params);
     };
 
     return jsonObject;
@@ -167,13 +170,13 @@ export default class FreeSound {
 
   PackObject(jsonObject) {
     jsonObject.sounds = (success, error) => {
-      const uri = makeUri(uris.packSounds, [jsonObject.id]);
-      makeRequest(uri, success, error, {}, SoundCollection);
+      const uri = this.makeUri(this.uris.packSounds, [jsonObject.id]);
+      this.makeRequest(uri, success, error, {}, SoundCollection);
     };
 
     jsonObject.download = (targetWindow) => { // can be current or new window, or iframe
-      checkOauth();
-      const uri = makeUri(uris.packDownload, [jsonObject.id]);
+      this.checkOauth();
+      const uri = this.makeUri(this.uris.packDownload, [jsonObject.id]);
       targetWindow.location = uri;
     };
     return jsonObject;
@@ -201,7 +204,7 @@ export default class FreeSound {
         setToken(result.access_token, 'oauth');
       };
     }
-    makeRequest(post_url, success, error, {}, null, 'POST', data);
+    this.makeRequest(post_url, success, error, {}, null, 'POST', data);
   }
 
   textSearch(query, options = {}, success, error) {
@@ -220,60 +223,56 @@ export default class FreeSound {
   }
 
   getSound(soundId, success, error) {
-    makeRequest(makeUri(uris.sound, [soundId]), success, error, {}, SoundObject);
+    this.makeRequest(this.makeUri(this.uris.sound, [soundId]), success, error, {}, SoundObject);
   }
 
   upload(audiofile, filename, description, success, error) {
-    checkOauth();
+    this.checkOauth();
     let fd = new FormData();
     fd.append('audiofile', audiofile, filename);
     if (description) {
-      fd = makeFD(description, fd);
+      fd = this.makeFD(description, fd);
     }
-    makeRequest(makeUri(uris.upload), success, error, {}, null, 'POST', fd);
+    this.makeRequest(this.makeUri(this.uris.upload), success, error, {}, null, 'POST', fd);
   }
 
   describe(upload_filename, description, license, tags, success, error) {
-    checkOauth();
-    const fd = makeFD(description);
-    makeRequest(makeUri(uris.upload), success, error, {}, null, 'POST', fd);
+    this.checkOauth();
+    const fd = this.makeFD(description);
+    this.makeRequest(this.makeUri(this.uris.upload), success, error, {}, null, 'POST', fd);
   }
 
   getPendingSounds(success, error) {
-    checkOauth();
-    makeRequest(makeUri(uris.pending), success, error, {});
+    this.checkOauth();
+    this.makeRequest(this.makeUri(this.uris.pending), success, error, {});
   }
 
   // user resources
   me(success, error) {
-    checkOauth();
-    makeRequest(makeUri(uris.me), success, error);
+    this.checkOauth();
+    this.makeRequest(this.makeUri(this.uris.me), success, error);
   }
 
   getLoginURL() {
-    if (clientId === undefined) throw 'client_id was not set';
-    let login_url = makeUri(uris.authorize);
-    login_url += `?client_id=${clientId}&response_type=code`;
-    return login_url;
+    if (this.clientId === undefined) throw new Error('client_id was not set');
+    let loginUrl = this.makeUri(this.uris.authorize);
+    loginUrl += `?client_id=${this.clientId}&response_type=code`;
+    return loginUrl;
   }
 
   getLogoutURL() {
-    let logout_url = makeUri(uris.logoutAuthorize);
-    logout_url += `?client_id=${clientId}&response_type=code`;
+    let logoutUrl = this.makeUri(this.uris.logoutAuthorize);
+    logoutUrl += `?client_id=${this.clientId}&response_type=code`;
 
-    return logout_url;
+    return logoutUrl;
   }
 
   getUser(username, success, error) {
-    makeRequest(makeUri(uris.user, [username]), success, error, {}, UserObject);
+    this.makeRequest(this.makeUri(this.uris.user, [username]), success, error, {}, this.UserObject);
   }
 
   getPack(packId, success, error) {
-    makeRequest(makeUri(uris.pack, [packId]), success, error, {}, PackObject);
-  }
-
-  async login() {
-
+    this.makeRequest(this.makeUri(this.uris.pack, [packId]), success, error, {}, this.PackObject);
   }
 
   makeUri(uri, args) {
