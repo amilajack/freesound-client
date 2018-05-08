@@ -1,5 +1,5 @@
 {
-  "name": "freesound-clientv2",
+  "name": "freesound-client",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
