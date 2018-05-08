@@ -48,90 +48,71 @@ export default class FreeSound {
     }
   }
 
-  makeFD(obj, f) {
-    let fd = { ...f };
-    if (!fd) {
-      fd = new this.FormData();
+  makeFormData(obj, f) {
+    let formData = { ...f };
+    if (!formData) {
+      formData = new this.FormData();
     }
     for (const prop in obj) {
-      fd.append(prop, obj[prop]);
+      formData.append(prop, obj[prop]);
     }
-    return fd;
+    return formData;
   }
 
-  search(options, uri, success, error, wrapper) {
+  search(options, uri, wrapper) {
     if (options.analysis_file) {
-      this.makeRequest(
+      return this.makeRequest(
         this.makeUri(uri),
-        success,
-        error,
         null,
         wrapper,
         'POST',
-        this.makeFD(options)
+        this.makeFormData(options)
       );
-    } else {
-      this.makeRequest(this.makeUri(uri), success, error, options, wrapper);
     }
+    return this.makeRequest(this.makeUri(uri), options, wrapper);
   }
 
-  Collection(oldJsonObject) {
+  Collection(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
-    const nextOrPrev = (which, success, error) => {
-      this.makeRequest(which, success, error, {}, this.Collection);
+    const nextOrPrev = which => this.makeRequest(which, {}, this.Collection);
+    jsonObject.nextPage = () => {
+      nextOrPrev(jsonObject.next);
     };
-    jsonObject.nextPage = (success, error) => {
-      nextOrPrev(jsonObject.next, success, error);
-    };
-    jsonObject.previousPage = (success, error) => {
-      nextOrPrev(jsonObject.previous, success, error);
+    jsonObject.previousPage = () => {
+      nextOrPrev(jsonObject.previous);
     };
     jsonObject.getItem = idx => jsonObject.results[idx];
 
     return jsonObject;
   }
 
-  SoundCollection(jsonObject) {
+  SoundCollection(jsonObject: Object) {
     const collection = this.Collection(jsonObject);
     collection.getSound = idx => new this.SoundObject(collection.results[idx]);
     return collection;
   }
 
-  PackCollection(jsonObject) {
+  PackCollection(jsonObject: Object) {
     const collection = this.Collection(jsonObject);
     collection.getPack = idx => new this.PackObject(collection.results[idx]);
     return collection;
   }
 
-  SoundObject(oldJsonObject) {
+  SoundObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
-    jsonObject.getAnalysis = (filter, success, error) => {
-      this.makeRequest(
-        this.makeUri(this.uris.soundAnalysis, [jsonObject.id, filter || '']),
-        success,
-        error
-      );
-    };
+    jsonObject.getAnalysis = filter => this.makeRequest(this.makeUri(this.uris.soundAnalysis, [jsonObject.id, filter || '']), );
 
-    jsonObject.getSimilar = (success, error, params) => {
-      this.makeRequest(
-        this.makeUri(this.uris.similarSounds, [jsonObject.id]),
-        success,
-        error,
-        params,
-        this.SoundCollection
-      );
-    };
+    jsonObject.getSimilar = params => this.makeRequest(
+      this.makeUri(this.uris.similarSounds, [jsonObject.id]),
+      params,
+      this.SoundCollection
+    );
 
-    jsonObject.getComments = (success, error) => {
-      this.makeRequest(
-        this.makeUri(this.uris.comments, [jsonObject.id]),
-        success,
-        error,
-        {},
-        this.Collection
-      );
-    };
+    jsonObject.getComments = () => this.makeRequest(
+      this.makeUri(this.uris.comments, [jsonObject.id]),
+      {},
+      this.Collection
+    );
 
     jsonObject.download = (oldTargetWindow) => {
       const targetWindow = { ...oldTargetWindow };
@@ -141,23 +122,23 @@ export default class FreeSound {
       targetWindow.location = uri;
     };
 
-    jsonObject.comment = (commentStr, success, error) => {
+    jsonObject.comment = (commentStr) => {
       this.checkOauth();
       const data = new this.FormData();
       data.append('comment', this.comment);
       const uri = this.makeUri(this.uris.comment, [jsonObject.id]);
-      this.makeRequest(uri, success, error, {}, null, 'POST', data);
+      return this.makeRequest(uri, {}, null, 'POST', data);
     };
 
-    jsonObject.rate = (rating, success, error) => {
+    jsonObject.rate = (rating) => {
       this.checkOauth();
       const data = new this.FormData();
       data.append('rating', rating);
       const uri = this.makeUri(this.uris.rate, [jsonObject.id]);
-      this.makeRequest(uri, success, error, {}, null, 'POST', data);
+      return this.makeRequest(uri, {}, null, 'POST', data);
     };
 
-    jsonObject.bookmark = (name, category, success, error) => {
+    jsonObject.bookmark = (name, category) => {
       this.checkOauth();
       const data = new this.FormData();
       data.append('name', name);
@@ -165,53 +146,53 @@ export default class FreeSound {
         data.append('category', category);
       }
       const uri = this.makeUri(this.uris.bookmark, [jsonObject.id]);
-      this.makeRequest(uri, success, error, {}, null, 'POST', data);
+      return this.makeRequest(uri, {}, null, 'POST', data);
     };
 
-    jsonObject.edit = (description, success, error) => {
+    jsonObject.edit = (description) => {
       this.checkOauth();
-      const data = this.makeFD(description);
+      const data = this.makeFormData(description);
       const uri = this.makeUri(this.uris.edit, [jsonObject.id]);
-      this.makeRequest(uri, success, error, {}, null, 'POST', data);
+      return this.makeRequest(uri, {}, null, 'POST', data);
     };
 
     return jsonObject;
   }
 
-  UserObject(oldJsonObject) {
+  UserObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
-    jsonObject.sounds = (success, error, params) => {
+    jsonObject.sounds = (params) => {
       const uri = this.makeUri(this.uris.userSounds, [jsonObject.username]);
-      this.makeRequest(uri, success, error, params, this.SoundCollection);
+      return this.makeRequest(uri, params, this.SoundCollection);
     };
 
-    jsonObject.packs = (success, error) => {
+    jsonObject.packs = () => {
       const uri = this.makeUri(this.uris.userPacks, [jsonObject.username]);
-      this.makeRequest(uri, success, error, {}, this.PackCollection);
+      return this.makeRequest(uri, {}, this.PackCollection);
     };
 
-    jsonObject.bookmarkCategories = (success, error) => {
+    jsonObject.bookmarkCategories = () => {
       const uri = this.makeUri(this.uris.userBookmarkCategories, [
         jsonObject.username
       ]);
-      this.makeRequest(uri, success, error);
+      return this.makeRequest(uri);
     };
 
-    jsonObject.bookmarkCategorySounds = (success, error, params) => {
+    jsonObject.bookmarkCategorySounds = (params) => {
       const uri = this.makeUri(this.uris.userBookmarkCategorySounds, [
         jsonObject.username
       ]);
-      this.makeRequest(uri, success, error, params);
+      return this.makeRequest(uri, params);
     };
 
     return jsonObject;
   }
 
-  PackObject(oldJsonObject) {
+  PackObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
-    jsonObject.sounds = (success, error) => {
+    jsonObject.sounds = () => {
       const uri = this.makeUri(this.uris.packSounds, [jsonObject.id]);
-      this.makeRequest(uri, success, error, {}, this.SoundCollection);
+      return this.makeRequest(uri, {}, this.SoundCollection);
     };
 
     jsonObject.download = (oldTargetWindow) => {
@@ -224,102 +205,90 @@ export default class FreeSound {
     return jsonObject;
   }
 
-  setToken(token, type) {
+  setToken(token: string, type: string) {
     this.authHeader = (type === 'oauth' ? 'Bearer ' : 'Token ') + token;
   }
 
-  setClientSecrets(id, secret) {
+  setClientSecrets(id: string, secret: string) {
     this.clientId = id;
     this.clientSecret = secret;
   }
 
-  postAccessCode(code, success, error) {
+  postAccessCode(code: string) {
     const postUrl = `${this.uris.base}/oauth2/access_token/`;
     const data = new this.FormData();
     data.append('client_id', this.clientId);
     data.append('client_secret', this.clientSecret);
     data.append('code', code);
     data.append('grant_type', 'authorization_code');
-
-    if (!success) {
-      success = (result) => {
-        this.setToken(result.access_token, 'oauth');
-      };
-    }
-    this.makeRequest(postUrl, success, error, {}, null, 'POST', data);
+    return this.makeRequest(postUrl, {}, null, 'POST', data);
   }
 
-  textSearch(query, opts = {}, success, error) {
+  textSearch(query: string, opts: Object = {}) {
     const options = { ...opts };
     options.query = query || ' ';
-    this.search(options, this.uris.textSearch, success, error, this.SoundCollection);
+    this.search(options, this.uris.textSearch, this.SoundCollection);
   }
 
-  contentSearch(options, success, error) {
+  contentSearch(options) {
     if (!(options.target || options.analysis_file)) {
       throw new Error('Missing target or analysis_file');
     }
-    this.search(options, this.uris.contentSearch, success, error, this.SoundCollection);
+    this.search(options, this.uris.contentSearch, this.SoundCollection);
   }
 
-  combinedSearch(options, success, error) {
+  combinedSearch(options) {
     if (!(options.target || options.analysis_file || options.query)) {
       throw new Error('Missing query, target or analysis_file');
     }
-    this.search(options, this.uris.contentSearch, success, error);
+    this.search(options, this.uris.contentSearch);
   }
 
-  getSound(soundId, success, error) {
-    this.makeRequest(
+  getSound(soundId: string) {
+    return this.makeRequest(
       this.makeUri(this.uris.sound, [soundId]),
-      success,
-      error,
       {},
       this.SoundObject
     );
   }
 
-  upload(audiofile, filename, description, success, error) {
+  upload(audiofile: string, filename: string, description: string) {
     this.checkOauth();
-    let fd = new this.FormData();
-    fd.append('audiofile', audiofile, filename);
+    let formData = new this.FormData();
+    formData.append('audiofile', audiofile, filename);
     if (description) {
-      fd = this.makeFD(description, fd);
+      formData = this.makeFormData(description, formData);
     }
-    this.makeRequest(
+    return this.makeRequest(
       this.makeUri(this.uris.upload),
-      success,
-      error,
       {},
       null,
       'POST',
-      fd
+      formData
     );
   }
 
-  describe(uploadFilename, description, license, tags, success, error) {
+  describe(uploadFilename: string, description: string, license: string, tags: Array<string>) {
     this.checkOauth();
-    const fd = this.makeFD(description);
-    this.makeRequest(
+    const formData = this.makeFormData(description);
+    return this.makeRequest(
       this.makeUri(this.uris.upload),
-      success,
-      error,
       {},
       null,
       'POST',
-      fd
+      formData
     );
   }
 
-  getPendingSounds(success, error) {
+  getPendingSounds() {
     this.checkOauth();
-    this.makeRequest(this.makeUri(this.uris.pending), success, error, {});
+    return this.makeRequest(this.makeUri(this.uris.pending), {});
   }
 
   // user resources
-  me(success, error) {
+  me() {
     this.checkOauth();
-    this.makeRequest(this.makeUri(this.uris.me), success, error);
+    return this.makeRequest(this.makeUri(this.uris.me));
   }
 
   getLoginURL() {
@@ -336,21 +305,17 @@ export default class FreeSound {
     return logoutUrl;
   }
 
-  getUser(username, success, error) {
-    this.makeRequest(
+  getUser(username: string) {
+    return this.makeRequest(
       this.makeUri(this.uris.user, [username]),
-      success,
-      error,
       {},
       this.UserObject
     );
   }
 
-  getPack(packId: string, success, error) {
-    this.makeRequest(
+  getPack(packId: string) {
+    return this.makeRequest(
       this.makeUri(this.uris.pack, [packId]),
-      success,
-      error,
       {},
       this.PackObject
     );
