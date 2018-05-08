@@ -5,6 +5,18 @@
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.6.1",
+    "dotenv": "^5.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-bliss": "^2.0.0",
     "jest": "^22.4.3"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest"
   }
 }

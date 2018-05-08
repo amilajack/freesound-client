@@ -1,4 +1,6 @@
-const freesound = () => {
+import fetch from 'isomorphic-fetch';
+
+export default () => {
   let authHeader = '';
   let clientId = '';
   let clientSecret = '';
