@@ -12,8 +12,4 @@ describe('API', function testApi() {
       API_KEY: process.env.API_KEY
     });
   });
-
-  it('should get sounds', () => {
-    this.freeSound.getSounds();
-  });
 });
