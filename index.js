@@ -59,7 +59,7 @@ export default class FreeSound {
     return formData;
   }
 
-  search(options: Array<string>, uri: string) {
+  search(options: Object, uri: string) {
     if (options.analysis_file) {
       return this.makeRequest(
         this.makeUri(uri),
@@ -67,7 +67,7 @@ export default class FreeSound {
         this.makeFormData(options)
       );
     }
-    return this.makeRequest(this.makeUri(uri), options);
+    return this.makeRequest(this.makeUri(uri), 'GET', options);
   }
 
   Collection(oldJsonObject: Object) {
@@ -99,25 +99,24 @@ export default class FreeSound {
   SoundObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
     jsonObject.getAnalysis = filter =>
-      this.makeRequest(
-        this.makeUri(this.uris.soundAnalysis, [jsonObject.id, filter || ''])
-      );
+      this.makeRequest(this.makeUri(this.uris.soundAnalysis, [jsonObject.id, filter || '']));
 
     jsonObject.getSimilar = params =>
       this.makeRequest(
         this.makeUri(this.uris.similarSounds, [jsonObject.id]),
-        params,
-        this.SoundCollection
-      );
+        'GET',
+        params
+      )
+        .then(this.SoundCollection);
 
     jsonObject.getComments = () =>
       this.makeRequest(
         this.makeUri(this.uris.comments, [jsonObject.id]),
-        {},
+        'GET',
         this.Collection
       );
 
-    jsonObject.download = oldTargetWindow => {
+    jsonObject.download = (oldTargetWindow) => {
       const targetWindow = { ...oldTargetWindow };
       // can be window, new, or iframe
       this.checkOauth();
@@ -133,7 +132,7 @@ export default class FreeSound {
       return this.makeRequest(uri, 'POST', data);
     };
 
-    jsonObject.rate = rating => {
+    jsonObject.rate = (rating) => {
       this.checkOauth();
       const data = new this.FormData();
       data.append('rating', rating);
@@ -152,7 +151,7 @@ export default class FreeSound {
       return this.makeRequest(uri, 'POST', data);
     };
 
-    jsonObject.edit = description => {
+    jsonObject.edit = (description) => {
       this.checkOauth();
       const data = this.makeFormData(description);
       const uri = this.makeUri(this.uris.edit, [jsonObject.id]);
@@ -164,9 +163,9 @@ export default class FreeSound {
 
   UserObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
-    jsonObject.sounds = params => {
+    jsonObject.sounds = (params) => {
       const uri = this.makeUri(this.uris.userSounds, [jsonObject.username]);
-      return this.makeRequest(uri, params).then(this.SoundCollection);
+      return this.makeRequest(uri, 'GET', params).then(this.SoundCollection);
     };
 
     jsonObject.packs = () => {
@@ -181,11 +180,11 @@ export default class FreeSound {
       return this.makeRequest(uri);
     };
 
-    jsonObject.bookmarkCategorySounds = params => {
+    jsonObject.bookmarkCategorySounds = (params) => {
       const uri = this.makeUri(this.uris.userBookmarkCategorySounds, [
         jsonObject.username
       ]);
-      return this.makeRequest(uri, params);
+      return this.makeRequest(uri, 'GET', params);
     };
 
     return jsonObject;
@@ -198,7 +197,7 @@ export default class FreeSound {
       return this.makeRequest(uri).then(this.SoundCollection);
     };
 
-    jsonObject.download = oldTargetWindow => {
+    jsonObject.download = (oldTargetWindow) => {
       const targetWindow = { ...oldTargetWindow };
       // can be current or new window, or iframe
       this.checkOauth();
@@ -230,18 +229,14 @@ export default class FreeSound {
   textSearch(query: string, opts: Object = {}) {
     const options = { ...opts };
     options.query = query || ' ';
-    return this.search(options, this.uris.textSearch).then(
-      this.SoundCollection
-    );
+    return this.search(options, this.uris.textSearch).then(this.SoundCollection);
   }
 
   contentSearch(options: Object) {
     if (!(options.target || options.analysis_file)) {
       throw new Error('Missing target or analysis_file');
     }
-    return this.search(options, this.uris.contentSearch).then(
-      this.SoundCollection
-    );
+    return this.search(options, this.uris.contentSearch).then(this.SoundCollection);
   }
 
   combinedSearch(options: Object) {
@@ -254,7 +249,7 @@ export default class FreeSound {
   getSound(soundId: string) {
     return this.makeRequest(
       this.makeUri(this.uris.sound, [soundId]),
-      {},
+      'GET',
       this.SoundObject
     );
   }
@@ -301,21 +296,17 @@ export default class FreeSound {
   }
 
   getUser(username: string) {
-    return this.makeRequest(this.makeUri(this.uris.user, [username])).then(
-      this.UserObject
-    );
+    return this.makeRequest(this.makeUri(this.uris.user, [username])).then(this.UserObject);
   }
 
   getPack(packId: string) {
-    return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(
-      this.PackObject
-    );
+    return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(this.PackObject);
   }
 
   makeUri(uri: string, args?: Array<string>) {
     let newUri = String(uri);
     if (args) {
-      args.forEach(element => {
+      args.forEach((element) => {
         newUri = newUri.replace(/<[\w_]+>/, element);
       });
     }
@@ -325,14 +316,13 @@ export default class FreeSound {
   async makeRequest(
     uri: string,
     method?: string = 'GET',
-    params?: Object = {},
-    authHeader?: string
+    params?: Object = {}
   ) {
     return fetch(uri, {
       method,
       body: JSON.stringify(params),
       headers: {
-        headers: { Authorization: authHeader }
+        headers: { Authorization: this.authHeader }
       }
     }).then(res => res.json());
   }
