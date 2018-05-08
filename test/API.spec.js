@@ -12,4 +12,8 @@ describe('API', function testApi() {
       API_KEY: process.env.API_KEY
     });
   });
+
+  it('should search', () => {
+    this.freeSound.search();
+  });
 });

@@ -1,3 +1,4 @@
+// @flow
 /* eslint class-methods-use-this: 0 */
 import fetch from 'isomorphic-fetch';
 
@@ -47,9 +48,10 @@ export default class FreeSound {
     }
   }
 
-  makeFD(obj, fd) {
+  makeFD(obj, f) {
+    let fd = { ...f };
     if (!fd) {
-      fd = new FormData();
+      fd = new this.FormData();
     }
     for (const prop in obj) {
       fd.append(prop, obj[prop]);
@@ -66,7 +68,7 @@ export default class FreeSound {
         null,
         wrapper,
         'POST',
-        makeFD(options)
+        this.makeFD(options)
       );
     } else {
       this.makeRequest(this.makeUri(uri), success, error, options, wrapper);
@@ -91,13 +93,13 @@ export default class FreeSound {
 
   SoundCollection(jsonObject) {
     const collection = this.Collection(jsonObject);
-    collection.getSound = idx => new SoundObject(collection.results[idx]);
+    collection.getSound = idx => new this.SoundObject(collection.results[idx]);
     return collection;
   }
 
   PackCollection(jsonObject) {
     const collection = this.Collection(jsonObject);
-    collection.getPack = idx => new PackObject(collection.results[idx]);
+    collection.getPack = idx => new this.PackObject(collection.results[idx]);
     return collection;
   }
 
@@ -117,7 +119,7 @@ export default class FreeSound {
         success,
         error,
         params,
-        SoundCollection
+        this.SoundCollection
       );
     };
 
@@ -127,11 +129,12 @@ export default class FreeSound {
         success,
         error,
         {},
-        Collection
+        this.Collection
       );
     };
 
-    jsonObject.download = (targetWindow) => {
+    jsonObject.download = (oldTargetWindow) => {
+      const targetWindow = { ...oldTargetWindow };
       // can be window, new, or iframe
       this.checkOauth();
       const uri = this.makeUri(this.uris.download, [jsonObject.id]);
@@ -140,15 +143,15 @@ export default class FreeSound {
 
     jsonObject.comment = (commentStr, success, error) => {
       this.checkOauth();
-      const data = new FormData();
-      data.append('comment', comment);
+      const data = new this.FormData();
+      data.append('comment', this.comment);
       const uri = this.makeUri(this.uris.comment, [jsonObject.id]);
       this.makeRequest(uri, success, error, {}, null, 'POST', data);
     };
 
     jsonObject.rate = (rating, success, error) => {
       this.checkOauth();
-      const data = new FormData();
+      const data = new this.FormData();
       data.append('rating', rating);
       const uri = this.makeUri(this.uris.rate, [jsonObject.id]);
       this.makeRequest(uri, success, error, {}, null, 'POST', data);
@@ -156,7 +159,7 @@ export default class FreeSound {
 
     jsonObject.bookmark = (name, category, success, error) => {
       this.checkOauth();
-      const data = new FormData();
+      const data = new this.FormData();
       data.append('name', name);
       if (category) {
         data.append('category', category);
@@ -174,15 +177,17 @@ export default class FreeSound {
 
     return jsonObject;
   }
-  UserObject(jsonObject) {
+
+  UserObject(oldJsonObject) {
+    const jsonObject = { ...oldJsonObject };
     jsonObject.sounds = (success, error, params) => {
       const uri = this.makeUri(this.uris.userSounds, [jsonObject.username]);
-      this.makeRequest(uri, success, error, params, SoundCollection);
+      this.makeRequest(uri, success, error, params, this.SoundCollection);
     };
 
     jsonObject.packs = (success, error) => {
       const uri = this.makeUri(this.uris.userPacks, [jsonObject.username]);
-      this.makeRequest(uri, success, error, {}, PackCollection);
+      this.makeRequest(uri, success, error, {}, this.PackCollection);
     };
 
     jsonObject.bookmarkCategories = (success, error) => {
@@ -202,13 +207,15 @@ export default class FreeSound {
     return jsonObject;
   }
 
-  PackObject(jsonObject) {
+  PackObject(oldJsonObject) {
+    const jsonObject = { ...oldJsonObject };
     jsonObject.sounds = (success, error) => {
       const uri = this.makeUri(this.uris.packSounds, [jsonObject.id]);
-      this.makeRequest(uri, success, error, {}, SoundCollection);
+      this.makeRequest(uri, success, error, {}, this.SoundCollection);
     };
 
-    jsonObject.download = (targetWindow) => {
+    jsonObject.download = (oldTargetWindow) => {
+      const targetWindow = { ...oldTargetWindow };
       // can be current or new window, or iframe
       this.checkOauth();
       const uri = this.makeUri(this.uris.packDownload, [jsonObject.id]);
@@ -218,47 +225,48 @@ export default class FreeSound {
   }
 
   setToken(token, type) {
-    authHeader = (type === 'oauth' ? 'Bearer ' : 'Token ') + token;
+    this.authHeader = (type === 'oauth' ? 'Bearer ' : 'Token ') + token;
   }
 
   setClientSecrets(id, secret) {
-    clientId = id;
-    clientSecret = secret;
+    this.clientId = id;
+    this.clientSecret = secret;
   }
 
   postAccessCode(code, success, error) {
-    const post_url = `${uris.base}/oauth2/access_token/`;
-    const data = new FormData();
-    data.append('client_id', clientId);
-    data.append('client_secret', clientSecret);
+    const postUrl = `${this.uris.base}/oauth2/access_token/`;
+    const data = new this.FormData();
+    data.append('client_id', this.clientId);
+    data.append('client_secret', this.clientSecret);
     data.append('code', code);
     data.append('grant_type', 'authorization_code');
 
     if (!success) {
       success = (result) => {
-        setToken(result.access_token, 'oauth');
+        this.setToken(result.access_token, 'oauth');
       };
     }
-    this.makeRequest(post_url, success, error, {}, null, 'POST', data);
+    this.makeRequest(postUrl, success, error, {}, null, 'POST', data);
   }
 
-  textSearch(query, options = {}, success, error) {
+  textSearch(query, opts = {}, success, error) {
+    const options = { ...opts };
     options.query = query || ' ';
-    search(options, uris.textSearch, success, error, SoundCollection);
+    this.search(options, this.uris.textSearch, success, error, this.SoundCollection);
   }
 
   contentSearch(options, success, error) {
     if (!(options.target || options.analysis_file)) {
-      throw 'Missing target or analysis_file';
+      throw new Error('Missing target or analysis_file');
     }
-    search(options, uris.contentSearch, success, error, SoundCollection);
+    this.search(options, this.uris.contentSearch, success, error, this.SoundCollection);
   }
 
   combinedSearch(options, success, error) {
     if (!(options.target || options.analysis_file || options.query)) {
-      throw 'Missing query, target or analysis_file';
+      throw new Error('Missing query, target or analysis_file');
     }
-    search(options, uris.contentSearch, success, error);
+    this.search(options, this.uris.contentSearch, success, error);
   }
 
   getSound(soundId, success, error) {
@@ -267,13 +275,13 @@ export default class FreeSound {
       success,
       error,
       {},
-      SoundObject
+      this.SoundObject
     );
   }
 
   upload(audiofile, filename, description, success, error) {
     this.checkOauth();
-    let fd = new FormData();
+    let fd = new this.FormData();
     fd.append('audiofile', audiofile, filename);
     if (description) {
       fd = this.makeFD(description, fd);
@@ -289,7 +297,7 @@ export default class FreeSound {
     );
   }
 
-  describe(upload_filename, description, license, tags, success, error) {
+  describe(uploadFilename, description, license, tags, success, error) {
     this.checkOauth();
     const fd = this.makeFD(description);
     this.makeRequest(
@@ -338,7 +346,7 @@ export default class FreeSound {
     );
   }
 
-  getPack(packId, success, error) {
+  getPack(packId: string, success, error) {
     this.makeRequest(
       this.makeUri(this.uris.pack, [packId]),
       success,
@@ -348,16 +356,16 @@ export default class FreeSound {
     );
   }
 
-  makeUri(uri, args) {
+  makeUri(uri: string, args) {
     for (const a in args) {
       uri = uri.replace(/<[\w_]+>/, args[a]);
     }
     return this.uris.base + uri;
   }
 
-  async makeRequest() {
-    const result = await fetch(uri, {
-      method: method || 'GET',
+  async makeRequest(uri: string, method: string = 'GET', params: Object = {}, authHeader: string) {
+    return fetch(uri, {
+      method,
       body: JSON.stringify(params),
       headers: {
         headers: { Authorization: authHeader }
