@@ -3,19 +3,13 @@ import FreeSound from '../';
 require('dotenv').config();
 
 describe('API', function testApi() {
-  beforeAll(() => {
+  beforeAll(async () => {
     this.freeSound = new FreeSound();
-  });
-
-  it('should login with credentials', async () => {
-    // this.freeSound.login({
-    //   API_KEY: process.env.API_KEY
-    // });
-    console.log(await this.freeSound.setToken(process.env.API_KEY));
+    await this.freeSound.setToken(process.env.API_KEY);
   });
 
   it('should get sound', async () => {
-    console.log(await this.freeSound.getSound(96541));
+    expect(await this.freeSound.getSound(96541)).toMatchSnapshot();
   });
 
   it('should text search', async () => {
@@ -24,15 +18,15 @@ describe('API', function testApi() {
     const filter = 'tag:tenuto duration:[1.0 TO 15.0]';
     const sort = 'rating_desc';
     const fields = 'id,name,url';
-    console.log(await this.freeSound.textSearch(query, {
+    expect(await this.freeSound.textSearch(query, {
       page,
       filter,
       sort,
       fields
-    }));
+    })).toMatchSnapshot();
   });
 
   it('should get user', async () => {
-    console.log(await this.freeSound.getUser('Jovica'));
+    expect(await this.freeSound.getUser('Jovica')).toMatchSnapshot();
   });
 });

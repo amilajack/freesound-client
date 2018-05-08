@@ -322,7 +322,7 @@ export default class FreeSound {
       method,
       body: JSON.stringify(params),
       headers: {
-        headers: { Authorization: this.authHeader }
+        Authorization: this.authHeader
       }
     }).then(res => res.json());
   }
