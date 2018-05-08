@@ -3,5 +3,8 @@
   "version": "0.0.0",
   "main": "index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
 }
