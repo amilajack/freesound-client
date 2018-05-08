@@ -1,11 +1,19 @@
-import FreeSound from '../'
+import FreeSound from '../';
 
 require('dotenv').config();
 
-describe('API', () => {
+describe('API', function testApi() {
+  beforeAll(() => {
+    this.freeSound = new FreeSound();
+  });
+
   it('should login with credentials', () => {
-    const freeSound = new FreeSound({
+    this.freeSound.login({
       API_KEY: process.env.API_KEY
     });
+  });
+
+  it('should get sounds', () => {
+    this.freeSound.getSounds();
   });
 });

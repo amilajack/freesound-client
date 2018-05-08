@@ -17,6 +17,7 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "lint-fix": "yarn lint --fix",
     "test": "jest"
   }
 }
