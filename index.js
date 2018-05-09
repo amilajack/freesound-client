@@ -374,6 +374,16 @@ export default class FreeSound {
       headers: {
         Authorization: this.authHeader
       }
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .then((res) => {
+        if (res.error) {
+          throw new Error(res.error);
+        }
+        if (res.details === 'Authentication credentials were not provided') {
+          throw new Error(res.details);
+        }
+        return res;
+      });
   }
 }
