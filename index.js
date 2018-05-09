@@ -1,6 +1,7 @@
 // @flow
 /* eslint class-methods-use-this: 0 */
 import fetch from 'isomorphic-fetch';
+import FormData from 'form-data';
 
 export default class FreeSound {
   authHeader = '';
@@ -48,10 +49,13 @@ export default class FreeSound {
     }
   }
 
-  makeFormData(obj: Object, f: Object) {
-    let formData = { ...f };
+  makeFormData(obj: Object, f?: Object) {
+    let formData;
+    if (f) {
+      formData = { ...f };
+    }
     if (!formData) {
-      formData = new this.FormData();
+      formData = new FormData();
     }
     for (const prop of obj) {
       formData.append(prop, prop);
@@ -72,7 +76,7 @@ export default class FreeSound {
 
   Collection(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
-    const nextOrPrev = which => this.makeRequest(which).then(this.Collection);
+    const nextOrPrev = which => this.makeRequest(which).then(e => this.Collection(e));
     jsonObject.nextPage = () => {
       nextOrPrev(jsonObject.next);
     };
@@ -86,13 +90,13 @@ export default class FreeSound {
 
   SoundCollection(jsonObject: Object) {
     const collection = this.Collection(jsonObject);
-    collection.getSound = idx => new this.SoundObject(collection.results[idx]);
+    collection.getSound = idx => this.SoundObject(collection.results[idx]);
     return collection;
   }
 
   PackCollection(jsonObject: Object) {
     const collection = this.Collection(jsonObject);
-    collection.getPack = idx => new this.PackObject(collection.results[idx]);
+    collection.getPack = idx => this.PackObject(collection.results[idx]);
     return collection;
   }
 
@@ -107,7 +111,7 @@ export default class FreeSound {
         'GET',
         params
       )
-        .then(this.SoundCollection);
+        .then(e => this.SoundCollection(e));
 
     jsonObject.getComments = () =>
       this.makeRequest(
@@ -126,7 +130,7 @@ export default class FreeSound {
 
     jsonObject.comment = (commentStr: string) => {
       this.checkOauth();
-      const data = new this.FormData();
+      const data = new FormData();
       data.append('comment', this.comment);
       const uri = this.makeUri(this.uris.comment, [jsonObject.id]);
       return this.makeRequest(uri, 'POST', data);
@@ -134,7 +138,7 @@ export default class FreeSound {
 
     jsonObject.rate = (rating) => {
       this.checkOauth();
-      const data = new this.FormData();
+      const data = new FormData();
       data.append('rating', rating);
       const uri = this.makeUri(this.uris.rate, [jsonObject.id]);
       return this.makeRequest(uri, 'POST', data);
@@ -142,7 +146,7 @@ export default class FreeSound {
 
     jsonObject.bookmark = (name, category) => {
       this.checkOauth();
-      const data = new this.FormData();
+      const data = new FormData();
       data.append('name', name);
       if (category) {
         data.append('category', category);
@@ -165,12 +169,12 @@ export default class FreeSound {
     const jsonObject = { ...oldJsonObject };
     jsonObject.sounds = (params) => {
       const uri = this.makeUri(this.uris.userSounds, [jsonObject.username]);
-      return this.makeRequest(uri, 'GET', params).then(this.SoundCollection);
+      return this.makeRequest(uri, 'GET', params).then(e => this.SoundCollection(e));
     };
 
     jsonObject.packs = () => {
       const uri = this.makeUri(this.uris.userPacks, [jsonObject.username]);
-      return this.makeRequest(uri).then(this.PackCollection);
+      return this.makeRequest(uri).then(e => this.PackCollection(e));
     };
 
     jsonObject.bookmarkCategories = () => {
@@ -194,7 +198,7 @@ export default class FreeSound {
     const jsonObject = { ...oldJsonObject };
     jsonObject.sounds = () => {
       const uri = this.makeUri(this.uris.packSounds, [jsonObject.id]);
-      return this.makeRequest(uri).then(this.SoundCollection);
+      return this.makeRequest(uri).then(e => this.SoundCollection(e));
     };
 
     jsonObject.download = (oldTargetWindow) => {
@@ -218,7 +222,7 @@ export default class FreeSound {
 
   postAccessCode(code: string) {
     const postUrl = `${this.uris.base}/oauth2/access_token/`;
-    const data = new this.FormData();
+    const data = new FormData();
     data.append('client_id', this.clientId);
     data.append('client_secret', this.clientSecret);
     data.append('code', code);
@@ -229,14 +233,14 @@ export default class FreeSound {
   textSearch(query: string, opts: Object = {}) {
     const options = { ...opts };
     options.query = query || ' ';
-    return this.search(options, this.uris.textSearch).then(this.SoundCollection);
+    return this.search(options, this.uris.textSearch).then(e => this.SoundCollection(e));
   }
 
   contentSearch(options: Object) {
     if (!(options.target || options.analysis_file)) {
       throw new Error('Missing target or analysis_file');
     }
-    return this.search(options, this.uris.contentSearch).then(this.SoundCollection);
+    return this.search(options, this.uris.contentSearch).then(e => this.SoundCollection(e));
   }
 
   combinedSearch(options: Object) {
@@ -256,7 +260,7 @@ export default class FreeSound {
 
   upload(audiofile: string, filename: string, description: string) {
     this.checkOauth();
-    let formData = new this.FormData();
+    let formData = new FormData();
     formData.append('audiofile', audiofile, filename);
     if (description) {
       formData = this.makeFormData(description, formData);
@@ -296,11 +300,11 @@ export default class FreeSound {
   }
 
   getUser(username: string) {
-    return this.makeRequest(this.makeUri(this.uris.user, [username])).then(this.UserObject);
+    return this.makeRequest(this.makeUri(this.uris.user, [username])).then(e => this.UserObject(e));
   }
 
   getPack(packId: string) {
-    return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(this.PackObject);
+    return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(e => this.PackObject(e));
   }
 
   makeUri(uri: string, args?: Array<string>) {

@@ -2,6 +2,11 @@ import FreeSound from '../';
 
 require('dotenv').config();
 
+function removeDownloadCount(obj) {
+  delete obj.num_downloads;
+  return obj;
+}
+
 describe('API', function testApi() {
   beforeAll(async () => {
     this.freeSound = new FreeSound();
@@ -9,7 +14,7 @@ describe('API', function testApi() {
   });
 
   it('should get sound', async () => {
-    expect(await this.freeSound.getSound(96541)).toMatchSnapshot();
+    expect(removeDownloadCount(await this.freeSound.getSound(96541))).toMatchSnapshot();
   });
 
   it('should text search', async () => {
