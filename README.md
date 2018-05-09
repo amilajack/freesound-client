@@ -38,7 +38,7 @@ await freeSound.getUser('Jovica');
 await this.freeSound.textSearch('violoncello', {
   page: 1,
   filter: 'tag:tenuto duration:[1.0 TO 15.0]',
-  sort: 'rating_desc,
+  sort: 'rating_desc',
   fields: 'id,name,url'
 });
 ```
