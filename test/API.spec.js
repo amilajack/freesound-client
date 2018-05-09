@@ -35,4 +35,20 @@ describe('API', function testApi() {
   it('should get user', async () => {
     expect(await this.freeSound.getUser('Jovica')).toMatchSnapshot();
   });
+
+  it('should get me', async () => {
+    expect(await this.freeSound.me()).toBeTruthy();
+  });
+
+  it('should get pending sounds', async () => {
+    expect(await this.freeSound.getPendingSounds()).toBeTruthy();
+  });
+
+  it('should perform combined search', async () => {
+    expect(await this.freeSound.combinedSearch()).toBeTruthy();
+  });
+
+  it('should perform content search', async () => {
+    expect(await this.freeSound.contentSearch()).toBeTruthy();
+  });
 });

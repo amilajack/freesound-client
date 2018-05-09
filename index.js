@@ -58,6 +58,9 @@ export default class FreeSound {
     packDownload: '/packs/<pack_id>/download/'
   };
 
+  /**
+   * @private
+   */
   checkOauth() {
     if (!this.authHeader.includes('Bearer')) {
       throw new Error('Oauth authentication required');
@@ -247,8 +250,9 @@ export default class FreeSound {
     return jsonObject;
   }
 
-  setToken(token: string, type: string) {
-    this.authHeader = (type === 'oauth' ? 'Bearer ' : 'Token ') + token;
+  setToken(token: string, type?: 'oauth'): string {
+    this.authHeader = `${type === 'oauth' ? 'Bearer ' : 'Token '}${token}`;
+    return this.authHeader;
   }
 
   setClientSecrets(id: string, secret: string) {
@@ -321,9 +325,6 @@ export default class FreeSound {
     return this.makeRequest(this.makeUri(this.uris.me));
   }
 
-  /**
-   * @private
-   */
   getLoginURL() {
     if (this.clientId === undefined) throw new Error('client_id was not set');
     let loginUrl = this.makeUri(this.uris.authorize);
@@ -331,9 +332,6 @@ export default class FreeSound {
     return loginUrl;
   }
 
-  /**
-   * @private
-   */
   getLogoutURL() {
     let logoutUrl = this.makeUri(this.uris.logoutAuthorize);
     logoutUrl += `?client_id=${this.clientId}&response_type=code`;

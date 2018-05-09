@@ -41,4 +41,13 @@ await this.freeSound.textSearch('violoncello', {
   sort: 'rating_desc',
   fields: 'id,name,url'
 });
+
+// OAuth login
+freeSound.setToken('your-api-key', 'oauth');
+// Set your application's client_id and client_secret
+freeSound.setClientSecrets('your-client-id', 'your-secret-key');
+// Make the user navigate here
+freeSound.getLoginURL();
+// Use the authorization code from the login
+freeSound.postAccessCode('your-temporary-code-from-login');
 ```
