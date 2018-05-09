@@ -4,14 +4,29 @@ import fetch from 'isomorphic-fetch';
 import FormData from 'form-data';
 
 export default class FreeSound {
+  /**
+   * @private
+   */
   authHeader = '';
 
+  /**
+   * @private
+   */
   clientId = '';
 
+  /**
+   * @private
+   */
   clientSecret = '';
 
+  /**
+   * @private
+   */
   host = 'freesound.org';
 
+  /**
+   * @private
+   */
   uris = {
     base: `https://${this.host}/apiv2`,
     textSearch: '/search/text/',
@@ -49,6 +64,9 @@ export default class FreeSound {
     }
   }
 
+  /**
+   * @private
+   */
   makeFormData(obj: Object, f?: Object) {
     let formData;
     if (f) {
@@ -74,6 +92,9 @@ export default class FreeSound {
     return this.makeRequest(this.makeUri(uri), 'GET', options);
   }
 
+  /**
+   * @private
+   */
   Collection(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
     const nextOrPrev = which => this.makeRequest(which).then(e => this.Collection(e));
@@ -88,18 +109,27 @@ export default class FreeSound {
     return jsonObject;
   }
 
+  /**
+   * @private
+   */
   SoundCollection(jsonObject: Object) {
     const collection = this.Collection(jsonObject);
     collection.getSound = idx => this.SoundObject(collection.results[idx]);
     return collection;
   }
 
+  /**
+   * @private
+   */
   PackCollection(jsonObject: Object) {
     const collection = this.Collection(jsonObject);
     collection.getPack = idx => this.PackObject(collection.results[idx]);
     return collection;
   }
 
+  /**
+   * @private
+   */
   SoundObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
     jsonObject.getAnalysis = filter =>
@@ -165,6 +195,9 @@ export default class FreeSound {
     return jsonObject;
   }
 
+  /**
+   * @private
+   */
   UserObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
     jsonObject.sounds = (params) => {
@@ -194,6 +227,9 @@ export default class FreeSound {
     return jsonObject;
   }
 
+  /**
+   * @private
+   */
   PackObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
     jsonObject.sounds = () => {
@@ -285,6 +321,9 @@ export default class FreeSound {
     return this.makeRequest(this.makeUri(this.uris.me));
   }
 
+  /**
+   * @private
+   */
   getLoginURL() {
     if (this.clientId === undefined) throw new Error('client_id was not set');
     let loginUrl = this.makeUri(this.uris.authorize);
@@ -292,6 +331,9 @@ export default class FreeSound {
     return loginUrl;
   }
 
+  /**
+   * @private
+   */
   getLogoutURL() {
     let logoutUrl = this.makeUri(this.uris.logoutAuthorize);
     logoutUrl += `?client_id=${this.clientId}&response_type=code`;
@@ -307,6 +349,9 @@ export default class FreeSound {
     return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(e => this.PackObject(e));
   }
 
+  /**
+   * @private
+   */
   makeUri(uri: string, args?: Array<string>) {
     let newUri = String(uri);
     if (args) {
@@ -317,6 +362,9 @@ export default class FreeSound {
     return this.uris.base + newUri;
   }
 
+  /**
+   * @private
+   */
   async makeRequest(
     uri: string,
     method?: string = 'GET',
