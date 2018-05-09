@@ -3,6 +3,7 @@ import FreeSound from '../';
 require('dotenv').config();
 
 function removeDownloadCount(obj) {
+  // eslint-disable-next-line
   delete obj.num_downloads;
   return obj;
 }
