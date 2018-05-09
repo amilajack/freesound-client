@@ -137,7 +137,9 @@ export default class FreeSound {
   SoundObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
     jsonObject.getAnalysis = filter =>
-      this.makeRequest(this.makeUri(this.uris.soundAnalysis, [jsonObject.id, filter || '']));
+      this.makeRequest(
+        this.makeUri(this.uris.soundAnalysis, [jsonObject.id, filter || ''])
+      );
 
     jsonObject.getSimilar = params =>
       this.makeRequest(
@@ -153,7 +155,7 @@ export default class FreeSound {
         this.Collection
       );
 
-    jsonObject.download = (oldTargetWindow) => {
+    jsonObject.download = oldTargetWindow => {
       const targetWindow = { ...oldTargetWindow };
       // can be window, new, or iframe
       this.checkOauth();
@@ -169,7 +171,7 @@ export default class FreeSound {
       return this.makeRequest(uri, 'POST', data);
     };
 
-    jsonObject.rate = (rating) => {
+    jsonObject.rate = rating => {
       this.checkOauth();
       const data = new FormData();
       data.append('rating', rating);
@@ -188,7 +190,7 @@ export default class FreeSound {
       return this.makeRequest(uri, 'POST', data);
     };
 
-    jsonObject.edit = (description) => {
+    jsonObject.edit = description => {
       this.checkOauth();
       const data = this.makeFormData(description);
       const uri = this.makeUri(this.uris.edit, [jsonObject.id]);
@@ -203,10 +205,11 @@ export default class FreeSound {
    */
   UserObject(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
-    jsonObject.sounds = (params) => {
+    jsonObject.sounds = params => {
       const uri = this.makeUri(this.uris.userSounds, [jsonObject.username]);
       return this.makeRequest(uri, 'GET', params).then(e =>
-        this.SoundCollection(e));
+        this.SoundCollection(e)
+      );
     };
 
     jsonObject.packs = () => {
@@ -221,7 +224,7 @@ export default class FreeSound {
       return this.makeRequest(uri);
     };
 
-    jsonObject.bookmarkCategorySounds = (params) => {
+    jsonObject.bookmarkCategorySounds = params => {
       const uri = this.makeUri(this.uris.userBookmarkCategorySounds, [
         jsonObject.username
       ]);
@@ -241,7 +244,7 @@ export default class FreeSound {
       return this.makeRequest(uri).then(e => this.SoundCollection(e));
     };
 
-    jsonObject.download = (oldTargetWindow) => {
+    jsonObject.download = oldTargetWindow => {
       const targetWindow = { ...oldTargetWindow };
       // can be current or new window, or iframe
       this.checkOauth();
@@ -275,7 +278,8 @@ export default class FreeSound {
     const options = { ...opts };
     options.query = query || ' ';
     return this.search(options, this.uris.textSearch).then(e =>
-      this.SoundCollection(e));
+      this.SoundCollection(e)
+    );
   }
 
   contentSearch(options: Object) {
@@ -283,7 +287,8 @@ export default class FreeSound {
       throw new Error('Missing target or analysis_file');
     }
     return this.search(options, this.uris.contentSearch).then(e =>
-      this.SoundCollection(e));
+      this.SoundCollection(e)
+    );
   }
 
   combinedSearch(options: Object) {
@@ -336,12 +341,14 @@ export default class FreeSound {
 
   getUser(username: string) {
     return this.makeRequest(this.makeUri(this.uris.user, [username])).then(e =>
-      this.UserObject(e));
+      this.UserObject(e)
+    );
   }
 
   getPack(packId: string) {
     return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(e =>
-      this.PackObject(e));
+      this.PackObject(e)
+    );
   }
 
   getSound(soundId: string) {
@@ -357,7 +364,7 @@ export default class FreeSound {
   makeUri(uri: string, args?: Array<string>) {
     let newUri = String(uri);
     if (args) {
-      args.forEach((element) => {
+      args.forEach(element => {
         newUri = newUri.replace(/<[\w_]+>/, element);
       });
     }
@@ -380,7 +387,7 @@ export default class FreeSound {
       }
     })
       .then(res => res.json())
-      .then((res) => {
+      .then(res => {
         if (res.error) {
           throw new Error(res.error);
         }

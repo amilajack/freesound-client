@@ -50,7 +50,7 @@ describe('API', function testApi() {
 
     it('should get pack data', async () => {
       const pack = await this.freeSound.getPack(9678);
-      expect(pack.sounds()).toMatchSnapshot();
+      expect(await pack.sounds()).toMatchSnapshot();
     });
   });
 
@@ -68,15 +68,12 @@ describe('API', function testApi() {
         sound.getSimilar(),
         sound.getComments()
       ]);
-      expect(analysis)
-        .toBeTruthy()
-        .toMatchSnapshot();
-      expect(similar)
-        .toBeTruthy()
-        .toMatchSnapshot();
-      expect(comments)
-        .toBeTruthy()
-        .toMatchSnapshot();
+      expect(analysis).toBeTruthy();
+      expect(similar).toBeTruthy();
+      expect(comments).toBeTruthy();
+      expect(analysis).toMatchSnapshot();
+      expect(analysis).toMatchSnapshot();
+      expect(analysis).toMatchSnapshot();
     });
   });
 
@@ -108,22 +105,22 @@ describe('API', function testApi() {
   });
 
   it('should get me', async () => {
-    console.log(await this.freeSound.me());
     expect(await this.freeSound.me()).toBeTruthy();
   });
 
   it('should get pending sounds', async () => {
-    console.log(await this.freeSound.getPendingSounds());
     expect(await this.freeSound.getPendingSounds()).toBeTruthy();
   });
 
   it('should perform combined search', async () => {
-    console.log(await this.freeSound.combinedSearch());
-    expect(await this.freeSound.combinedSearch()).toBeTruthy();
+    const result = await this.freeSound.combinedSearch({ target: 'rhythm.bpm:120&filter=tag:loop' })
+    expect(result).toBeTruthy();
+    expect(result).toMatchSnapshot();
   });
 
   it('should perform content search', async () => {
-    console.log(await this.freeSound.contentSearch());
-    expect(await this.freeSound.contentSearch()).toBeTruthy();
+    const result = await this.freeSound.contentSearch({ target: 'lowlevel.pitch.mean:220' })
+    expect(result).toBeTruthy();
+    expect(result).toMatchSnapshot();
   });
 });
