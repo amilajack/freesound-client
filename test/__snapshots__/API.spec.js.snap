@@ -25,16 +25,20 @@ Object {
   "avg_rating": 4.666666666666665,
   "bitdepth": 24,
   "bitrate": 2117,
-  "bookmark": "https://freesound.org/apiv2/sounds/96541/bookmark/",
+  "bookmark": [Function],
   "channels": 2,
-  "comment": "https://freesound.org/apiv2/sounds/96541/comment/",
+  "comment": [Function],
   "comments": "https://freesound.org/apiv2/sounds/96541/comments/",
   "created": "2010-05-12T20:29:49",
   "description": "For the user \\"Stealth Inc.\\", my girlfriend saying \\"Coming soon\\". Recorded with an AT2020 microphone into an Apogee Duet and edited with Record.",
-  "download": "https://freesound.org/apiv2/sounds/96541/download/",
+  "download": [Function],
   "duration": 1.8774829932,
+  "edit": [Function],
   "filesize": 496906,
   "geotag": null,
+  "getAnalysis": [Function],
+  "getComments": [Function],
+  "getSimilar": [Function],
   "id": 96541,
   "images": Object {
     "spectral_l": "https://freesound.org/data/displays/96/96541_7037_spec_L.jpg",
@@ -54,7 +58,7 @@ Object {
     "preview-lq-mp3": "https://freesound.org/data/previews/96/96541_7037-lq.mp3",
     "preview-lq-ogg": "https://freesound.org/data/previews/96/96541_7037-lq.ogg",
   },
-  "rate": "https://freesound.org/apiv2/sounds/96541/rate/",
+  "rate": [Function],
   "samplerate": 44100,
   "similar_sounds": "https://freesound.org/apiv2/sounds/96541/similar/",
   "tags": Array [
@@ -479,99 +483,6 @@ Object {
 `;
 
 exports[`API User should get user 1`] = `
-Object {
-  "about": "Policy of use: you must state somewhere somehow (credit lines, web page, whatever) that the Freesound Project served this sounds. It is irrelevant to me whether you mention or not my authorship. Can't credit? Send me a personal message. (Thanks to dobroide for these words!)
-
-If possible, I would also like to hear where the sounds are used, so if you can send me a link or something else, please do so. Thanks!
-
-For some more information about me, click on the links below:
-<a href=\\"http://www.c-o-l-o-u-r-s.org/\\" rel=\\"nofollow\\">http://www.c-o-l-o-u-r-s.org/</a>. If you want to support our label, please buy something over there.
-
-Check this out: <a href=\\"https://cyclesofmoebius.bandcamp.com/\\" rel=\\"nofollow\\">https://cyclesofmoebius.bandcamp.com/</a>
-
-
-Namaste!
-Jovica Storer",
-  "avatar": Object {
-    "large": "https://freesound.org/data/avatars/2/2518_L.jpg",
-    "medium": "https://freesound.org/data/avatars/2/2518_M.jpg",
-    "small": "https://freesound.org/data/avatars/2/2518_S.jpg",
-  },
-  "bookmarkCategories": [Function],
-  "bookmarkCategorySounds": [Function],
-  "bookmark_categories": "https://freesound.org/apiv2/users/Jovica/bookmark_categories/",
-  "date_joined": "2005-05-07T17:49:39",
-  "home_page": "http://www.c-o-l-o-u-r-s.com/",
-  "num_comments": 3,
-  "num_packs": 239,
-  "num_posts": 33,
-  "num_sounds": 7813,
-  "packs": [Function],
-  "sounds": [Function],
-  "url": "https://freesound.org/people/Jovica/",
-  "username": "Jovica",
-}
-`;
-
-exports[`API should get sound 1`] = `
-Object {
-  "analysis": "No descriptors specified. You should indicate which descriptors you want with the 'descriptors' request parameter.",
-  "analysis_frames": "https://freesound.org/data/analysis/96/96541_7037_frames.json",
-  "analysis_stats": "https://freesound.org/apiv2/sounds/96541/analysis/",
-  "avg_rating": 4.666666666666665,
-  "bitdepth": 24,
-  "bitrate": 2117,
-  "bookmark": "https://freesound.org/apiv2/sounds/96541/bookmark/",
-  "channels": 2,
-  "comment": "https://freesound.org/apiv2/sounds/96541/comment/",
-  "comments": "https://freesound.org/apiv2/sounds/96541/comments/",
-  "created": "2010-05-12T20:29:49",
-  "description": "For the user \\"Stealth Inc.\\", my girlfriend saying \\"Coming soon\\". Recorded with an AT2020 microphone into an Apogee Duet and edited with Record.",
-  "download": "https://freesound.org/apiv2/sounds/96541/download/",
-  "duration": 1.8774829932,
-  "filesize": 496906,
-  "geotag": null,
-  "id": 96541,
-  "images": Object {
-    "spectral_l": "https://freesound.org/data/displays/96/96541_7037_spec_L.jpg",
-    "spectral_m": "https://freesound.org/data/displays/96/96541_7037_spec_M.jpg",
-    "waveform_l": "https://freesound.org/data/displays/96/96541_7037_wave_L.png",
-    "waveform_m": "https://freesound.org/data/displays/96/96541_7037_wave_M.png",
-  },
-  "license": "http://creativecommons.org/licenses/by/3.0/",
-  "name": "coming soon.wav",
-  "num_comments": 1,
-  "num_ratings": 3,
-  "pack": "https://freesound.org/apiv2/packs/6201/",
-  "pack_name": "Stealth Inc.",
-  "previews": Object {
-    "preview-hq-mp3": "https://freesound.org/data/previews/96/96541_7037-hq.mp3",
-    "preview-hq-ogg": "https://freesound.org/data/previews/96/96541_7037-hq.ogg",
-    "preview-lq-mp3": "https://freesound.org/data/previews/96/96541_7037-lq.mp3",
-    "preview-lq-ogg": "https://freesound.org/data/previews/96/96541_7037-lq.ogg",
-  },
-  "rate": "https://freesound.org/apiv2/sounds/96541/rate/",
-  "samplerate": 44100,
-  "similar_sounds": "https://freesound.org/apiv2/sounds/96541/similar/",
-  "tags": Array [
-    "request",
-    "female",
-    "girl",
-    "talk",
-    "vocal",
-    "voice",
-    "american",
-    "woman",
-    "english",
-    "speak",
-  ],
-  "type": "wav",
-  "url": "https://freesound.org/people/tim.kahn/sounds/96541/",
-  "username": "tim.kahn",
-}
-`;
-
-exports[`API should get user 1`] = `
 Object {
   "about": "Policy of use: you must state somewhere somehow (credit lines, web page, whatever) that the Freesound Project served this sounds. It is irrelevant to me whether you mention or not my authorship. Can't credit? Send me a personal message. (Thanks to dobroide for these words!)
 
