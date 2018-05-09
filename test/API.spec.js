@@ -12,11 +12,72 @@ describe('API', function testApi() {
   beforeAll(async () => {
     this.freeSound = new FreeSound();
     this.freeSound.setToken(process.env.CLIENT_SECRET);
-    this.freeSound.setClientSecrets(process.env.CLIENT_ID, process.env.CLIENT_SECRET);
+    this.freeSound.setClientSecrets(
+      process.env.CLIENT_ID,
+      process.env.CLIENT_SECRET
+    );
   });
 
-  it('should get sound', async () => {
-    expect(removeDownloadCount(await this.freeSound.getSound(96541))).toMatchSnapshot();
+  describe('User', () => {
+    it('should get user', async () => {
+      expect(await this.freeSound.getUser('Jovica')).toMatchSnapshot();
+    });
+
+    it('should get a users data', async () => {
+      const user = await this.freeSound.getUser('Jovica');
+      const [sounds, packs, bookCat, bookCatSounds] = await Promise.all([
+        user.sounds(),
+        user.packs(),
+        user.bookmarkCategories(),
+        user.bookmarkCategorySounds()
+      ]);
+      expect(sounds).toBeTruthy();
+      expect(packs).toBeTruthy();
+      expect(bookCat).toBeTruthy();
+      expect(bookCatSounds).toBeTruthy();
+      expect(sounds).toMatchSnapshot();
+      expect(packs).toMatchSnapshot();
+      expect(bookCat).toMatchSnapshot();
+      expect(bookCatSounds).toMatchSnapshot();
+    });
+  });
+
+  describe('Pack', () => {
+    it('should get pack', async () => {
+      const pack = await this.freeSound.getPack(9678);
+      expect(pack).toMatchSnapshot();
+    });
+
+    it('should get pack data', async () => {
+      const pack = await this.freeSound.getPack(9678);
+      expect(pack.sounds()).toMatchSnapshot();
+    });
+  });
+
+  describe('Sound', () => {
+    it('should get sound', async () => {
+      expect(
+        removeDownloadCount(await this.freeSound.getSound(96541))
+      ).toMatchSnapshot();
+    });
+
+    it('should get sound data', async () => {
+      const sound = await this.freeSound.getSound(96541);
+      const [analysis, similar, comments] = await Promise.all([
+        sound.getAnalysis(),
+        sound.getSimilar(),
+        sound.getComments()
+      ]);
+      expect(analysis)
+        .toBeTruthy()
+        .toMatchSnapshot();
+      expect(similar)
+        .toBeTruthy()
+        .toMatchSnapshot();
+      expect(comments)
+        .toBeTruthy()
+        .toMatchSnapshot();
+    });
   });
 
   it('should text search', async () => {
@@ -25,16 +86,14 @@ describe('API', function testApi() {
     const filter = 'tag:tenuto duration:[1.0 TO 15.0]';
     const sort = 'rating_desc';
     const fields = 'id,name,url';
-    expect(await this.freeSound.textSearch(query, {
-      page,
-      filter,
-      sort,
-      fields
-    })).toMatchSnapshot();
-  });
-
-  it('should get user', async () => {
-    expect(await this.freeSound.getUser('Jovica')).toMatchSnapshot();
+    expect(
+      await this.freeSound.textSearch(query, {
+        page,
+        filter,
+        sort,
+        fields
+      })
+    ).toMatchSnapshot();
   });
 
   it('should go through oauth process', async () => {

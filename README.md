@@ -28,11 +28,29 @@ const freeSound = new FreeSound();
 // Set token
 freeSound.setToken('your-api-key');
 
-// Getting a sound
-await this.freeSound.getSound(96541);
-
 // Getting a user
 await freeSound.getUser('Jovica');
+// Getting a user's related data
+const [sounds, packs, bookCat, bookCatSounds] = await Promise.all([
+  user.sounds(),
+  user.packs(),
+  user.bookmarkCategories(),
+  user.bookmarkCategorySounds()
+]);
+
+// Getting a pack
+const pack = await this.freeSound.getPack(9678);
+// Getting a pack's sounds
+const packSounds = await pack.sounds()
+
+// Getting a sound
+const sound = await this.freeSound.getSound(96541);
+// Getting a sound's related data
+const [analysis, similar, comments] = await Promise.all([
+  sound.getAnalysis(),
+  sound.getSimilar(),
+  sound.getComments()
+]);
 
 // Text search 
 await this.freeSound.textSearch('violoncello', {

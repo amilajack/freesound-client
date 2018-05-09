@@ -100,7 +100,8 @@ export default class FreeSound {
    */
   Collection(oldJsonObject: Object) {
     const jsonObject = { ...oldJsonObject };
-    const nextOrPrev = which => this.makeRequest(which).then(e => this.Collection(e));
+    const nextOrPrev = which =>
+      this.makeRequest(which).then(e => this.Collection(e));
     jsonObject.nextPage = () => {
       nextOrPrev(jsonObject.next);
     };
@@ -143,8 +144,7 @@ export default class FreeSound {
         this.makeUri(this.uris.similarSounds, [jsonObject.id]),
         'GET',
         params
-      )
-        .then(e => this.SoundCollection(e));
+      ).then(e => this.SoundCollection(e));
 
     jsonObject.getComments = () =>
       this.makeRequest(
@@ -205,7 +205,8 @@ export default class FreeSound {
     const jsonObject = { ...oldJsonObject };
     jsonObject.sounds = (params) => {
       const uri = this.makeUri(this.uris.userSounds, [jsonObject.username]);
-      return this.makeRequest(uri, 'GET', params).then(e => this.SoundCollection(e));
+      return this.makeRequest(uri, 'GET', params).then(e =>
+        this.SoundCollection(e));
     };
 
     jsonObject.packs = () => {
@@ -273,14 +274,16 @@ export default class FreeSound {
   textSearch(query: string, opts: Object = {}) {
     const options = { ...opts };
     options.query = query || ' ';
-    return this.search(options, this.uris.textSearch).then(e => this.SoundCollection(e));
+    return this.search(options, this.uris.textSearch).then(e =>
+      this.SoundCollection(e));
   }
 
   contentSearch(options: Object) {
     if (!(options.target || options.analysis_file)) {
       throw new Error('Missing target or analysis_file');
     }
-    return this.search(options, this.uris.contentSearch).then(e => this.SoundCollection(e));
+    return this.search(options, this.uris.contentSearch).then(e =>
+      this.SoundCollection(e));
   }
 
   combinedSearch(options: Object) {
@@ -288,14 +291,6 @@ export default class FreeSound {
       throw new Error('Missing query, target or analysis_file');
     }
     return this.search(options, this.uris.contentSearch);
-  }
-
-  getSound(soundId: string) {
-    return this.makeRequest(
-      this.makeUri(this.uris.sound, [soundId]),
-      'GET',
-      this.SoundObject
-    );
   }
 
   upload(audiofile: string, filename: string, description: string) {
@@ -340,11 +335,20 @@ export default class FreeSound {
   }
 
   getUser(username: string) {
-    return this.makeRequest(this.makeUri(this.uris.user, [username])).then(e => this.UserObject(e));
+    return this.makeRequest(this.makeUri(this.uris.user, [username])).then(e =>
+      this.UserObject(e));
   }
 
   getPack(packId: string) {
-    return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(e => this.PackObject(e));
+    return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(e =>
+      this.PackObject(e));
+  }
+
+  getSound(soundId: string) {
+    return this.makeRequest(
+      this.makeUri(this.uris.sound, [soundId]),
+      'GET'
+    ).then(e => this.SoundObject(e));
   }
 
   /**
@@ -380,8 +384,8 @@ export default class FreeSound {
         if (res.error) {
           throw new Error(res.error);
         }
-        if (res.details === 'Authentication credentials were not provided') {
-          throw new Error(res.details);
+        if (res.detail === 'Authentication credentials were not provided') {
+          throw new Error(res.detail);
         }
         return res;
       });
