@@ -8,7 +8,6 @@ freesound-client
 
 A node client for the freesound V2 API
 
-**IN PROGRESS, DO NOT USE**
 **CURRENTLY ONLY WORKS WITH NODE. BROWSER SUPPORT SOON**
 
 ## Installation
@@ -39,12 +38,12 @@ const [sounds, packs, bookCat, bookCatSounds] = await Promise.all([
 ]);
 
 // Getting a pack
-const pack = await this.freeSound.getPack(9678);
+const pack = await freeSound.getPack(9678);
 // Getting a pack's sounds
 const packSounds = await pack.sounds()
 
 // Getting a sound
-const sound = await this.freeSound.getSound(96541);
+const sound = await freeSound.getSound(96541);
 // Getting a sound's related data
 const [analysis, similar, comments] = await Promise.all([
   sound.getAnalysis(),
@@ -53,11 +52,21 @@ const [analysis, similar, comments] = await Promise.all([
 ]);
 
 // Text search 
-await this.freeSound.textSearch('violoncello', {
+await freeSound.textSearch('violoncello', {
   page: 1,
   filter: 'tag:tenuto duration:[1.0 TO 15.0]',
   sort: 'rating_desc',
   fields: 'id,name,url'
+});
+
+// Combined search
+await freeSound.combinedSearch({
+  target: 'rhythm.bpm:120&filter=tag:loop'
+});
+
+// Content search
+await freeSound.contentSearch({
+  target: 'lowlevel.pitch.mean:220'
 });
 
 // OAuth login
