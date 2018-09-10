@@ -70,17 +70,13 @@ export default class FreeSound {
   /**
    * @private
    */
-  makeFormData(obj: Object, f?: Object) {
-    let formData;
-    if (f) {
-      formData = { ...f };
+  makeFormData(obj: Object, prevFormData?: Object) {
+    const formData = prevFormData
+      ?  { ...prevFormData }
+      : new FormData();
+    for (const prop in obj) {
+      formData.append(prop, obj[prop]);
     }
-    if (!formData) {
-      formData = new FormData();
-    }
-    obj.forEach(prop => {
-      formData.append(prop, prop);
-    });
     return formData;
   }
 
@@ -283,7 +279,7 @@ export default class FreeSound {
   }
 
   contentSearch(options: Object) {
-    if (!(options.target || options.analysis_file)) {
+    if (!(options.target || options.analysis_file || options.descriptors_filter)) {
       throw new Error('Missing target or analysis_file');
     }
     return this.search(options, this.uris.contentSearch).then(e =>
@@ -378,9 +374,8 @@ export default class FreeSound {
     method?: string = 'GET',
     params?: Object = {}
   ) {
-    return fetch(uri, {
+    return fetch(params ? `${uri}?${(new URLSearchParams(params).toString())}` : uri, {
       method,
-      body: JSON.stringify(params),
       headers: {
         Authorization: this.authHeader
       }

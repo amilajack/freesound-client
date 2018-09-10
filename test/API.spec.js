@@ -2,9 +2,14 @@ import FreeSound from '..';
 
 require('dotenv').config();
 
-function removeDownloadCount(obj) {
-  // eslint-disable-next-line
+function removeVariableProperties(obj) {
+  /* eslint-disable */
   delete obj.num_downloads;
+  delete obj.count;
+  if (obj.results) {
+    obj.results.forEach(res => delete res.num_downloads)
+  }
+  /* eslint-enable */
   return obj;
 }
 
@@ -20,7 +25,7 @@ describe('API', function testApi() {
 
   describe('User', () => {
     it('should get user', async () => {
-      expect(await this.freeSound.getUser('Jovica')).toMatchSnapshot();
+      expect(removeVariableProperties(await this.freeSound.getUser('Jovica'))).toMatchSnapshot();
     });
 
     it('should get a users data', async () => {
@@ -35,30 +40,30 @@ describe('API', function testApi() {
       expect(packs).toBeTruthy();
       expect(bookCat).toBeTruthy();
       expect(bookCatSounds).toBeTruthy();
-      expect(sounds).toMatchSnapshot();
-      expect(packs).toMatchSnapshot();
-      expect(bookCat).toMatchSnapshot();
-      expect(bookCatSounds).toMatchSnapshot();
+      expect(removeVariableProperties(sounds)).toMatchSnapshot();
+      expect(removeVariableProperties(packs)).toMatchSnapshot();
+      expect(removeVariableProperties(bookCat)).toMatchSnapshot();
+      expect(removeVariableProperties(bookCatSounds)).toMatchSnapshot();
     });
   });
 
   describe('Pack', () => {
     it('should get pack', async () => {
       const pack = await this.freeSound.getPack(9678);
-      expect(pack).toMatchSnapshot();
+      expect(removeVariableProperties(pack)).toMatchSnapshot();
     });
 
     it('should get pack data', async () => {
       const pack = await this.freeSound.getPack(9678);
       const sounds = await pack.sounds();
-      expect(sounds).toMatchSnapshot();
+      expect(removeVariableProperties(sounds)).toMatchSnapshot();
     });
   });
 
   describe('Sound', () => {
     it('should get sound', async () => {
       expect(
-        removeDownloadCount(await this.freeSound.getSound(96541))
+        removeVariableProperties(await this.freeSound.getSound(96541))
       ).toMatchSnapshot();
     });
 
@@ -72,55 +77,60 @@ describe('API', function testApi() {
       expect(analysis).toBeTruthy();
       expect(similar).toBeTruthy();
       expect(comments).toBeTruthy();
-      expect(analysis).toMatchSnapshot();
-      expect(analysis).toMatchSnapshot();
-      expect(analysis).toMatchSnapshot();
+      expect(removeVariableProperties(analysis)).toMatchSnapshot();
     });
   });
 
-  it('should text search', async () => {
-    const query = 'violoncello';
-    const page = 1;
-    const filter = 'tag:tenuto duration:[1.0 TO 15.0]';
-    const sort = 'rating_desc';
-    const fields = 'id,name,url';
-    const search = await this.freeSound.textSearch(query, {
-      page,
-      filter,
-      sort,
-      fields
-    })
-    expect(search).toMatchSnapshot();
+  describe('Search', () => {
+    it('should text search', async () => {
+      const query = 'violoncello';
+      const page = 1;
+      const filter = 'tag:tenuto duration:[1.0 TO 15.0]';
+      const sort = 'rating_desc';
+      const fields = 'id,name,url';
+      const search = await this.freeSound.textSearch(query, {
+        page,
+        filter,
+        sort,
+        fields
+      })
+      expect(removeVariableProperties(search)).toMatchSnapshot();
+    });
+
+    it('should perform combined search', async () => {
+      const result = await this.freeSound.combinedSearch({
+        target: 'rhythm.bpm:120',
+        filter: 'tag:loop'
+      })
+      expect(result).toBeTruthy();
+      expect(removeVariableProperties(result)).toMatchSnapshot();
+    });
+
+    it('should perform content search', async () => {
+      const result = await this.freeSound.contentSearch({ target: 'lowlevel.pitch.mean:220' })
+      expect(result).toBeTruthy();
+      expect(removeVariableProperties(result)).toMatchSnapshot();
+    });
   });
 
-  it.skip('should go through oauth process', async () => {
-    // OAuth login
-    await this.freeSound.setToken('your-api-key', 'oauth');
-    // Set your application's client_id and client_secret
-    await this.freeSound.setClientSecrets('your-client-id', 'your-secret-key');
-    // Make the user navigate here
-    await this.freeSound.getLoginURL();
-    // Use the authorization code from the login
-    await this.freeSound.postAccessCode('your-temporary-code-from-login');
-  });
+  describe.skip('Auth', () => {
+    it('should go through oauth process', async () => {
+      // OAuth login
+      await this.freeSound.setToken('your-api-key', 'oauth');
+      // Set your application's client_id and client_secret
+      await this.freeSound.setClientSecrets('your-client-id', 'your-secret-key');
+      // Make the user navigate here
+      await this.freeSound.getLoginURL();
+      // Use the authorization code from the login
+      await this.freeSound.postAccessCode('your-temporary-code-from-login');
+    });
 
-  it('should get me', async () => {
-    expect(await this.freeSound.me()).toBeTruthy();
-  });
+    it('should get me', async () => {
+      expect(await this.freeSound.me()).toBeTruthy();
+    });
 
-  it('should get pending sounds', async () => {
-    expect(await this.freeSound.getPendingSounds()).toBeTruthy();
-  });
-
-  it('should perform combined search', async () => {
-    const result = await this.freeSound.combinedSearch({ target: 'rhythm.bpm:120&filter=tag:loop' })
-    expect(result).toBeTruthy();
-    expect(result).toMatchSnapshot();
-  });
-
-  it('should perform content search', async () => {
-    const result = await this.freeSound.contentSearch({ target: 'lowlevel.pitch.mean:220' })
-    expect(result).toBeTruthy();
-    expect(result).toMatchSnapshot();
+    it('should get pending sounds', async () => {
+      expect(await this.freeSound.getPendingSounds()).toBeTruthy();
+    });
   });
 });
