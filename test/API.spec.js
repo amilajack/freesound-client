@@ -1,4 +1,4 @@
-import FreeSound from '../';
+import FreeSound from '..';
 
 require('dotenv').config();
 
@@ -50,7 +50,8 @@ describe('API', function testApi() {
 
     it('should get pack data', async () => {
       const pack = await this.freeSound.getPack(9678);
-      expect(await pack.sounds()).toMatchSnapshot();
+      const sounds = await pack.sounds();
+      expect(sounds).toMatchSnapshot();
     });
   });
 
@@ -83,17 +84,16 @@ describe('API', function testApi() {
     const filter = 'tag:tenuto duration:[1.0 TO 15.0]';
     const sort = 'rating_desc';
     const fields = 'id,name,url';
-    expect(
-      await this.freeSound.textSearch(query, {
-        page,
-        filter,
-        sort,
-        fields
-      })
-    ).toMatchSnapshot();
+    const search = await this.freeSound.textSearch(query, {
+      page,
+      filter,
+      sort,
+      fields
+    })
+    expect(search).toMatchSnapshot();
   });
 
-  it('should go through oauth process', async () => {
+  it.skip('should go through oauth process', async () => {
     // OAuth login
     await this.freeSound.setToken('your-api-key', 'oauth');
     // Set your application's client_id and client_secret

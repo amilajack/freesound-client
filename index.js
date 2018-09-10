@@ -78,9 +78,9 @@ export default class FreeSound {
     if (!formData) {
       formData = new FormData();
     }
-    for (const prop of obj) {
+    obj.forEach(prop => {
       formData.append(prop, prop);
-    }
+    });
     return formData;
   }
 
@@ -163,7 +163,7 @@ export default class FreeSound {
       targetWindow.location = uri;
     };
 
-    jsonObject.comment = (commentStr: string) => {
+    jsonObject.comment = () => {
       this.checkOauth();
       const data = new FormData();
       data.append('comment', this.comment);
@@ -353,8 +353,7 @@ export default class FreeSound {
 
   getSound(soundId: string) {
     return this.makeRequest(
-      this.makeUri(this.uris.sound, [soundId]),
-      'GET'
+      this.makeUri(this.uris.sound, [soundId])
     ).then(e => this.SoundObject(e));
   }
 
