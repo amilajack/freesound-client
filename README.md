@@ -78,3 +78,6 @@ freeSound.getLoginURL();
 // Use the authorization code from the login
 // freeSound.postAccessCode('your-temporary-code-from-login');
 ```
+
+## Example
+* See the runnable example [here](https://github.com/amilajack/freesound-client-example)
