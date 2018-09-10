@@ -26,3 +26,4 @@ node_modules
 .idea
 npm-debug.log.*
 .env
+lib

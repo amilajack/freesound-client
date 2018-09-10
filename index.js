@@ -2,6 +2,7 @@
 /* eslint class-methods-use-this: 0 */
 import fetch from 'isomorphic-fetch';
 import FormData from 'form-data';
+import { URLSearchParams } from 'url';
 
 export default class FreeSound {
   /**
