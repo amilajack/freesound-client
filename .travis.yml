@@ -3,13 +3,10 @@ language: node_js
 node_js:
   - node
 
-cache:
-  yarn: true
+cache: yarn
 
-script:
-  - node --version
-  - yarn --version
-  - yarn test
+before_install: yarn global add greenkeeper-lockfile
 
-notifications:
-  email: false
+before_script: greenkeeper-lockfile-update
+
+after_script: greenkeeper-lockfile-upload
