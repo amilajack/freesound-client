@@ -4,7 +4,7 @@ freesound-client
 [![Build Status](https://travis-ci.org/amilajack/freesound-client.svg?branch=master)](https://travis-ci.org/amilajack/freesound-client)
 [![NPM version](https://badge.fury.io/js/freesound-client.svg)](http://badge.fury.io/js/freesound-client)
 [![Dependency Status](https://img.shields.io/david/amilajack/freesound-client.svg)](https://david-dm.org/amilajack/freesound-client)
-[![npm](https://img.shields.io/npm/dm/freesound-client.svg)](https://npm-stat.com/charts.html?package=freesound-client) [![Greenkeeper badge](https://badges.greenkeeper.io/amilajack/freesound-client.svg)](https://greenkeeper.io/)
+[![npm](https://img.shields.io/npm/dm/freesound-client.svg)](https://npm-stat.com/charts.html?package=freesound-client)
 
 A node client for the freesound V2 API
 
