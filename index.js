@@ -72,9 +72,7 @@ export default class FreeSound {
    * @private
    */
   makeFormData(obj: Object, prevFormData?: Object) {
-    const formData = prevFormData
-      ?  { ...prevFormData }
-      : new FormData();
+    const formData = prevFormData ? { ...prevFormData } : new FormData();
     for (const prop in obj) {
       formData.append(prop, obj[prop]);
     }
@@ -251,7 +249,7 @@ export default class FreeSound {
     return jsonObject;
   }
 
-  setToken(token: string, type?: 'oauth'): string {
+  setToken(token: string, type?: "oauth"): string {
     this.authHeader = `${type === 'oauth' ? 'Bearer ' : 'Token '}${token}`;
     return this.authHeader;
   }
@@ -280,7 +278,9 @@ export default class FreeSound {
   }
 
   contentSearch(options: Object) {
-    if (!(options.target || options.analysis_file || options.descriptors_filter)) {
+    if (
+      !(options.target || options.analysis_file || options.descriptors_filter)
+    ) {
       throw new Error('Missing target or analysis_file');
     }
     return this.search(options, this.uris.contentSearch).then(e =>
@@ -349,9 +349,9 @@ export default class FreeSound {
   }
 
   getSound(soundId: string) {
-    return this.makeRequest(
-      this.makeUri(this.uris.sound, [soundId])
-    ).then(e => this.SoundObject(e));
+    return this.makeRequest(this.makeUri(this.uris.sound, [soundId])).then(e =>
+      this.SoundObject(e)
+    );
   }
 
   /**
@@ -375,12 +375,15 @@ export default class FreeSound {
     method?: string = 'GET',
     params?: Object = {}
   ) {
-    return fetch(params ? `${uri}?${(new URLSearchParams(params).toString())}` : uri, {
-      method,
-      headers: {
-        Authorization: this.authHeader
+    return fetch(
+      params ? `${uri}?${new URLSearchParams(params).toString()}` : uri,
+      {
+        method,
+        headers: {
+          Authorization: this.authHeader
+        }
       }
-    })
+    )
       .then(res => res.json())
       .then(res => {
         if (res.error) {

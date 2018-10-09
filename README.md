@@ -81,3 +81,12 @@ freeSound.getLoginURL();
 
 ## Example
 * See the runnable example [here](https://github.com/amilajack/freesound-client-example)
+
+## Local setup
+```bash
+git clone https://github.com/amilajack/freesound-client
+cd freesound-client
+yarn
+cp .env.example .env
+yarn test
+```

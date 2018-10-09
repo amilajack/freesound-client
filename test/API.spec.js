@@ -1,4 +1,5 @@
 import FreeSound from '..';
+import { expect as chaiExpect } from 'chai';
 
 require('dotenv').config();
 
@@ -25,7 +26,9 @@ describe('API', function testApi() {
 
   describe('User', () => {
     it('should get user', async () => {
-      expect(removeVariableProperties(await this.freeSound.getUser('Jovica'))).toMatchSnapshot();
+      expect(
+        removeVariableProperties(await this.freeSound.getUser('Jovica'))
+      ).toMatchSnapshot();
     });
 
     it('should get a users data', async () => {
@@ -93,7 +96,7 @@ describe('API', function testApi() {
         filter,
         sort,
         fields
-      })
+      });
       expect(removeVariableProperties(search)).toMatchSnapshot();
     });
 
@@ -101,13 +104,15 @@ describe('API', function testApi() {
       const result = await this.freeSound.combinedSearch({
         target: 'rhythm.bpm:120',
         filter: 'tag:loop'
-      })
+      });
       expect(result).toBeTruthy();
       expect(removeVariableProperties(result)).toMatchSnapshot();
     });
 
     it('should perform content search', async () => {
-      const result = await this.freeSound.contentSearch({ target: 'lowlevel.pitch.mean:220' })
+      const result = await this.freeSound.contentSearch({
+        target: 'lowlevel.pitch.mean:220'
+      });
       expect(result).toBeTruthy();
       expect(removeVariableProperties(result)).toMatchSnapshot();
     });
@@ -118,7 +123,10 @@ describe('API', function testApi() {
       // OAuth login
       await this.freeSound.setToken('your-api-key', 'oauth');
       // Set your application's client_id and client_secret
-      await this.freeSound.setClientSecrets('your-client-id', 'your-secret-key');
+      await this.freeSound.setClientSecrets(
+        'your-client-id',
+        'your-secret-key'
+      );
       // Make the user navigate here
       await this.freeSound.getLoginURL();
       // Use the authorization code from the login
