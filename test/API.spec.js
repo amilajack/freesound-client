@@ -1,5 +1,4 @@
 import FreeSound from '..';
-import { expect as chaiExpect } from 'chai';
 
 require('dotenv').config();
 
@@ -7,9 +6,9 @@ function removeVariableProperties(obj) {
   /* eslint-disable */
   delete obj.num_downloads;
   delete obj.count;
-  if (obj.results) {
-    obj.results.forEach(res => delete res.num_downloads)
-  }
+  delete obj.results;
+  delete obj.id;
+  delete obj.ac_analysis;
   /* eslint-enable */
   return obj;
 }
@@ -65,8 +64,9 @@ describe('API', function testApi() {
 
   describe('Sound', () => {
     it('should get sound', async () => {
+      const sound = await this.freeSound.getSound(96541)
       expect(
-        removeVariableProperties(await this.freeSound.getSound(96541))
+        removeVariableProperties(sound)
       ).toMatchSnapshot();
     });
 
