@@ -1806,10 +1806,10 @@ eslint-config-bliss@^2.3.0:
     flow-bin "^0.80.0"
     prettier "^1.14.2"
 
-eslint-config-bliss@^3.0.0-2:
-  version "3.0.0-2"
-  resolved "https://registry.npmjs.org/eslint-config-bliss/-/eslint-config-bliss-3.0.0-2.tgz#d567364152ec26af4c8c32a07986166fc2f7028d"
-  integrity sha512-8ciCOhDRJ/v8l72XOqL4Er5/u3A+tI26jf8kYbb6t/Pm3aQRy4JvErBRK3i72hTktmgpJ7zdOgVoi2CEuOkJwg==
+eslint-config-bliss@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-bliss/-/eslint-config-bliss-3.0.0.tgz#d1bdadf725b83f505b4226059eb4c7b4ebcfa24e"
+  integrity sha512-cQUDi6lzI5hJ+l1e4BAlbcdOuvHkOdsLKVgPgIsWfHanBocHYFwmcEx1T6SVKBeEun+ICrBNo80Q9VHacgdfFA==
   dependencies:
     babel-eslint "^10.0.1"
     eslint-config-airbnb-base "^13.1.0"
