@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "esnext",
+    "sourceMap": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules"]
+}
