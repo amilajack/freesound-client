@@ -53,67 +53,6 @@ Object {
 }
 `;
 
-exports[`API Sound should get sound 1`] = `
-Object {
-  "analysis": "No descriptors specified. You should indicate which descriptors you want with the 'descriptors' request parameter.",
-  "analysis_frames": "https://freesound.org/data/analysis/96/96541_7037_frames.json",
-  "analysis_stats": "https://freesound.org/apiv2/sounds/96541/analysis/",
-  "avg_rating": 4.666666666666665,
-  "bitdepth": 24,
-  "bitrate": 2117,
-  "bookmark": [Function],
-  "channels": 2,
-  "comment": [Function],
-  "comments": "https://freesound.org/apiv2/sounds/96541/comments/",
-  "created": "2010-05-12T20:29:49",
-  "description": "For the user \\"Stealth Inc.\\", my girlfriend saying \\"Coming soon\\". Recorded with an AT2020 microphone into an Apogee Duet and edited with Record.",
-  "download": [Function],
-  "duration": 1.8774829932,
-  "edit": [Function],
-  "filesize": 496906,
-  "geotag": null,
-  "getAnalysis": [Function],
-  "getComments": [Function],
-  "getSimilar": [Function],
-  "images": Object {
-    "spectral_l": "https://freesound.org/data/displays/96/96541_7037_spec_L.jpg",
-    "spectral_m": "https://freesound.org/data/displays/96/96541_7037_spec_M.jpg",
-    "waveform_l": "https://freesound.org/data/displays/96/96541_7037_wave_L.png",
-    "waveform_m": "https://freesound.org/data/displays/96/96541_7037_wave_M.png",
-  },
-  "license": "http://creativecommons.org/licenses/by/3.0/",
-  "name": "coming soon.wav",
-  "num_comments": 1,
-  "num_ratings": 3,
-  "pack": "https://freesound.org/apiv2/packs/6201/",
-  "pack_name": "Stealth Inc.",
-  "previews": Object {
-    "preview-hq-mp3": "https://freesound.org/data/previews/96/96541_7037-hq.mp3",
-    "preview-hq-ogg": "https://freesound.org/data/previews/96/96541_7037-hq.ogg",
-    "preview-lq-mp3": "https://freesound.org/data/previews/96/96541_7037-lq.mp3",
-    "preview-lq-ogg": "https://freesound.org/data/previews/96/96541_7037-lq.ogg",
-  },
-  "rate": [Function],
-  "samplerate": 44100,
-  "similar_sounds": "https://freesound.org/apiv2/sounds/96541/similar/",
-  "tags": Array [
-    "request",
-    "female",
-    "girl",
-    "talk",
-    "vocal",
-    "voice",
-    "american",
-    "woman",
-    "english",
-    "speak",
-  ],
-  "type": "wav",
-  "url": "https://freesound.org/people/tim.kahn/sounds/96541/",
-  "username": "tim.kahn",
-}
-`;
-
 exports[`API Sound should get sound data 1`] = `
 Object {
   "lowlevel": Object {

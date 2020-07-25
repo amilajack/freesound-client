@@ -1,6 +1,105 @@
 import fetch from 'node-fetch';
 import FormData from 'form-data';
-import { URLSearchParams } from 'url';
+import { URLSearchParams as NodeURLSearchParams } from 'url';
+
+type Results = Record<string, string>[];
+
+interface Collection {
+  readonly results: Results
+  readonly nextOrPrev: (page: string) => Promise<Collection>
+  readonly nextPage: (page: number) => Promise<Collection>
+  readonly previousPage: (page: number) => Promise<Collection>
+  readonly getItem: (page: number) => Promise<Collection>
+}
+
+interface SoundCollection extends Collection {
+  getSound: (idx: number) => Sound
+}
+
+type Sound = {
+  id: number,
+  url: string,
+  name: string,
+  tags: string[],
+  description: string,
+  geotag: null,
+  created: string,
+  license: string,
+  type: string,
+  channels: number,
+  filesize: number,
+  bitrate: number,
+  bitdepth: number,
+  duration: number,
+  samplerate: number,
+  username: string,
+  pack: string,
+  pack_name?: string,
+  download: Function,
+  bookmark: Function,
+  previews: {
+    'preview-lq-ogg': string,
+    'preview-lq-mp3': string,
+    'preview-hq-ogg': string,
+    'preview-hq-mp3': string
+  },
+  images: {
+    spectral_m: string,
+    spectral_l: string,
+    spectral_bw_l: string,
+    waveform_bw_m: string,
+    waveform_bw_l: string,
+    waveform_l: string,
+    waveform_m: string,
+    spectral_bw_m: string
+  },
+  num_downloads: number,
+  avg_rating: number,
+  num_ratings: number,
+  rate: Function,
+  comments: string,
+  num_comments: number,
+  comment: Function,
+  similar_sounds: string,
+  analysis: string,
+  analysis_frames: string,
+  analysis_stats: string,
+  ac_analysis: {
+    ac_tempo_confidence: number,
+    ac_note_confidence: number,
+    ac_depth: number,
+    ac_note_midi: number,
+    ac_temporal_centroid: number,
+    ac_warmth: number,
+    ac_loop: boolean,
+    ac_hardness: number,
+    ac_loudness: number,
+    ac_reverb: boolean,
+    ac_roughness: number,
+    ac_log_attack_time: number,
+    ac_boominess: number,
+    ac_note_frequency: number,
+    ac_tempo: 157,
+    ac_brightness: number,
+    ac_sharpness: number,
+    ac_tonality_confidence: number,
+    ac_dynamic_range: 0,
+    ac_note_name: 'E3',
+    ac_tonality: 'B major',
+    ac_single_event: boolean
+  },
+  getAnalysis: Function,
+  getSimilar: Function,
+  getComments: Function,
+  edit: Function
+};
+
+type SearchOpts = {
+  analysis_file?: string;
+  target?: string;
+  query?: string;
+  descriptors_filter?: string;
+};
 
 export default class FreeSound {
   private authHeader = '';
@@ -48,15 +147,15 @@ export default class FreeSound {
     }
   }
 
-  private makeFormData(obj: Object, prevFormData?: Object) {
-    const formData = prevFormData ? { ...prevFormData } : new FormData();
+  private makeFormData(obj: Record<string, string>, prevFormData?: FormData) {
+    const formData = prevFormData ? prevFormData : new FormData();
     for (const prop in obj) {
       formData.append(prop, obj[prop]);
     }
     return formData;
   }
 
-  search(options: Object, uri: string) {
+  search<T>(options: SearchOpts, uri: string) {
     if (options.analysis_file) {
       return this.makeRequest(
         this.makeUri(uri),
@@ -64,37 +163,41 @@ export default class FreeSound {
         this.makeFormData(options)
       );
     }
-    return this.makeRequest(this.makeUri(uri), 'GET', options);
+    return this.makeRequest<T>(this.makeUri(uri), 'GET', options);
   }
 
-  private Collection(oldJsonObject: Object) {
-    const jsonObject = { ...oldJsonObject };
-    const nextOrPrev = which =>
-      this.makeRequest(which).then(e => this.Collection(e));
-    jsonObject.nextPage = () => {
-      nextOrPrev(jsonObject.next);
-    };
-    jsonObject.previousPage = () => {
-      nextOrPrev(jsonObject.previous);
-    };
-    jsonObject.getItem = idx => jsonObject.results[idx];
+  private Collection(oldJsonObject: Results): Collection {
+    const nextOrPrev = (which: string) => this.makeRequest(which).then(this.Collection);
+    const nextPage = () => nextOrPrev(oldJsonObject.next);
+    const previousPage = () => nextOrPrev(oldJsonObject.previous);
+    const getItem = (idx: number) => oldJsonObject.results[idx];
 
-    return jsonObject;
+    return {
+      ...oldJsonObject,
+      getItem,
+      nextOrPrev,
+      previousPage,
+      nextPage
+    }
   }
 
-  private SoundCollection(jsonObject: Object) {
+  private SoundCollection(jsonObject: Results): SoundCollection {
+    const collection = this.Collection(jsonObject)
+    return {
+      ...collection,
+      getSound: idx => this.SoundObject(collection.results[idx])
+    }
+  }
+
+  private PackCollection(jsonObject: Results) {
     const collection = this.Collection(jsonObject);
-    collection.getSound = idx => this.SoundObject(collection.results[idx]);
-    return collection;
+    return {
+      ...collection,
+      getPack: (idx: number) => this.PackObject(collection.results[idx])
+    }
   }
 
-  private PackCollection(jsonObject: Object) {
-    const collection = this.Collection(jsonObject);
-    collection.getPack = idx => this.PackObject(collection.results[idx]);
-    return collection;
-  }
-
-  private SoundObject(oldJsonObject: Object) {
+  private SoundObject(oldJsonObject: Object): Sound {
     const jsonObject = { ...oldJsonObject };
     jsonObject.getAnalysis = filter =>
       this.makeRequest(
@@ -228,7 +331,7 @@ export default class FreeSound {
     return this.makeRequest(postUrl, 'POST', data);
   }
 
-  textSearch(query: string, opts: Object = {}) {
+  textSearch(query: string, opts: SearchOpts = {}) {
     const options = { ...opts };
     options.query = query || ' ';
     return this.search(options, this.uris.textSearch).then(e =>
@@ -236,7 +339,7 @@ export default class FreeSound {
     );
   }
 
-  contentSearch(options: Object) {
+  contentSearch(options: SearchOpts): Promise<SoundCollection> {
     if (
       !(options.target || options.analysis_file || options.descriptors_filter)
     ) {
@@ -247,7 +350,7 @@ export default class FreeSound {
     );
   }
 
-  combinedSearch(options: Object) {
+  combinedSearch(options: SearchOpts) {
     if (!(options.target || options.analysis_file || options.query)) {
       throw new Error('Missing query, target or analysis_file');
     }
@@ -264,7 +367,7 @@ export default class FreeSound {
     return this.makeRequest(this.makeUri(this.uris.upload), 'POST', formData);
   }
 
-  describe(uploadFilename: string, description: string) {
+  describe(description: string) {
     this.checkOauth();
     const formData = this.makeFormData(description);
     return this.makeRequest(this.makeUri(this.uris.upload), 'POST', formData);
@@ -308,9 +411,7 @@ export default class FreeSound {
   }
 
   getSound(soundId: string) {
-    return this.makeRequest(this.makeUri(this.uris.sound, [soundId])).then(e =>
-      this.SoundObject(e)
-    );
+    return this.makeRequest<Sound>(this.makeUri(this.uris.sound, [soundId])).then(this.SoundObject);
   }
 
   private makeUri(uri: string, args?: Array<string>) {
@@ -323,13 +424,17 @@ export default class FreeSound {
     return this.uris.base + newUri;
   }
 
-  private async makeRequest(
+  private async makeRequest<T>(
     uri: string,
     method: string = 'GET',
-    params: Object = {}
-  ) {
+    params: Record<string, string> = {}
+  ): Promise<T> {
+    const IsoURLSearchParams = typeof window === 'object'
+      ? URLSearchParams
+      : NodeURLSearchParams
+
     return fetch(
-      params ? `${uri}?${new URLSearchParams(params).toString()}` : uri,
+      params ? `${uri}?${new IsoURLSearchParams(params).toString()}` : uri,
       {
         method,
         headers: {
