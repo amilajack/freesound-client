@@ -25,11 +25,34 @@
     "node-fetch": "^2.6.0"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production rm -rf lib && babel index.js --out-dir lib",
+    "build": "cross-env NODE_ENV=production rm -rf lib && babel index.ts --out-dir lib",
     "lint": "eslint index.js test",
     "lint-fix": "yarn lint --fix",
     "test": "jest",
     "preversion": "yarn build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "bliss"
+    ]
+  },
+  "babel": {
+    "presets": [
+      ["@babel/preset-env", {
+        "targets": {
+          "node": 8
+        }
+      }],
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "renovate": {
+    "extends": [
+      "bliss"
+    ]
   },
   "files": [
     "lib"
