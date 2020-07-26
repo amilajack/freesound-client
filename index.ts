@@ -2,21 +2,64 @@ import fetch from 'node-fetch';
 import FormData from 'form-data';
 import { URLSearchParams as NodeURLSearchParams } from 'url';
 
-type Results = Record<string, string>[];
-
-interface Collection {
-  readonly results: Results
-  readonly nextOrPrev: (page: string) => Promise<Collection>
-  readonly nextPage: (page: number) => Promise<Collection>
-  readonly previousPage: (page: number) => Promise<Collection>
-  readonly getItem: (page: number) => Promise<Collection>
+interface RawPack {
+  id: number,
+  url: string,
+  description: string,
+  created: string,
+  name: string,
+  username: string,
+  num_sounds: number,
+  num_downloads: number,
 }
 
-interface SoundCollection extends Collection {
-  getSound: (idx: number) => Sound
+export interface Pack extends RawPack {
+  download: Function
+  sounds: Function,
 }
 
-type Sound = {
+interface RawUser {
+  url: string,
+  username: string,
+  about: string,
+  home_page: string,
+  avatar: {
+    small: string,
+    large: string,
+    medium: string
+  },
+  date_joined: string,
+  num_sounds: number,
+  num_packs: number,
+  num_posts: number,
+  num_comments: number,
+  bookmark_categories: string,
+}
+
+export interface User extends RawUser {
+  sounds: Function,
+  packs: Function,
+  bookmarkCategories: Function,
+  bookmarkCategorySounds: Function
+}
+
+interface RawCollection<T> {
+  readonly count: number
+  readonly results: T[]
+}
+
+export interface Collection<T> extends RawCollection<T> {
+  readonly nextOrPrev: (page: string) => Promise<Collection<T>>
+  readonly nextPage: (page: number) => Promise<Collection<T>>
+  readonly previousPage: (page: number) => Promise<Collection<T>>
+  readonly getItem: (page: number) => Collection<T>
+}
+
+export interface SoundCollection extends Collection<Sound> {
+  readonly getSound: (idx: number) => Sound
+}
+
+export interface RawSound {
   id: number,
   url: string,
   name: string,
@@ -35,8 +78,6 @@ type Sound = {
   username: string,
   pack: string,
   pack_name?: string,
-  download: Function,
-  bookmark: Function,
   previews: {
     'preview-lq-ogg': string,
     'preview-lq-mp3': string,
@@ -56,10 +97,8 @@ type Sound = {
   num_downloads: number,
   avg_rating: number,
   num_ratings: number,
-  rate: Function,
   comments: string,
   num_comments: number,
-  comment: Function,
   similar_sounds: string,
   analysis: string,
   analysis_frames: string,
@@ -79,20 +118,27 @@ type Sound = {
     ac_log_attack_time: number,
     ac_boominess: number,
     ac_note_frequency: number,
-    ac_tempo: 157,
+    ac_tempo: number,
     ac_brightness: number,
     ac_sharpness: number,
     ac_tonality_confidence: number,
-    ac_dynamic_range: 0,
-    ac_note_name: 'E3',
-    ac_tonality: 'B major',
+    ac_dynamic_range: number,
+    ac_note_name: string,
+    ac_tonality: string,
     ac_single_event: boolean
   },
+};
+
+export interface Sound extends RawSound {
   getAnalysis: Function,
   getSimilar: Function,
   getComments: Function,
+  rate: Function,
+  comment: Function,
+  download: Function,
+  bookmark: Function,
   edit: Function
-};
+}
 
 type SearchOpts = {
   analysis_file?: string;
@@ -166,7 +212,7 @@ export default class FreeSound {
     return this.makeRequest<T>(this.makeUri(uri), 'GET', options);
   }
 
-  private Collection(oldJsonObject: Results): Collection {
+  private Collection<T>(oldJsonObject: RawCollection<T>): Collection<T> {
     const nextOrPrev = (which: string) => this.makeRequest(which).then(this.Collection);
     const nextPage = () => nextOrPrev(oldJsonObject.next);
     const previousPage = () => nextOrPrev(oldJsonObject.previous);
@@ -181,44 +227,45 @@ export default class FreeSound {
     }
   }
 
-  private SoundCollection(jsonObject: Results): SoundCollection {
-    const collection = this.Collection(jsonObject)
+  private SoundCollection(jsonObject: RawCollection<Sound>): SoundCollection {
+    const collection = this.Collection<Sound>(jsonObject)
     return {
       ...collection,
       getSound: idx => this.SoundObject(collection.results[idx])
     }
   }
 
-  private PackCollection(jsonObject: Results) {
-    const collection = this.Collection(jsonObject);
+  private PackCollection(jsonObject: RawCollection<Pack>) {
+    const collection = this.Collection<Pack>(jsonObject);
     return {
       ...collection,
       getPack: (idx: number) => this.PackObject(collection.results[idx])
     }
   }
 
-  private SoundObject(oldJsonObject: Object): Sound {
+  private SoundObject(oldJsonObject: RawSound): Sound {
     const jsonObject = { ...oldJsonObject };
-    jsonObject.getAnalysis = filter =>
+
+    const getAnalysis = (filter: string) =>
       this.makeRequest(
         this.makeUri(this.uris.soundAnalysis, [jsonObject.id, filter || ''])
       );
 
-    jsonObject.getSimilar = params =>
+    const getSimilar = params =>
       this.makeRequest(
         this.makeUri(this.uris.similarSounds, [jsonObject.id]),
         'GET',
         params
       ).then(e => this.SoundCollection(e));
 
-    jsonObject.getComments = () =>
+    const getComments = () =>
       this.makeRequest(
         this.makeUri(this.uris.comments, [jsonObject.id]),
         'GET',
         this.Collection
       );
 
-    jsonObject.download = oldTargetWindow => {
+    const download = oldTargetWindow => {
       const targetWindow = { ...oldTargetWindow };
       // can be window, new, or iframe
       this.checkOauth();
@@ -226,7 +273,7 @@ export default class FreeSound {
       targetWindow.location = uri;
     };
 
-    jsonObject.comment = () => {
+    const comment = () => {
       this.checkOauth();
       const data = new FormData();
       data.append('comment', this.comment);
@@ -234,7 +281,7 @@ export default class FreeSound {
       return this.makeRequest(uri, 'POST', data);
     };
 
-    jsonObject.rate = rating => {
+    const rate = (rating: number) => {
       this.checkOauth();
       const data = new FormData();
       data.append('rating', rating);
@@ -242,7 +289,7 @@ export default class FreeSound {
       return this.makeRequest(uri, 'POST', data);
     };
 
-    jsonObject.bookmark = (name, category) => {
+    const bookmark = (name: string, category: string) => {
       this.checkOauth();
       const data = new FormData();
       data.append('name', name);
@@ -253,62 +300,83 @@ export default class FreeSound {
       return this.makeRequest(uri, 'POST', data);
     };
 
-    jsonObject.edit = description => {
+    const edit = description => {
       this.checkOauth();
       const data = this.makeFormData(description);
       const uri = this.makeUri(this.uris.edit, [jsonObject.id]);
       return this.makeRequest(uri, 'POST', data);
     };
 
-    return jsonObject;
+    return {
+      ...jsonObject,
+      getAnalysis,
+      getSimilar,
+      getComments,
+      download,
+      comment,
+      rate,
+      bookmark,
+      edit
+    };
   }
 
-  private UserObject(oldJsonObject: Object) {
+  private UserObject(oldJsonObject: RawUser): User {
     const jsonObject = { ...oldJsonObject };
-    jsonObject.sounds = params => {
+
+    const sounds = params => {
       const uri = this.makeUri(this.uris.userSounds, [jsonObject.username]);
-      return this.makeRequest(uri, 'GET', params).then(e =>
+      return this.makeRequest<RawSound>(uri, 'GET', params).then(e =>
         this.SoundCollection(e)
       );
     };
 
-    jsonObject.packs = () => {
+    const packs = () => {
       const uri = this.makeUri(this.uris.userPacks, [jsonObject.username]);
       return this.makeRequest(uri).then(e => this.PackCollection(e));
     };
 
-    jsonObject.bookmarkCategories = () => {
+    const bookmarkCategories = () => {
       const uri = this.makeUri(this.uris.userBookmarkCategories, [
         jsonObject.username
       ]);
       return this.makeRequest(uri);
     };
 
-    jsonObject.bookmarkCategorySounds = params => {
+    const bookmarkCategorySounds = params => {
       const uri = this.makeUri(this.uris.userBookmarkCategorySounds, [
         jsonObject.username
       ]);
       return this.makeRequest(uri, 'GET', params);
     };
 
-    return jsonObject;
+    return {
+      ...jsonObject,
+      sounds,
+      packs,
+      bookmarkCategories,
+      bookmarkCategorySounds
+    };
   }
 
-  private PackObject(oldJsonObject: Object) {
+  private PackObject(oldJsonObject: RawPack): Pack {
     const jsonObject = { ...oldJsonObject };
-    jsonObject.sounds = () => {
+    const sounds = () => {
       const uri = this.makeUri(this.uris.packSounds, [jsonObject.id]);
       return this.makeRequest(uri).then(e => this.SoundCollection(e));
     };
 
-    jsonObject.download = oldTargetWindow => {
+    const download = (oldTargetWindow: RawPack) => {
       const targetWindow = { ...oldTargetWindow };
       // can be current or new window, or iframe
       this.checkOauth();
       const uri = this.makeUri(this.uris.packDownload, [jsonObject.id]);
       targetWindow.location = uri;
     };
-    return jsonObject;
+    return {
+      ...jsonObject,
+      sounds,
+      download
+    }
   }
 
   setToken(token: string, type?: "oauth"): string {
@@ -334,7 +402,7 @@ export default class FreeSound {
   textSearch(query: string, opts: SearchOpts = {}) {
     const options = { ...opts };
     options.query = query || ' ';
-    return this.search(options, this.uris.textSearch).then(e =>
+    return this.search<RawSound>(options, this.uris.textSearch).then(e =>
       this.SoundCollection(e)
     );
   }
@@ -398,23 +466,23 @@ export default class FreeSound {
     return logoutUrl;
   }
 
-  getUser(username: string) {
-    return this.makeRequest(this.makeUri(this.uris.user, [username])).then(e =>
+  getUser(username: string): Promise<User> {
+    return this.makeRequest<RawUser>(this.makeUri(this.uris.user, [username])).then(e =>
       this.UserObject(e)
     );
   }
 
-  getPack(packId: string) {
-    return this.makeRequest(this.makeUri(this.uris.pack, [packId])).then(e =>
-      this.PackObject(e)
-    );
+  async getPack(packId: string): Promise<Pack> {
+    const pack = await this.makeRequest<RawPack>(this.makeUri(this.uris.pack, [packId]));
+    return this.PackObject(pack);
   }
 
-  getSound(soundId: string) {
-    return this.makeRequest<Sound>(this.makeUri(this.uris.sound, [soundId])).then(this.SoundObject);
+  async getSound(soundId: string): Promise<Sound> {
+    const sound = await this.makeRequest<Sound>(this.makeUri(this.uris.sound, [soundId]));
+    return this.SoundObject(sound);
   }
 
-  private makeUri(uri: string, args?: Array<string>) {
+  private makeUri(uri: string, args?: Array<string | number>) {
     let newUri = String(uri);
     if (args) {
       args.forEach(element => {

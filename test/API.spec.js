@@ -1,4 +1,4 @@
-import FreeSound from '..';
+import FreeSound from '../index.ts';
 
 require('dotenv').config();
 
