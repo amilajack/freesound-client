@@ -1,6 +1,6 @@
 {
   "name": "freesound-client",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "main": "./lib/index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
@@ -38,11 +38,14 @@
   },
   "babel": {
     "presets": [
-      ["@babel/preset-env", {
-        "targets": {
-          "node": 8
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": 8
+          }
         }
-      }],
+      ],
       "@babel/preset-typescript"
     ],
     "plugins": [
