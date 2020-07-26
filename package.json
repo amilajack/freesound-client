@@ -25,11 +25,11 @@
     "node-fetch": "^2.6.0"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production rm -rf lib && babel index.ts --out-dir lib",
+    "build": "cross-env NODE_ENV=production rm -rf lib && babel index.ts --out-dir lib --extensions \".ts\"",
     "lint": "eslint index.js test",
     "lint-fix": "yarn lint --fix",
-    "test": "jest",
-    "preversion": "yarn build"
+    "preversion": "yarn build",
+    "test": "yarn build && jest"
   },
   "eslintConfig": {
     "extends": [
