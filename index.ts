@@ -61,7 +61,7 @@ export interface SoundCollection extends Collection<Sound> {
   readonly getSound: (idx: number) => Sound
 }
 
-export interface RawSound {
+interface RawSound {
   id: number,
   url: string,
   name: string,
@@ -269,6 +269,7 @@ export default class FreeSound {
         params
       ).then(e => this.SoundCollection(e));
 
+    // @TODO
     // const getComments = () =>
     //   this.makeRequest<RawCollection<RawComments>>(
     //     this.makeUri(this.uris.comments, [jsonObject.id]),
@@ -283,6 +284,7 @@ export default class FreeSound {
       return fetch(uri).then(res => res.arrayBuffer());
     };
 
+    // @TODO
     // const comment = () => {
     //   this.checkOauth();
     //   const data = new FormData();
@@ -310,6 +312,7 @@ export default class FreeSound {
       return this.makeRequest(uri, 'POST', data);
     };
 
+    // @TODO
     // const edit = (description: { description: string }) => {
     //   this.checkOauth();
     //   const data = this.makeFormData(description);
