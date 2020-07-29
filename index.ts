@@ -2,6 +2,19 @@ import fetch from 'node-fetch';
 import FormData from 'form-data';
 import { URLSearchParams as NodeURLSearchParams } from 'url';
 
+interface Comment {
+  username: string;
+  comment: string;
+  created: string;
+}
+
+interface RawComments {
+  count: number,
+  next: string,
+  previous: string,
+  results: Comment[]
+}
+
 interface RawPack {
   id: number,
   url: string,
@@ -270,12 +283,11 @@ export default class FreeSound {
       ).then(e => this.SoundCollection(e));
 
     // @TODO
-    // const getComments = () =>
-    //   this.makeRequest<RawCollection<RawComments>>(
-    //     this.makeUri(this.uris.comments, [jsonObject.id]),
-    //     'GET',
-    //     this.Collection
-    //   );
+    const getComments = () =>
+      this.makeRequest<RawCollection<RawComments>>(
+        this.makeUri(this.uris.comments, [jsonObject.id]),
+        'GET',
+      );
 
     const download = () => {
       // can be window, new, or iframe
@@ -326,6 +338,7 @@ export default class FreeSound {
       getSimilar,
       download,
       rate,
+      getComments,
       bookmark,
     };
   }
