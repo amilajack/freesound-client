@@ -1,14 +1,12 @@
 freesound-client
 ================
 
-[![Build Status](https://travis-ci.org/amilajack/freesound-client.svg?branch=master)](https://travis-ci.org/amilajack/freesound-client)
+![Test](https://github.com/amilajack/freesound-client/workflows/Test/badge.svg)
 [![NPM version](https://badge.fury.io/js/freesound-client.svg)](http://badge.fury.io/js/freesound-client)
 [![Dependency Status](https://img.shields.io/david/amilajack/freesound-client.svg)](https://david-dm.org/amilajack/freesound-client)
 [![npm](https://img.shields.io/npm/dm/freesound-client.svg)](https://npm-stat.com/charts.html?package=freesound-client)
 
-A node client for the freesound V2 API
-
-**CURRENTLY ONLY WORKS WITH NODE. BROWSER SUPPORT SOON**
+A freesound v2 client that works in node and the browser
 
 ## Installation
 ```bash

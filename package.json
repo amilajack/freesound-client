@@ -59,5 +59,11 @@
   },
   "files": [
     "lib"
+  ],
+  "keywords": [
+    "freesound",
+    "node",
+    "brower",
+    "v2"
   ]
 }
