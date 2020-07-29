@@ -77,7 +77,10 @@ freeSound.getLoginURL();
 // freeSound.postAccessCode('your-temporary-code-from-login');
 ```
 
-## Example
+## API Docs
+See the [API Docs](https://amilajack.github.io/freesound-client/) 
+
+## Runnable Example
 * See the runnable example [here](https://github.com/amilajack/freesound-client-example)
 
 ## Local setup
