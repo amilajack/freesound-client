@@ -16,7 +16,9 @@
     "dotenv": "^8.2.0",
     "eslint": "^7.5.0",
     "eslint-config-bliss": "^5.0.0",
+    "gh-pages": "^3.1.0",
     "jest": "^26.1.0",
+    "typedoc": "^0.17.8",
     "typescript": "^3.9.7"
   },
   "dependencies": {
@@ -26,10 +28,13 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production rm -rf lib && babel index.ts --out-dir lib --extensions \".ts\"",
+    "docs": "gh-pages -d docs",
     "lint": "eslint . --ignore-pattern lib",
     "lint-fix": "yarn lint --fix",
     "preversion": "yarn build",
-    "test": "yarn build && jest"
+    "test": "yarn build && jest",
+    "typedoc": "typedoc --out docs index.ts",
+    "version": "yarn build && yarn docs"
   },
   "eslintConfig": {
     "extends": [

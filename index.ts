@@ -3,11 +3,14 @@ import FormData from 'form-data';
 import { URLSearchParams as NodeURLSearchParams } from 'url';
 
 interface Comment {
-  username: string;
-  comment: string;
-  created: string;
+  readonly username: string;
+  readonly comment: string;
+  readonly created: string;
 }
 
+/**
+ * @ignore
+ */
 interface RawComments {
   count: number,
   next: string,
@@ -15,6 +18,9 @@ interface RawComments {
   results: Comment[]
 }
 
+/**
+ * @ignore
+ */
 interface RawPack {
   id: number,
   url: string,
@@ -31,6 +37,9 @@ export interface Pack extends RawPack {
   sounds: Function,
 }
 
+/**
+ * @ignore
+ */
 interface RawUser {
   url: string,
   username: string,
@@ -56,6 +65,9 @@ export interface User extends RawUser {
   bookmarkCategorySounds: Function
 }
 
+/**
+ * @ignore
+ */
 interface RawCollection<T> {
   readonly count: number
   readonly results: T[]
@@ -74,6 +86,9 @@ export interface SoundCollection extends Collection<Sound> {
   readonly getSound: (idx: number) => Sound
 }
 
+/**
+ * @ignore
+ */
 interface RawSound {
   id: number,
   url: string,
