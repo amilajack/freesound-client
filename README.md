@@ -74,7 +74,7 @@ freeSound.setClientSecrets('your-client-id', 'your-client-secret');
 // Make the user navigate here
 freeSound.getLoginURL();
 // Use the authorization code from the login
-// freeSound.postAccessCode('your-temporary-code-from-login');
+freeSound.postAccessCode('your-temporary-code-from-login');
 ```
 
 ## API Docs

@@ -306,6 +306,9 @@ export default class FreeSound {
   };
 
   private checkOauth() {
+    if (typeof process === 'object') {
+      throw new Error('OAuth is not supported in Node');
+    }
     if (!this.authHeader.includes('Bearer')) {
       throw new Error('Oauth authentication required');
     }
@@ -482,12 +485,10 @@ export default class FreeSound {
       return this.makeRequest<RawCollection<Sound>>(uri).then(e => this.SoundCollection(e));
     };
 
-    const download = (oldTargetWindow: Window) => {
-      const targetWindow = { ...oldTargetWindow };
+    const download = () => {
       // can be current or new window, or iframe
       this.checkOauth();
       const uri = this.makeUri(this.uris.packDownload, [jsonObject.id]);
-      targetWindow.location = uri;
       return fetch(uri).then(res => res.arrayBuffer());
     };
     return {
