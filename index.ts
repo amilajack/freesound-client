@@ -1,3 +1,13 @@
+/**
+ * There are three kinds of tokens:
+ * 1. Auth tokens
+ * 2. Access tokens
+ * 3. Refresh tokens
+ *
+ * Auth tokens expire after 10 minutes. They can be used to get access tokens
+ * Access tokens expire after 24hrs
+ * Access token relates your application with the user that has logged in.
+ */
 import fetch from 'node-fetch';
 import FormData from 'form-data';
 import { URLSearchParams as NodeURLSearchParams } from 'url';
@@ -63,6 +73,16 @@ export interface User extends RawUser {
   packs: Function,
   bookmarkCategories: Function,
   bookmarkCategorySounds: Function
+}
+
+export interface AccessTokenResponse {
+  // The value of the access token
+  "access_token": string,
+  "scope": string,
+  // The time in seconds until the access token exprires
+  "expires_in": number,
+  // Refresh token is used to update the expirey time of the access token
+  "refresh_token": string
 }
 
 /**
@@ -253,13 +273,16 @@ type SearchOpts = {
   analysis_file?: string;
   target?: string;
   query?: string;
+  filter?: string;
   descriptors_filter?: string;
 };
 
 type TextSearchOpts = {
+  page?: number,
   query?: string,
   filter?: string,
   sort?: string,
+  fields?: string,
   group_by_pack?: 1 | 0
 }
 
@@ -306,6 +329,7 @@ export default class FreeSound {
   };
 
   private checkOauth() {
+    // @TODO: Support node
     if (typeof process === 'object') {
       throw new Error('OAuth is not supported in Node');
     }
@@ -498,6 +522,14 @@ export default class FreeSound {
     }
   }
 
+  /**
+   *
+   * There are two ways of authenticating: OAuth and token method.
+   * The OAuth method is required for more privilidged actions such as
+   * downloading sounds.
+   *
+   * This method can set both kinds of tokens
+   */
   setToken(token: string, type?: "oauth"): string {
     this.authHeader = `${type === 'oauth' ? 'Bearer ' : 'Token '}${token}`;
     return this.authHeader;
@@ -508,14 +540,14 @@ export default class FreeSound {
     this.clientSecret = secret;
   }
 
-  postAccessCode(code: string) {
+  postAccessCode(code: string): Promise<AccessTokenResponse> {
     const postUrl = `${this.uris.base}/oauth2/access_token/`;
     const data = new FormData();
     data.append('client_id', this.clientId);
     data.append('client_secret', this.clientSecret);
     data.append('code', code);
     data.append('grant_type', 'authorization_code');
-    return this.makeRequest(postUrl, 'POST', data);
+    return this.makeRequest<AccessTokenResponse>(postUrl, 'POST', data);
   }
 
   textSearch(query: string, opts: TextSearchOpts = {}) {
@@ -591,12 +623,12 @@ export default class FreeSound {
     );
   }
 
-  async getPack(packId: string): Promise<Pack> {
+  async getPack(packId: string | number): Promise<Pack> {
     const pack = await this.makeRequest<RawPack>(this.makeUri(this.uris.pack, [packId]));
     return this.PackObject(pack);
   }
 
-  async getSound(soundId: string): Promise<Sound> {
+  async getSound(soundId: string | number): Promise<Sound> {
     const sound = await this.makeRequest<Sound>(this.makeUri(this.uris.sound, [soundId]));
     return this.SoundObject(sound);
   }

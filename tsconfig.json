@@ -1,14 +1,15 @@
 {
+  "extends": "@tsconfig/node10/tsconfig.json",
   "compilerOptions": {
+    "lib": ["dom"],
     "moduleResolution": "node",
     "module": "commonjs",
     "esModuleInterop": true,
     "target": "esnext",
     "resolveJsonModule": true,
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "strict": true
   },
-  "exclude": ["node_modules"]
+  "include": ["index.ts"]
 }
