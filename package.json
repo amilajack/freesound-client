@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production rm -rf dist && tsc",
-    "deploy": "gh-pages -d docs",
+    "deploy": "gh-pages -d docs && rm -rf docs",
     "docs": "typedoc --out docs index.ts --readme none --mode library",
     "lint": "eslint . --ignore-pattern dist",
     "lint-fix": "yarn lint --fix",

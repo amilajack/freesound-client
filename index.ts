@@ -8,9 +8,12 @@
  * Access tokens expire after 24hrs
  * Access token relates your application with the user that has logged in.
  */
-import fetch from 'node-fetch';
+import nodeFetch from 'node-fetch';
 import FormData from 'form-data';
 import { URLSearchParams as NodeURLSearchParams } from 'url';
+
+// A hack that prevents the 'TypeError: Failed to execute 'fetch' on 'Window': Illegal invocation' issue
+const fetch = window.fetch || nodeFetch;
 
 interface Comment {
   readonly username: string;
