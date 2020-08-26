@@ -330,7 +330,7 @@ export default class FreeSound {
 
   private checkOauth() {
     // @TODO: Support node
-    if (typeof process === 'object') {
+    if (typeof window !== 'object') {
       throw new Error('OAuth is not supported in Node');
     }
     if (!this.authHeader.includes('Bearer')) {
@@ -540,13 +540,23 @@ export default class FreeSound {
     this.clientSecret = secret;
   }
 
-  postAccessCode(code: string): Promise<AccessTokenResponse> {
+  /**
+   * This method allows you to get a new token using a refresh token or an auth
+   * token
+   */
+  postAccessCode(token: string, type: 'refresh' | 'auth' = 'auth'): Promise<AccessTokenResponse> {
     const postUrl = `${this.uris.base}/oauth2/access_token/`;
     const data = new FormData();
     data.append('client_id', this.clientId);
     data.append('client_secret', this.clientSecret);
-    data.append('code', code);
-    data.append('grant_type', 'authorization_code');
+    const tokenType = type === 'auth'
+      ? 'code'
+      : 'refresh_token'
+    data.append(tokenType, token);
+    const grantType = type === 'auth'
+      ? 'authorization_code'
+      : 'refresh_token';
+    data.append('grant_type', grantType);
     return this.makeRequest<AccessTokenResponse>(postUrl, 'POST', data);
   }
 

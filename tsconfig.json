@@ -3,9 +3,7 @@
   "compilerOptions": {
     "lib": ["dom"],
     "moduleResolution": "node",
-    "module": "commonjs",
     "esModuleInterop": true,
-    "target": "esnext",
     "resolveJsonModule": true,
     "declaration": true,
     "outDir": "dist",
