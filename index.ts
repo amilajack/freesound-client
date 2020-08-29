@@ -13,7 +13,7 @@ import FormData from 'form-data';
 import { URLSearchParams as NodeURLSearchParams } from 'url';
 
 // A hack that prevents the 'TypeError: Failed to execute 'fetch' on 'Window': Illegal invocation' issue
-const fetch = window.fetch || nodeFetch;
+const fetch = nodeFetch
 
 interface Comment {
   readonly username: string;
@@ -417,7 +417,7 @@ export default class FreeSound {
       // can be window, new, or iframe
       this.checkOauth();
       const uri = this.makeUri(this.uris.download, [jsonObject.id]);
-      return fetch(uri).then(res => res.arrayBuffer());
+      return this.fetchWithAuthParams(uri)
     };
 
     // @TODO
@@ -516,7 +516,7 @@ export default class FreeSound {
       // can be current or new window, or iframe
       this.checkOauth();
       const uri = this.makeUri(this.uris.packDownload, [jsonObject.id]);
-      return fetch(uri).then(res => res.arrayBuffer());
+      return this.fetchWithAuthParams(uri);
     };
     return {
       ...jsonObject,
@@ -534,7 +534,7 @@ export default class FreeSound {
    * This method can set both kinds of tokens
    */
   setToken(token: string, type?: "oauth"): string {
-    this.authHeader = `${type === 'oauth' ? 'Bearer ' : 'Token '}${token}`;
+    this.authHeader = `${type === 'oauth' ? 'Bearer' : 'Token'} ${token}`;
     return this.authHeader;
   }
 
@@ -656,11 +656,11 @@ export default class FreeSound {
     return this.uris.base + newUri;
   }
 
-  private async makeRequest<T>(
+  private async fetchWithAuthParams<T>(
     uri: string,
     method: 'GET' | 'POST' = 'GET',
     params: FormData | Record<string, string | undefined> = {}
-  ): Promise<T> {
+  ) {
     const IsoURLSearchParams = typeof window === 'object'
       ? URLSearchParams
       : NodeURLSearchParams
@@ -674,6 +674,14 @@ export default class FreeSound {
         }
       }
     )
+  }
+
+  private async makeRequest<T>(
+    uri: string,
+    method: 'GET' | 'POST' = 'GET',
+    params: FormData | Record<string, string | undefined> = {}
+  ): Promise<T> {
+    return this.fetchWithAuthParams(uri, method, params)
       .then(res => res.json())
       .then(res => {
         if (res.error) {
