@@ -24,12 +24,11 @@
     "node-fetch": "^2.6.0"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production rm -rf dist && tsc",
+    "build": "rm -rf dist && tsc",
     "deploy": "gh-pages -d docs && rm -rf docs",
     "docs": "typedoc --out docs index.ts --readme none --mode library",
     "lint": "eslint . --ignore-pattern dist",
     "lint-fix": "yarn lint --fix",
-    "preversion": "yarn build",
     "test": "yarn build && jest",
     "version": "yarn build && yarn docs && yarn deploy"
   },
