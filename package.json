@@ -1,6 +1,6 @@
 {
   "name": "freesound-client",
-  "version": "0.2.0",
+  "version": "0.2.1-0",
   "main": "./dist/index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
