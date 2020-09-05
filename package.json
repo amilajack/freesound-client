@@ -4,9 +4,6 @@
   "main": "./dist/index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
-  "files": [
-    "dist"
-  ],
   "devDependencies": {
     "@tsconfig/node10": "^1.0.7",
     "@types/jest": "^26.0.12",
@@ -32,8 +29,8 @@
     "docs": "typedoc --out docs index.ts --readme none --mode library",
     "lint": "eslint . --ignore-pattern dist",
     "lint-fix": "yarn lint --fix",
-    "test": "yarn build",
-    "_version": "yarn build && yarn docs && yarn deploy"
+    "test": "yarn build && jest",
+    "version": "yarn build && yarn docs && yarn deploy"
   },
   "eslintConfig": {
     "extends": [
