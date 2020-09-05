@@ -4,6 +4,7 @@
   "main": "./dist/index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
+  "files": ["dist"],
   "devDependencies": {
     "@tsconfig/node10": "^1.0.7",
     "@types/jest": "^26.0.12",
