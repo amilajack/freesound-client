@@ -507,9 +507,9 @@ export default class FreeSound {
 
   private PackObject(oldJsonObject: RawPack): Pack {
     const jsonObject = { ...oldJsonObject };
-    const sounds = () => {
+    const sounds = (options = {}) => {
       const uri = this.makeUri(this.uris.packSounds, [jsonObject.id]);
-      return this.makeRequest<RawCollection<Sound>>(uri).then(e => this.SoundCollection(e));
+      return this.makeRequest<RawCollection<Sound>>(uri, 'GET', options).then(e => this.SoundCollection(e));
     };
 
     const download = () => {
@@ -636,8 +636,8 @@ export default class FreeSound {
     );
   }
 
-  async getPack(packId: string | number): Promise<Pack> {
-    const pack = await this.makeRequest<RawPack>(this.makeUri(this.uris.pack, [packId]));
+  async getPack(packId: string | number, options = {}): Promise<Pack> {
+    const pack = await this.makeRequest<RawPack>(this.makeUri(this.uris.pack, [packId]), 'GET', options);
     return this.PackObject(pack);
   }
 
