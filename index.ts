@@ -586,7 +586,7 @@ export default class FreeSound {
     if (!(options.target || options.analysis_file || options.query)) {
       throw new Error('Missing query, target or analysis_file');
     }
-    return this.search(options, this.uris.contentSearch);
+    return this.search(options, this.uris.combinedSearch);
   }
 
   upload(audiofile: string, filename: string, description: { description: string }) {
