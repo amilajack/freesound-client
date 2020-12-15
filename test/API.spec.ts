@@ -103,6 +103,7 @@ describe("API", function testApi() {
     });
 
     it("should perform combined search", async () => {
+      jest.setTimeout(10 ** 5)
       const result = await freeSound.combinedSearch({
         target: "rhythm.bpm:120",
         filter: "tag:loop",

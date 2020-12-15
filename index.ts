@@ -13,7 +13,7 @@ import FormData from 'form-data';
 import { URLSearchParams as NodeURLSearchParams } from 'url';
 
 // A hack that prevents the 'TypeError: Failed to execute 'fetch' on 'Window': Illegal invocation' issue
-const fetch = nodeFetch
+const fetch = nodeFetch;
 
 interface Comment {
   readonly username: string;
@@ -302,7 +302,7 @@ export default class FreeSound {
     base: `https://${this.host}/apiv2`,
     textSearch: '/search/text/',
     contentSearch: '/search/content/',
-    combinedSearch: '/sounds/search/combined/',
+    combinedSearch: '/search/combined/',
     sound: '/sounds/<sound_id>/',
     soundAnalysis: '/sounds/<sound_id>/analysis/',
     similarSounds: '/sounds/<sound_id>/similar/',
@@ -583,8 +583,8 @@ export default class FreeSound {
   }
 
   combinedSearch(options: SearchOpts) {
-    if (!(options.target || options.analysis_file || options.query)) {
-      throw new Error('Missing query, target or analysis_file');
+    if (!(options.target || options.query || options.descriptors_filter || options.target || options.filter)) {
+      throw new Error('Missing target, query, descriptors_filter, target, filter, or analysis_file');
     }
     return this.search(options, this.uris.combinedSearch);
   }
