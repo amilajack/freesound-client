@@ -27,7 +27,7 @@ Object {
 
 exports[`API Search should perform combined search 1`] = `
 Object {
-  "more": "http://freesound.org/apiv2/search/combined/?&query=&filter=tag:loop&target=rhythm.bpm:120&cs_lcvidp=40",
+  "more": "http://freesound.org/apiv2/search/combined/?&query=&filter=tag:loop&target=rhythm.bpm:120&cs_lcvidp=41",
 }
 `;
 
