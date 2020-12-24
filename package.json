@@ -24,7 +24,7 @@
   "dependencies": {
     "@types/node-fetch": "^2.5.7",
     "form-data": "^3.0.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
