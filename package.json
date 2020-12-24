@@ -28,12 +28,12 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "deploy": "gh-pages -d docs && rm -rf docs",
+    "docs:deploy": "gh-pages -d docs && rm -rf docs",
     "docs": "typedoc index.ts --excludeNotExported --excludePrivate --out docs --readme none --mode library",
     "lint": "eslint . --ignore-pattern dist",
     "lint-fix": "yarn lint --fix",
     "test": "yarn build && jest",
-    "version": "yarn build && yarn docs && yarn deploy"
+    "version": "yarn build && yarn docs && yarn docs:deploy"
   },
   "eslintConfig": {
     "extends": [
