@@ -29,7 +29,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "deploy": "gh-pages -d docs && rm -rf docs",
-    "docs": "typedoc --out docs index.ts --readme none --mode library",
+    "docs": "typedoc index.ts --excludeNotExported --excludePrivate --out docs --readme none --mode library",
     "lint": "eslint . --ignore-pattern dist",
     "lint-fix": "yarn lint --fix",
     "test": "yarn build && jest",

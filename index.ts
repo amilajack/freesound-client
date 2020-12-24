@@ -15,15 +15,12 @@ import { URLSearchParams as NodeURLSearchParams } from 'url';
 // A hack that prevents the 'TypeError: Failed to execute 'fetch' on 'Window': Illegal invocation' issue
 const fetch = nodeFetch;
 
-interface Comment {
-  readonly username: string;
-  readonly comment: string;
-  readonly created: string;
+export interface Comment {
+  username: string;
+  comment: string;
+  created: string;
 }
 
-/**
- * @ignore
- */
 interface RawComments {
   count: number,
   next: string,
@@ -31,9 +28,6 @@ interface RawComments {
   results: Comment[]
 }
 
-/**
- * @ignore
- */
 interface RawPack {
   id: number,
   url: string,
@@ -46,13 +40,10 @@ interface RawPack {
 }
 
 export interface Pack extends RawPack {
-  download: Function
-  sounds: Function,
-}
+  download: Function;
+  sounds: Function;
+};
 
-/**
- * @ignore
- */
 interface RawUser {
   url: string,
   username: string,
@@ -79,80 +70,115 @@ export interface User extends RawUser {
 }
 
 export interface AccessTokenResponse {
-  // The value of the access token
-  "access_token": string,
-  "scope": string,
-  // The time in seconds until the access token exprires
+  /**
+   * The value of the access token
+   */
+  access_token: string,
+  scope: string,
+  /**
+   * The time in seconds until the access token exprires
+   */
   "expires_in": number,
-  // Refresh token is used to update the expirey time of the access token
+  /**
+   * Refresh token is used to update the expirey time of the access token
+   */
   "refresh_token": string
 }
 
-/**
- * @ignore
- */
 interface RawCollection<T> {
-  readonly count: number
-  readonly results: T[]
-  readonly next: string;
-  readonly previous: string;
+  count: number;
+  results: T[];
+  next: string;
+  previous: string;
 }
 
 export interface Collection<T> extends RawCollection<T> {
-  readonly nextOrPrev: (page: string) => Promise<Collection<T>>
-  readonly nextPage: (page: number) => Promise<Collection<T>>
-  readonly previousPage: (page: number) => Promise<Collection<T>>
-  readonly getItem: (page: number) => T
+  nextOrPrev: (page: string) => Promise<Collection<T>>;
+  nextPage: (page: number) => Promise<Collection<T>>;
+  previousPage: (page: number) => Promise<Collection<T>>;
+  getItem: (page: number) => T;
 }
 
 export interface SoundCollection extends Collection<Sound> {
-  readonly getSound: (idx: number) => Sound
+  getSound: (idx: number) => Sound
 }
 
-export interface RawSound {
-  // Sound ID on Freesound.
+interface RawSound {
+  /**
+   * Sound ID on Freesound.
+   */
   id: number,
-  // The URl for this sound on the Freesound website.
+  /**
+   * The URl for this sound on the Freesound website.
+   */
   url: string,
-  // The name user gave to the sound.
+  /**
+   * The name user gave to the sound.
+   */
   name: string,
-  // An array of tags the user gave to the sound.
+  /**
+   * An array of tags the user gave to the sound.
+   */
   tags: string[],
-  // The description the user gave to the sound.
+  /**
+   * The description the user gave to the sound.
+   */
   description: string,
   /*
-  Latitude and longitude of the geotag separated by spaces (e.g. “41.0082325664 28.9731252193”,
-  only for sounds that have been geotagged).
+  *Latitude and longitude of the geotag separated by spaces (e.g. “41.0082325664 28.9731252193”,
+  *only for sounds that have been geotagged).
   */
   geotag: null,
-  // The date when the sound was uploaded (e.g. “2014-04-16T20:07:11.145”).
+  /**
+   * The date when the sound was uploaded (e.g. “2014-04-16T20:07:11.145”).
+   */
   created: string,
-  // The license under which the sound is available to you.
+  /**
+   * The license under which the sound is available to you.
+   */
   license: string,
-  // The type of sound (wav, aif, aiff, mp3, m4a or flac).
+  /**
+   * The type of sound (wav, aif, aiff, mp3, m4a or flac).
+   */
   type: string,
-  // The number of channels.
+  /**
+   * The number of channels.
+   */
   channels: number,
-  // The size of the file in bytes.
+  /**
+   * The size of the file in bytes.
+   */
   filesize: number,
-  // The bit rate of the sound in kbps.
+  /**
+   * The bit rate of the sound in kbps.
+   */
   bitrate: number,
-  // The bit depth of the sound.
+  /**
+   * The bit depth of the sound.
+   */
   bitdepth: number,
-  // The duration of the sound in seconds.
+  /**
+   * The duration of the sound in seconds.
+   */
   duration: number,
-  // The samplerate of the sound.
+  /**
+   * The samplerate of the sound.
+   */
   samplerate: number,
-  // The username of the uploader of the sound.
+  /**
+   * The username of the uploader of the sound.
+   */
   username: string,
-  // If the sound is part of a pack, this URl points to that pack’s API resource.
+  /**
+   * If the sound is part of a pack, this URl points to that pack’s API resource.
+   */
   pack: string,
   pack_name?: string,
   /*
-  Dictionary containing the URIs for mp3 and ogg versions of the sound.
-  The dictionary includes the fields preview-hq-mp3 and preview-lq-mp3 (for ~128kbps quality and ~64kbps quality mp3 respectively),
-  and preview-hq-ogg and preview-lq-ogg (for ~192kbps quality and ~80kbps quality ogg respectively).
-  API authentication is required for retrieving sound previews (Token or OAuth2).
+  *Dictionary containing the URIs for mp3 and ogg versions of the sound.
+  *The dictionary includes the fields preview-hq-mp3 and preview-lq-mp3 (for ~128kbps quality and ~64kbps quality mp3 respectively),
+  *and preview-hq-ogg and preview-lq-ogg (for ~192kbps quality and ~80kbps quality ogg respectively).
+  *API authentication is required for retrieving sound previews (Token or OAuth2).
   */
   previews: {
     'preview-lq-ogg': string,
@@ -161,9 +187,9 @@ export interface RawSound {
     'preview-hq-mp3': string
   },
   /*
-  Dictionary including the URls for spectrogram and waveform visualizations of the sound.
-  The dictionary includes the fields waveform_l and waveform_m (for large and medium waveform images respectively),
-  and spectral_l and spectral_m (for large and medium spectrogram images respectively).
+  *Dictionary including the URls for spectrogram and waveform visualizations of the sound.
+  *The dictionary includes the fields waveform_l and waveform_m (for large and medium waveform images respectively),
+  *and spectral_l and spectral_m (for large and medium spectrogram images respectively).
   */
   images: {
     spectral_m: string,
@@ -175,88 +201,139 @@ export interface RawSound {
     waveform_m: string,
     spectral_bw_m: string
   },
-  // The number of times the sound was downloaded.
+  /**
+   * The number of times the sound was downloaded.
+   */
   num_downloads: number,
-  // The average rating of the sound.
+  /**
+   * The average rating of the sound.
+   */
   avg_rating: number,
-  // The number of times the sound was rated.
+  /**
+   * The number of times the sound was rated.
+   */
   num_ratings: number,
-  // The URl of a paginated list of the comments of the sound.
+  /**
+   * The URl of a paginated list of the comments of the sound.
+   */
   comments: string,
   //The number of comments.
   num_comments: number,
-  // URI pointing to the similarity resource (to get a list of similar sounds).
+  /**
+   * URI pointing to the similarity resource (to get a list of similar sounds).
+   */
   similar_sounds: string,
   /*
-  Dictionary containing requested descriptors information according to the descriptors request parameter (see below).
-  This field will be null if no descriptors were specified (or invalid descriptor names specified) or if the analysis data
-  for the sound is not available.
+  *Dictionary containing requested descriptors information according to the descriptors request parameter (see below).
+  *This field will be null if no descriptors were specified (or invalid descriptor names specified) or if the analysis data
+  *for the sound is not available.
   */
   analysis: string,
-  /*The URl for retrieving a JSON file with analysis information for each frame of the sound
-  (see Analysis Descriptor Documentation).
+  /*
+   *The URl for retrieving a JSON file with analysis information for each frame of the sound
+   *(see Analysis Descriptor Documentation).
   */
   analysis_frames: string,
-  // URl pointing to the complete analysis results of the sound (see Analysis Descriptor Documentation).
+  /**
+   * URL pointing to the complete analysis results of the sound (see Analysis Descriptor Documentation).
+   */
   analysis_stats: string,
-  // Dictionary containing the results of the AudioCommons analysis for the given sound.
+  /**
+   * Dictionary containing the results of the AudioCommons analysis for the given sound.
+   */
   ac_analysis: {
-    // Reliability of the tempo estimation in a range of [0, 1].
+    /**
+     * Reliability of the tempo estimation in a range of [0, 1].
+     */
     ac_tempo_confidence: number,
-    // Reliability of the note name/midi/frequency estimation in a range of [0, 1].
+    /**
+     * Reliability of the note name/midi/frequency estimation in a range of [0, 1].
+     */
     ac_note_confidence: number,
-    // Depth of the analyzed audio in a scale from [0-100]. A deep sound is one that conveys the sense of having been made far down below the surface of its source.
+    /**
+     * Depth of the analyzed audio in a scale from [0-100]. A deep sound is one that conveys the sense of having been made far down below the surface of its source.
+     */
     ac_depth: number,
-    // MIDI value corresponding to the estimated note (makes more sense for ac_single_event sounds).
+    /**
+     * MIDI value corresponding to the estimated note (makes more sense for ac_single_event sounds).
+     */
     ac_note_midi: number,
-    // Temporal centroid (sec.) of the audio signal. It is the point in time in a signal that is a temporal balancing point of the sound event energy.
+    /**
+     * Temporal centroid (sec.) of the audio signal. It is the point in time in a signal that is a temporal balancing point of the sound event energy.
+     */
     ac_temporal_centroid: number,
-    // Warmth of the analyzed sound in a scale from [0-100]. A warm sound is one that promotes a sensation analogous to that caused by a physical increase in temperature.
+    /**
+     * Warmth of the analyzed sound in a scale from [0-100]. A warm sound is one that promotes a sensation analogous to that caused by a physical increase in temperature.
+     */
     ac_warmth: number,
-    // Whether audio file is loopable.
+    /**
+     * Whether audio file is loopable.
+     */
     ac_loop: boolean,
     /*
     Hardness of the analyzed audio in a scale from [0-100]. A hard sound is one that conveys the sense of having been made (i) by something solid, firm or rigid;
     or (ii) with a great deal of force.
     */
     ac_hardness: number,
-    // The integrated (overall) loudness (LUFS) measured using the EBU R128 standard.
+    /**
+     * The integrated (overall) loudness (LUFS) measured using the EBU R128 standard.
+     */
     ac_loudness: number,
-    // Whether the signal is reverberated or not.
+    /**
+     * Whether the signal is reverberated or not.
+     */
     ac_reverb: boolean,
-    // Roughness of the analyzed audio in a scale from [0-100]. A rough sound is one that has an uneven or irregular sonic texture.
+    /**
+     * Roughness of the analyzed audio in a scale from [0-100]. A rough sound is one that has an uneven or irregular sonic texture.
+     */
     ac_roughness: number,
     /*
     The log (base 10) of the attack time of a signal envelope.
     The attack time is defined as the time duration from when the sound becomes perceptually audible to when it reaches its maximum intensity.
     */
     ac_log_attack_time: number,
-    // Boominess of the analyzed sound in a scale from [0-100]. A boomy sound is one that conveys a sense of loudness, depth and resonance.
+    /**
+     * Boominess of the analyzed sound in a scale from [0-100]. A boomy sound is one that conveys a sense of loudness, depth and resonance.
+     */
     ac_boominess: number,
-    // Frequency corresponding to the estimated note (makes more sense for ac_single_event sounds).
+    /**
+     * Frequency corresponding to the estimated note (makes more sense for ac_single_event sounds).
+     */
     ac_note_frequency: number,
-    // BPM value estimated by beat tracking algorithm.
+    /**
+     * BPM value estimated by beat tracking algorithm.
+     */
     ac_tempo: number,
-    // Brightness of the analyzed audio in a scale from [0-100]. A bright sound is one that is clear/vibrant and/or contains significant high-pitched elements.
+    /**
+     * Brightness of the analyzed audio in a scale from [0-100]. A bright sound is one that is clear/vibrant and/or contains significant high-pitched elements.
+     */
     ac_brightness: number,
-    // Sharpness of the analyzed sound in a scale from [0-100]. A sharp sound is one that suggests it might cut if it were to take on physical form.
+    /**
+     * Sharpness of the analyzed sound in a scale from [0-100]. A sharp sound is one that suggests it might cut if it were to take on physical form.
+     */
     ac_sharpness: number,
-    // Reliability of the key estimation in a range of [0, 1].
+    /**
+     * Reliability of the key estimation in a range of [0, 1].
+     */
     ac_tonality_confidence: number,
-    // Loudness range (dB, LU) measured using the EBU R128 standard.
+    /**
+     * Loudness range (dB, LU) measured using the EBU R128 standard.
+     */
     ac_dynamic_range: number,
     /*
-    Pitch note name based on median of estimated fundamental frequency (makes more sense for ac_single_event sounds).
-    Note name must be one of [“A”, “A#”, “B”, “C”, “C#”, “D”, “D#”, “E”, “F”, “F#”, “G”, “G#”] and the octave number. E.g. “A4”, “E#7”.
+    *Pitch note name based on median of estimated fundamental frequency (makes more sense for ac_single_event sounds).
+    *Note name must be one of [“A”, “A#”, “B”, “C”, “C#”, “D”, “D#”, “E”, “F”, “F#”, “G”, “G#”] and the octave number. E.g. “A4”, “E#7”.
     */
     ac_note_name: string,
     /*
-    Key value estimated by key detection algorithm.
-    Key is in format root_note scale where root_note is one of [“A”, “A#”, “B”, “C”, “C#”, “D”, “D#”, “E”, “F”, “F#”, “G”, “G#”],
-    and scale is one of [“major”, “minor”]. E.g. “C minor”, “F# major”.
+    *Key value estimated by key detection algorithm.
+    *Key is in format root_note scale where root_note is one of [“A”, “A#”, “B”, “C”, “C#”, “D”, “D#”, “E”, “F”, “F#”, “G”, “G#”],
+    *and scale is one of [“major”, “minor”]. E.g. “C minor”, “F# major”.
     */
-    ac_tonality: string
-    // Whether the audio file contains one single audio event or more than one. This computation is based on the loudness of the signal and does not do any frequency analysis.
+    ac_tonality: string;
+    /**
+     * Whether the audio file contains one single audio event or more than one. This computation is based on the loudness of the signal and does not do any frequency analysis.
+     */
     ac_single_event: boolean
   },
 };
