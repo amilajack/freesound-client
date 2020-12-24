@@ -40,8 +40,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -70,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="rawsound.html" class="tsd-signature-type">RawSound</a>
+						<span class="tsd-signature-type">RawSound</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">Sound</span>
@@ -136,25 +134,50 @@
 					<h3>ac_<wbr>analysis</h3>
 					<div class="tsd-signature tsd-kind-icon">ac_<wbr>analysis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>ac_boominess<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_brightness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_dynamic_range<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_hardness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_log_attack_time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_loop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>ac_loudness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_note_confidence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_note_frequency<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_note_midi<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_note_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>ac_reverb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>ac_roughness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_sharpness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_single_event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>ac_tempo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_tempo_confidence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_temporal_centroid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_tonality<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>ac_tonality_confidence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ac_warmth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#ac_analysis">ac_analysis</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#ac_analysis">ac_analysis</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L203">index.ts:203</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L244">index.ts:244</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Dictionary containing the results of the AudioCommons analysis for the given sound.</p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>boominess<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Boominess of the analyzed sound in a scale from [0-100]. A boomy sound is one that conveys a sense of loudness, depth and resonance.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>brightness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Brightness of the analyzed audio in a scale from [0-100]. A bright sound is one that is clear/vibrant and/or contains significant high-pitched elements.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Depth of the analyzed audio in a scale from [0-100]. A deep sound is one that conveys the sense of having been made far down below the surface of its source.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>dynamic_<wbr>range<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Loudness range (dB, LU) measured using the EBU R128 standard.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>hardness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
@@ -164,51 +187,121 @@
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>loop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Whether audio file is loopable.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>loudness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The integrated (overall) loudness (LUFS) measured using the EBU R128 standard.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>note_<wbr>confidence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Reliability of the note name/midi/frequency estimation in a range of [0, 1].</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>note_<wbr>frequency<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Frequency corresponding to the estimated note (makes more sense for ac_single_event sounds).</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>note_<wbr>midi<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>MIDI value corresponding to the estimated note (makes more sense for ac_single_event sounds).</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>note_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>reverb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Whether the signal is reverberated or not.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>roughness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Roughness of the analyzed audio in a scale from [0-100]. A rough sound is one that has an uneven or irregular sonic texture.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>sharpness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Sharpness of the analyzed sound in a scale from [0-100]. A sharp sound is one that suggests it might cut if it were to take on physical form.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>single_<wbr>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Whether the audio file contains one single audio event or more than one. This computation is based on the loudness of the signal and does not do any frequency analysis.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>tempo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>BPM value estimated by beat tracking algorithm.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>tempo_<wbr>confidence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Reliability of the tempo estimation in a range of [0, 1].</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>temporal_<wbr>centroid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Temporal centroid (sec.) of the audio signal. It is the point in time in a signal that is a temporal balancing point of the sound event energy.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>tonality<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>tonality_<wbr>confidence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Reliability of the key estimation in a range of [0, 1].</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>ac_<wbr>warmth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Warmth of the analyzed sound in a scale from [0-100]. A warm sound is one that promotes a sensation analogous to that caused by a physical increase in temperature.</p>
+									</div>
+								</div>
 							</li>
 						</ul>
 					</div>
@@ -218,9 +311,9 @@
 					<h3>analysis</h3>
 					<div class="tsd-signature tsd-kind-icon">analysis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#analysis">analysis</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#analysis">analysis</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L195">index.ts:195</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L231">index.ts:231</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -229,9 +322,9 @@
 					<h3>analysis_<wbr>frames</h3>
 					<div class="tsd-signature tsd-kind-icon">analysis_<wbr>frames<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#analysis_frames">analysis_frames</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#analysis_frames">analysis_frames</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L199">index.ts:199</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L236">index.ts:236</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -240,44 +333,64 @@
 					<h3>analysis_<wbr>stats</h3>
 					<div class="tsd-signature tsd-kind-icon">analysis_<wbr>stats<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#analysis_stats">analysis_stats</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#analysis_stats">analysis_stats</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L201">index.ts:201</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L240">index.ts:240</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>URL pointing to the complete analysis results of the sound (see Analysis Descriptor Documentation).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="avg_rating" class="tsd-anchor"></a>
 					<h3>avg_<wbr>rating</h3>
 					<div class="tsd-signature tsd-kind-icon">avg_<wbr>rating<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#avg_rating">avg_rating</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#avg_rating">avg_rating</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L181">index.ts:181</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L211">index.ts:211</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The average rating of the sound.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="bitdepth" class="tsd-anchor"></a>
 					<h3>bitdepth</h3>
 					<div class="tsd-signature tsd-kind-icon">bitdepth<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#bitdepth">bitdepth</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#bitdepth">bitdepth</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L141">index.ts:141</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L159">index.ts:159</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The bit depth of the sound.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="bitrate" class="tsd-anchor"></a>
 					<h3>bitrate</h3>
 					<div class="tsd-signature tsd-kind-icon">bitrate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#bitrate">bitrate</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#bitrate">bitrate</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L139">index.ts:139</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L155">index.ts:155</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The bit rate of the sound in kbps.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="bookmark" class="tsd-anchor"></a>
@@ -285,7 +398,7 @@
 					<div class="tsd-signature tsd-kind-icon">bookmark<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L271">index.ts:271</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L348">index.ts:348</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -294,11 +407,16 @@
 					<h3>channels</h3>
 					<div class="tsd-signature tsd-kind-icon">channels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#channels">channels</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#channels">channels</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L135">index.ts:135</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L147">index.ts:147</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of channels.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="comment" class="tsd-anchor"></a>
@@ -306,7 +424,7 @@
 					<div class="tsd-signature tsd-kind-icon">comment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L269">index.ts:269</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L346">index.ts:346</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -315,33 +433,48 @@
 					<h3>comments</h3>
 					<div class="tsd-signature tsd-kind-icon">comments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#comments">comments</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#comments">comments</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L185">index.ts:185</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L219">index.ts:219</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The URl of a paginated list of the comments of the sound.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="created" class="tsd-anchor"></a>
 					<h3>created</h3>
 					<div class="tsd-signature tsd-kind-icon">created<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#created">created</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#created">created</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L129">index.ts:129</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L135">index.ts:135</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The date when the sound was uploaded (e.g. “2014-04-16T20:07:11.145”).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="description" class="tsd-anchor"></a>
 					<h3>description</h3>
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#description">description</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#description">description</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L122">index.ts:122</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L126">index.ts:126</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The description the user gave to the sound.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="download" class="tsd-anchor"></a>
@@ -349,7 +482,7 @@
 					<div class="tsd-signature tsd-kind-icon">download<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L270">index.ts:270</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L347">index.ts:347</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -358,11 +491,16 @@
 					<h3>duration</h3>
 					<div class="tsd-signature tsd-kind-icon">duration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#duration">duration</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#duration">duration</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L143">index.ts:143</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L163">index.ts:163</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The duration of the sound in seconds.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="edit" class="tsd-anchor"></a>
@@ -370,7 +508,7 @@
 					<div class="tsd-signature tsd-kind-icon">edit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L272">index.ts:272</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L349">index.ts:349</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -379,20 +517,25 @@
 					<h3>filesize</h3>
 					<div class="tsd-signature tsd-kind-icon">filesize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#filesize">filesize</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#filesize">filesize</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L137">index.ts:137</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L151">index.ts:151</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The size of the file in bytes.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="geotag" class="tsd-anchor"></a>
 					<h3>geotag</h3>
 					<div class="tsd-signature tsd-kind-icon">geotag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#geotag">geotag</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#geotag">geotag</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L127">index.ts:127</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L131">index.ts:131</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -402,7 +545,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Analysis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L265">index.ts:265</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L342">index.ts:342</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -412,7 +555,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Comments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L267">index.ts:267</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L344">index.ts:344</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -422,7 +565,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Similar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L266">index.ts:266</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L343">index.ts:343</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -431,20 +574,25 @@
 					<h3>id</h3>
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#id">id</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#id">id</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L114">index.ts:114</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L110">index.ts:110</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Sound ID on Freesound.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="images" class="tsd-anchor"></a>
 					<h3>images</h3>
 					<div class="tsd-signature tsd-kind-icon">images<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>spectral_bw_l<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>spectral_bw_m<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>spectral_l<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>spectral_m<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>waveform_bw_l<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>waveform_bw_m<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>waveform_l<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>waveform_m<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#images">images</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#images">images</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L168">index.ts:168</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L194">index.ts:194</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -482,31 +630,41 @@
 					<h3>license</h3>
 					<div class="tsd-signature tsd-kind-icon">license<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#license">license</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#license">license</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L131">index.ts:131</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L139">index.ts:139</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The license under which the sound is available to you.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="name" class="tsd-anchor"></a>
 					<h3>name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#name">name</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L118">index.ts:118</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L118">index.ts:118</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name user gave to the sound.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="num_comments" class="tsd-anchor"></a>
 					<h3>num_<wbr>comments</h3>
 					<div class="tsd-signature tsd-kind-icon">num_<wbr>comments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#num_comments">num_comments</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#num_comments">num_comments</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L187">index.ts:187</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L221">index.ts:221</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -515,42 +673,57 @@
 					<h3>num_<wbr>downloads</h3>
 					<div class="tsd-signature tsd-kind-icon">num_<wbr>downloads<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#num_downloads">num_downloads</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#num_downloads">num_downloads</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L179">index.ts:179</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L207">index.ts:207</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of times the sound was downloaded.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="num_ratings" class="tsd-anchor"></a>
 					<h3>num_<wbr>ratings</h3>
 					<div class="tsd-signature tsd-kind-icon">num_<wbr>ratings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#num_ratings">num_ratings</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#num_ratings">num_ratings</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L183">index.ts:183</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L215">index.ts:215</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of times the sound was rated.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="pack" class="tsd-anchor"></a>
 					<h3>pack</h3>
 					<div class="tsd-signature tsd-kind-icon">pack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#pack">pack</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#pack">pack</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L149">index.ts:149</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L175">index.ts:175</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If the sound is part of a pack, this URl points to that pack’s API resource.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="pack_name" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> pack_<wbr>name</h3>
 					<div class="tsd-signature tsd-kind-icon">pack_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#pack_name">pack_name</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#pack_name">pack_name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L150">index.ts:150</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L176">index.ts:176</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -559,9 +732,9 @@
 					<h3>previews</h3>
 					<div class="tsd-signature tsd-kind-icon">previews<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>preview-hq-mp3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>preview-hq-ogg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>preview-lq-mp3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>preview-lq-ogg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#previews">previews</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#previews">previews</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L157">index.ts:157</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L183">index.ts:183</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -588,7 +761,7 @@
 					<div class="tsd-signature tsd-kind-icon">rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L268">index.ts:268</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L345">index.ts:345</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -597,66 +770,96 @@
 					<h3>samplerate</h3>
 					<div class="tsd-signature tsd-kind-icon">samplerate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#samplerate">samplerate</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#samplerate">samplerate</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L145">index.ts:145</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L167">index.ts:167</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The samplerate of the sound.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="similar_sounds" class="tsd-anchor"></a>
 					<h3>similar_<wbr>sounds</h3>
 					<div class="tsd-signature tsd-kind-icon">similar_<wbr>sounds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#similar_sounds">similar_sounds</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#similar_sounds">similar_sounds</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L189">index.ts:189</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L225">index.ts:225</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>URI pointing to the similarity resource (to get a list of similar sounds).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="tags" class="tsd-anchor"></a>
 					<h3>tags</h3>
 					<div class="tsd-signature tsd-kind-icon">tags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#tags">tags</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#tags">tags</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L120">index.ts:120</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L122">index.ts:122</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An array of tags the user gave to the sound.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#type">type</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L133">index.ts:133</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L143">index.ts:143</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The type of sound (wav, aif, aiff, mp3, m4a or flac).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="url" class="tsd-anchor"></a>
 					<h3>url</h3>
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#url">url</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#url">url</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L116">index.ts:116</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L114">index.ts:114</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The URl for this sound on the Freesound website.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="username" class="tsd-anchor"></a>
 					<h3>username</h3>
 					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="rawsound.html">RawSound</a>.<a href="rawsound.html#username">username</a></p>
+						<p>Inherited from <a href="sound.html">Sound</a>.<a href="sound.html#username">username</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/66d6e51/index.ts#L147">index.ts:147</a></li>
+							<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/acb48b3/index.ts#L171">index.ts:171</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The username of the uploader of the sound.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -680,10 +883,10 @@
 						<a href="collection.html" class="tsd-kind-icon">Collection</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="pack.html" class="tsd-kind-icon">Pack</a>
+						<a href="comment.html" class="tsd-kind-icon">Comment</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="rawsound.html" class="tsd-kind-icon">Raw<wbr>Sound</a>
+						<a href="pack.html" class="tsd-kind-icon">Pack</a>
 					</li>
 				</ul>
 				<ul class="current">
