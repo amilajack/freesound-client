@@ -959,13 +959,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-fetch@npm:^2.5.7":
-  version: 2.5.7
-  resolution: "@types/node-fetch@npm:2.5.7"
+"@types/node-fetch@npm:^2.5.8":
+  version: 2.5.8
+  resolution: "@types/node-fetch@npm:2.5.8"
   dependencies:
     "@types/node": "*"
     form-data: ^3.0.0
-  checksum: 101f6e8474407f957dfe1750d82aa0bcaa56347d09c8ba8634e6a901d07032533c0a578860691d915ff8fa230355700c41c04ae7e505840b5d6ff8cc3ece7741
+  checksum: 608cdd6aed2c6a44a26406eb63475d4bfb8f63f78f22f747e30dd7cda309b86dc019e4427b9092011541da95d83ef03e2e6558c37d39221c0931617f32d3c4e1
   languageName: node
   linkType: hard
 
@@ -3006,7 +3006,7 @@ __metadata:
     "@tsconfig/node10": ^1.0.7
     "@types/jest": ^26.0.20
     "@types/node": ^14.14.29
-    "@types/node-fetch": ^2.5.7
+    "@types/node-fetch": ^2.5.8
     cross-env: ^7.0.3
     dotenv: ^8.2.0
     eslint: ^7.20.0
