@@ -40,7 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tsconfig/node10", "npm:1.0.7"],
             ["@types/jest", "npm:26.0.20"],
             ["@types/node", "npm:14.14.29"],
-            ["@types/node-fetch", "npm:2.5.7"],
+            ["@types/node-fetch", "npm:2.5.8"],
             ["cross-env", "npm:7.0.3"],
             ["dotenv", "npm:8.2.0"],
             ["eslint", "npm:7.20.0"],
@@ -1181,10 +1181,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/node-fetch", [
-        ["npm:2.5.7", {
-          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-2.5.7-fd8c51e56f-101f6e8474.zip/node_modules/@types/node-fetch/",
+        ["npm:2.5.8", {
+          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-2.5.8-d946aa06c6-608cdd6aed.zip/node_modules/@types/node-fetch/",
           "packageDependencies": [
-            ["@types/node-fetch", "npm:2.5.7"],
+            ["@types/node-fetch", "npm:2.5.8"],
             ["@types/node", "npm:14.0.25"],
             ["form-data", "npm:3.0.0"]
           ],
@@ -3619,7 +3619,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tsconfig/node10", "npm:1.0.7"],
             ["@types/jest", "npm:26.0.20"],
             ["@types/node", "npm:14.14.29"],
-            ["@types/node-fetch", "npm:2.5.7"],
+            ["@types/node-fetch", "npm:2.5.8"],
             ["cross-env", "npm:7.0.3"],
             ["dotenv", "npm:8.2.0"],
             ["eslint", "npm:7.20.0"],
