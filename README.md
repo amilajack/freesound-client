@@ -17,6 +17,8 @@ yarn add freesound-client
 ```
 
 ## Usage
+### Setup
+
 ```js
 import FreeSound from 'freesound-client';
 
@@ -24,31 +26,11 @@ const freeSound = new FreeSound();
 
 // Set token
 freeSound.setToken('your-api-key');
+```
 
-// Getting a user
-await freeSound.getUser('Jovica');
-// Getting a user's related data
-const [sounds, packs, bookCat, bookCatSounds] = await Promise.all([
-  user.sounds(),
-  user.packs(),
-  user.bookmarkCategories(),
-  user.bookmarkCategorySounds()
-]);
+### Searching
 
-// Getting a pack
-const pack = await freeSound.getPack(9678);
-// Getting a pack's sounds
-const packSounds = await pack.sounds()
-
-// Getting a sound
-const sound = await freeSound.getSound(96541);
-// Getting a sound's related data
-const [analysis, similar, comments] = await Promise.all([
-  sound.getAnalysis(),
-  sound.getSimilar(),
-  sound.getComments()
-]);
-
+```js
 // Text search 
 await freeSound.textSearch('violoncello', {
   page: 1,
@@ -66,7 +48,40 @@ await freeSound.combinedSearch({
 await freeSound.contentSearch({
   target: 'lowlevel.pitch.mean:220'
 });
+```
 
+### Retrieving a sound or pack of sounds
+```js
+// Getting a pack
+const pack = await freeSound.getPack(9678);
+// Getting a pack's sounds
+const packSounds = await pack.sounds()
+
+// Getting a sound
+const sound = await freeSound.getSound(96541);
+// Getting a sound's related data
+const [analysis, similar, comments] = await Promise.all([
+  sound.getAnalysis(),
+  sound.getSimilar(),
+  sound.getComments()
+]);
+```
+
+### Retrieving User Data
+```js
+// Getting a user
+await freeSound.getUser('Jovica');
+// Getting a user's related data
+const [sounds, packs, bookCat, bookCatSounds] = await Promise.all([
+  user.sounds(),
+  user.packs(),
+  user.bookmarkCategories(),
+  user.bookmarkCategorySounds()
+]);
+```
+
+### OAuth
+```js
 // OAuth login
 freeSound.setToken('your-api-key', 'oauth');
 // Set your application's client_id and client_secret
