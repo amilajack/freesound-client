@@ -641,8 +641,9 @@ export default class FreeSound {
   }
 
   /**
-   * This method allows searching sounds in Freesound by matching their tags and other
-   * kinds of metadata. See https://freesound.org/docs/api/resources_apiv2.html#sound-text-search.
+   * Search sounds in Freesound by matching their tags and other kinds of metadata. See
+   * https://freesound.org/docs/api/resources_apiv2.html#sound-text-search for more
+   * information.
    */
   textSearch(query: string, opts: TextSearchOpts = {}) {
     const options = { ...opts };
@@ -653,8 +654,9 @@ export default class FreeSound {
   }
 
   /**
-   * This method allows searching sounds in Freesound based on their content
-   * descriptors. See https://freesound.org/docs/api/resources_apiv2.html#content-search.
+   * Search sounds in Freesound based on their content descriptors. See
+   * https://freesound.org/docs/api/resources_apiv2.html#content-search
+   * for more information.
    */
   contentSearch(options: SearchOpts): Promise<SoundCollection> {
     if (
@@ -668,9 +670,9 @@ export default class FreeSound {
   }
 
   /**
-   * This method is a combination of text search and content search. It allows searching
-   * sounds in Freesound based on their tags, metadata and content-based descriptiors.
-   * See https://freesound.org/docs/api/resources_apiv2.html#combined-search.
+   * Search sounds in Freesound based on their tags, metadata and content-based descriptiors via
+   * a combination of text search and content search. See
+   * https://freesound.org/docs/api/resources_apiv2.html#combined-search for more information.
    */
   combinedSearch(options: SearchOpts) {
     if (!(options.target || options.query || options.descriptors_filter || options.target || options.filter)) {
@@ -680,13 +682,15 @@ export default class FreeSound {
   }
 
    /**
-   * This method allows uploading an audio file into Freesound and optionally describing it.
-   * If there is no file description, only the audio file will upload and a description will be needed later using
-   * the describe(description: { description: string }) method.
-   * If the file description is present, the uploaded file will be ready for the processing and moderation stage.
-   * A list of uploading files pending a description, processing or moderation is obtainable through the
-   * getPendingSounds() method. See https://freesound.org/docs/api/resources_apiv2.html#upload-sound-oauth2-required.
-   * This method requires OAuth2 authentication.
+   * Upload an audio file into Freesound and optionally describe it.
+   * If there is no file description, only the audio file will upload, and
+   * the user will need to add a description later using
+   * the describe(description: { description: string }) method. If the file description
+   * is present, the uploaded file will be ready for the processing and moderation stage.
+   * A list of uploaded files pending a description, processing or moderation is
+   * obtainable through the getPendingSounds() method. See
+   * https://freesound.org/docs/api/resources_apiv2.html#upload-sound-oauth2-required
+   * for more information. This method requires OAuth2 authentication.
    * @param audiofile the audio file to upload
    * @param filename the name of the audio file to upload
    * @param description the description of the audio file to upload
@@ -702,12 +706,14 @@ export default class FreeSound {
   }
 
   /**
-   * This method allows describing a previously uploaded file that does not have a description.
-   * Note: after a sound receives a description, the team of Freesound moderators still needs to process and
-   * moderate it, so it may not yet appear in Freesound. A list of sounds uploaded and described by the user,
-   * but still pending processing and moderation, is viewable with the getPendingSounds() method.
-   * This method requires OAuth2 authentication.
-   * See https://freesound.org/docs/api/resources_apiv2.html#describe-sound-oauth2-required.
+   * Describe a previously uploaded file that does not have a description.
+   * Note: after a sound receives a description, the team of Freesound moderators
+   * still needs to process and moderate it, so it may not yet appear in Freesound.
+   * A list of sounds uploaded and described by the user, but still
+   * pending processing and moderation, is viewable with
+   * the getPendingSounds() method. This method requires OAuth2 authentication. See
+   * https://freesound.org/docs/api/resources_apiv2.html#describe-sound-oauth2-required
+   * for more information.
    * @param description a description for an uploaded sound
    */
   describe(description: { description: string }) {
@@ -717,12 +723,18 @@ export default class FreeSound {
   }
 
   /**
-   * This method retrieves a list of audio files uploaded by the Freesound user logged in using OAuth2 that
-   * do not have a description, or have not been processed or moderated. In Freesound, sounds need descriptions
-   * after their upload. Then, sounds are automatically processed, and, finally, a team of human moderators
-   * either accepts or rejects the upload. This method keeps track of the status of these uploads.
-   * This method requires OAuth2 authentication.
-   * See https://freesound.org/docs/api/resources_apiv2.html#pending-uploads-oauth2-required.
+   * Retrieve a list of audio files uploaded by
+   * the Freesound user logged in using OAuth2 that
+   * do not have a description, or have not been
+   * processed or moderated. In Freesound, sounds
+   * need descriptions after their upload. Then,
+   * sounds are automatically processed, and,
+   * finally, a team of human moderators either
+   * accepts or rejects the upload. This method keeps
+   * track of the status of these uploads and
+   * requires OAuth2 authentication. See
+   * https://freesound.org/docs/api/resources_apiv2.html#pending-uploads-oauth2-required
+   * for more information.
    */
   getPendingSounds() {
     this.checkOauth();
@@ -730,7 +742,7 @@ export default class FreeSound {
   }
 
   /**
-   * This method returns basic information about the user that is logged in via OAuth2.
+   * Return basic information about the user that is logged in via OAuth2.
    * This application can use it to identify which Freesound user has logged in.
    */
   me() {
@@ -753,9 +765,9 @@ export default class FreeSound {
   }
 
   /**
-   * This method allows the retrieval of information about a particular Freesound user.
-   * See https://freesound.org/docs/api/resources_apiv2.html#user-instance.
-   * @param username the username of the Freesound user whose information you want
+   * Retrieve information about a particular Freesound user. See
+   * https://freesound.org/docs/api/resources_apiv2.html#user-instance for more information.
+   * @param username the username of the Freesound user
    * @returns information about a particular Freesound user
    */
   getUser(username: string): Promise<User> {
@@ -765,10 +777,10 @@ export default class FreeSound {
   }
 
   /**
-   * This method allows the retrieval of the list of sounds included in a pack.
-   * See https://freesound.org/docs/api/resources_apiv2.html#pack-sounds.
-   * @param packId The identification number of the pack to fetch
-   * @returns a list of sounds included in the pack whose ID is packId
+   * Retrieve the list of sounds included in a pack. See
+   * https://freesound.org/docs/api/resources_apiv2.html#pack-sounds for more information.
+   * @param packId the identification number of the pack to fetch
+   * @returns a list of sounds included in the pack that has packId as its identification number
    */
   async getPack(packId: string | number, options = {}): Promise<Pack> {
     const pack = await this.makeRequest<RawPack>(this.makeUri(this.uris.pack, [packId]), 'GET', options);
@@ -776,9 +788,9 @@ export default class FreeSound {
   }
 
   /**
-   * This method allows the retrieval of detailed information about a sound.
-   * See https://freesound.org/docs/api/resources_apiv2.html#sound-resources.
-   * @param soundId the identification number of the sound you want detailed information about
+   * Retrieve detailed information about a sound. See
+   * https://freesound.org/docs/api/resources_apiv2.html#sound-resources for more information.
+   * @param soundId the identification number of the sound
    * @returns detailed information about a sound
    */
   async getSound(soundId: string | number): Promise<Sound> {
