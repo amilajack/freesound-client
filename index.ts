@@ -771,16 +771,11 @@ export default class FreeSound {
   }
 
   /**
-   * Retrieve a list of audio files uploaded by
-   * the Freesound user logged in using OAuth2 that
-   * do not have a description, or have not been
-   * processed or moderated. In Freesound, sounds
-   * need descriptions after their upload. Then,
-   * sounds are automatically processed, and,
-   * finally, a team of human moderators either
-   * accepts or rejects the upload. This method keeps
-   * track of the status of these uploads and
-   * requires OAuth2 authentication. See
+   * Retrieve a list of audio files uploaded by he Freesound user logged in using
+   * OAuth2 are not described, processed or moderated. In Freesound, sounds need
+   * descriptions after their upload. Then, sounds are automatically processed, and,
+   * finally, a team of human moderators either accepts or rejects the upload. This method
+   * keeps track of the status of these uploads and requires OAuth2 authentication. See
    * https://freesound.org/docs/api/resources_apiv2.html#pending-uploads-oauth2-required
    * for more information.
    *
