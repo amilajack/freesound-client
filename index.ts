@@ -802,6 +802,10 @@ export default class FreeSound {
   }
 
   /**
+   * Navigate to Freesound for user login.
+   *
+   * @returns a url where the user can login
+   *
    * ```typescript
    * const navigateToLogin = () => {
    *   window.location.replace(freeSound.getLoginURL());
