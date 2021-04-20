@@ -620,6 +620,11 @@ export default class FreeSound {
   }
 
   /**
+   * Set the credentials supplied by https://freesound.org/apiv2/apply for API
+   * call authentication. See
+   * https://freesound.org/docs/api/authentication.html?highlight=secret#token-authentication
+   * for more information.
+   *
    * @param id your client ID, obtainable at https://freesound.org/apiv2/apply
    * @param secret your client secret, obtainable at https://freesound.org/apiv2/apply
    *
