@@ -112,9 +112,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L662">index.ts:662</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L723">index.ts:723</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search sounds in Freesound based on their tags, metadata and content-based descriptiors via
+										a combination of text search and content search. See
+									<a href="https://freesound.org/docs/api/resources_apiv2.html#combined-search">https://freesound.org/docs/api/resources_apiv2.html#combined-search</a> for more information.</p>
+								</div>
+								<pre><code class="language-typescript"><span class="hljs-keyword">const</span> soundCollectionResults = <span class="hljs-keyword">await</span> freeSound.combinedSearch(
+  filter: <span class="hljs-string">'tag:scale'</span>,
+  target: <span class="hljs-string">'rhythm.bpm:120'</span>,
+);</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -135,9 +146,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L651">index.ts:651</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L700">index.ts:700</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search sounds in Freesound based on their content descriptors. See
+										<a href="https://freesound.org/docs/api/resources_apiv2.html#content-search">https://freesound.org/docs/api/resources_apiv2.html#content-search</a>
+									for more information.</p>
+								</div>
+								<pre><code class="language-typescript"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> freeSound.contentSearch({
+  target: <span class="hljs-string">'lowlevel.pitch.mean:220'</span>,
+});</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -158,13 +179,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L679">index.ts:679</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L767">index.ts:767</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Describe a previously uploaded file that does not have a description.
+										Note: after a sound receives a description, the team of Freesound moderators
+										still needs to process and moderate it, so it may not yet appear in Freesound.
+										A list of sounds uploaded and described by the user, but still
+										pending processing and moderation, is viewable with
+										the getPendingSounds() method. This method requires OAuth2 authentication. See
+										<a href="https://freesound.org/docs/api/resources_apiv2.html#describe-sound-oauth2-required">https://freesound.org/docs/api/resources_apiv2.html#describe-sound-oauth2-required</a>
+									for more information.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>description: <span class="tsd-signature-symbol">{ </span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a description for an uploaded sound</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
@@ -186,10 +222,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L696">index.ts:696</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L815">index.ts:815</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Navigate to Freesound for user login.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>a url where the user can login</p>
+							<pre><code class="language-typescript"><span class="hljs-keyword">const</span> navigateToLogin = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">window</span>.location.replace(freeSound.getLoginURL());
+};</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -203,7 +248,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L703">index.ts:703</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L822">index.ts:822</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -220,13 +265,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L716">index.ts:716</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L861">index.ts:861</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieve the list of sounds included in a pack. See
+									<a href="https://freesound.org/docs/api/resources_apiv2.html#pack-sounds">https://freesound.org/docs/api/resources_apiv2.html#pack-sounds</a> for more information.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>packId: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the identification number of the pack to fetch</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></h5>
@@ -235,6 +289,10 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/pack.html" class="tsd-signature-type">Pack</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a list of sounds included in the pack that has packId as its identification number</p>
+							<pre><code class="language-typescript"><span class="hljs-comment">// Fetch the pack</span>
+<span class="hljs-comment">// https://freesound.org/people/vroomvro0om/packs/21143/.</span>
+<span class="hljs-keyword">const</span> packObj = <span class="hljs-keyword">await</span> freeSound.getPack(<span class="hljs-number">21143</span>);</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -248,9 +306,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L685">index.ts:685</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L786">index.ts:786</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieve a list of audio files uploaded by he Freesound user logged in using
+										OAuth2 are not described, processed or moderated. In Freesound, sounds need
+										descriptions after their upload. Then, sounds are automatically processed, and,
+										finally, a team of human moderators either accepts or rejects the upload. This method
+										keeps track of the status of these uploads and requires OAuth2 authentication. See
+										<a href="https://freesound.org/docs/api/resources_apiv2.html#pending-uploads-oauth2-required">https://freesound.org/docs/api/resources_apiv2.html#pending-uploads-oauth2-required</a>
+									for more information.</p>
+								</div>
+								<pre><code class="language-typescript"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> freeSound.getPendingSounds()</code></pre>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -265,16 +335,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L721">index.ts:721</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L880">index.ts:880</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieve detailed information about a sound. See
+										<a href="https://freesound.org/docs/api/resources_apiv2.html#sound-resources">https://freesound.org/docs/api/resources_apiv2.html#sound-resources</a>
+									for more information.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>soundId: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the identification number of the sound</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sound.html" class="tsd-signature-type">Sound</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>detailed information about a sound</p>
+							<pre><code class="language-typescript"><span class="hljs-comment">// Fetch the sound</span>
+<span class="hljs-comment">// https://freesound.org/people/vroomvro0om/sounds/376626/.</span>
+<span class="hljs-keyword">const</span> fetchedSound = <span class="hljs-keyword">await</span> freeSound.getSound(<span class="hljs-number">376626</span>);</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -288,16 +372,29 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L710">index.ts:710</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L842">index.ts:842</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieve information about a particular Freesound user. See
+										<a href="https://freesound.org/docs/api/resources_apiv2.html#user-instance">https://freesound.org/docs/api/resources_apiv2.html#user-instance</a>
+									for more information.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>username: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the username of the Freesound user</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>information about a particular Freesound user</p>
+							<pre><code class="language-typescript"><span class="hljs-comment">// Get information about the user https://freesound.org/people/MTG/.</span>
+<span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> freeSound.getUser(<span class="hljs-string">'MTG'</span>);</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -311,9 +408,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L691">index.ts:691</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L799">index.ts:799</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return basic information about the user that is logged in via OAuth2.
+									This application can use it to identify which Freesound user has logged in.</p>
+								</div>
+								<pre><code class="language-typescript"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> freeSound.me();</code></pre>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -328,7 +432,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L627">index.ts:627</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L651">index.ts:651</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -336,6 +440,7 @@
 									<p>This method allows you to get a new token using a refresh token or an auth
 									token</p>
 								</div>
+								<pre><code class="language-typescript"><span class="hljs-keyword">await</span> freeSound.postAccessCode(<span class="hljs-string">'your-temporary-code-from-login'</span>);</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -360,7 +465,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L429">index.ts:429</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L429">index.ts:429</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -392,16 +497,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L618">index.ts:618</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L638">index.ts:638</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the credentials supplied by <a href="https://freesound.org/apiv2/apply">https://freesound.org/apiv2/apply</a> for API
+										call authentication. See
+										<a href="https://freesound.org/docs/api/authentication.html?highlight=secret#token-authentication">https://freesound.org/docs/api/authentication.html?highlight=secret#token-authentication</a>
+									for more information.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>your client ID, obtainable at <a href="https://freesound.org/apiv2/apply">https://freesound.org/apiv2/apply</a></p>
+									</div>
 								</li>
 								<li>
 									<h5>secret: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>your client secret, obtainable at <a href="https://freesound.org/apiv2/apply">https://freesound.org/apiv2/apply</a></p>
+										<pre><code class="language-typescript"><span class="hljs-keyword">await</span> freeSound.setClientSecrets(
+  <span class="hljs-string">"your-client-id"</span>,
+  <span class="hljs-string">"your-secret-key"</span>
+);</code></pre>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -418,7 +541,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L613">index.ts:613</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L617">index.ts:617</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -428,6 +551,7 @@
 									downloading sounds.</p>
 								</div>
 								<p>This method can set both kinds of tokens</p>
+								<pre><code class="language-typescript"><span class="hljs-keyword">await</span> freeSound.setToken(<span class="hljs-string">'your-api-key'</span>, <span class="hljs-string">'oauth'</span>);</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -452,9 +576,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L643">index.ts:643</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L681">index.ts:681</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search sounds in Freesound by matching their tags and other kinds of metadata. See
+										<a href="https://freesound.org/docs/api/resources_apiv2.html#sound-text-search">https://freesound.org/docs/api/resources_apiv2.html#sound-text-search</a> for more
+									information.</p>
+								</div>
+								<pre><code class="language-typescript"><span class="hljs-keyword">await</span> freeSound.textSearch(<span class="hljs-string">'violoncello'</span>, {
+  page: <span class="hljs-number">1</span>,
+  filter: <span class="hljs-string">'tag:tenuto duration:[1.0 TO 15.0]'</span>,
+  sort: <span class="hljs-string">'rating_desc'</span>,
+  fields: <span class="hljs-string">'id,name,url'</span>
+});</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -478,19 +615,41 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/b71c5e2/index.ts#L669">index.ts:669</a></li>
+									<li>Defined in <a href="https://github.com/amilajack/freesound-client/blob/7abffef/index.ts#L745">index.ts:745</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Upload an audio file into Freesound and optionally describe it.
+										If there is no file description, only the audio file will upload, and
+										the user will need to add a description later using
+										the describe(description: { description: string }) method. If the file description
+										is present, the uploaded file will be ready for the processing and moderation stage.
+										A list of uploaded files pending a description, processing or moderation is
+										obtainable through the getPendingSounds() method. See
+										<a href="https://freesound.org/docs/api/resources_apiv2.html#upload-sound-oauth2-required">https://freesound.org/docs/api/resources_apiv2.html#upload-sound-oauth2-required</a>
+									for more information. This method requires OAuth2 authentication.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>audiofile: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the audio file to upload</p>
+									</div>
 								</li>
 								<li>
 									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the name of the audio file to upload</p>
+									</div>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-symbol">{ </span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the description of the audio file to upload</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
