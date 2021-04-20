@@ -609,6 +609,7 @@ export default class FreeSound {
    * downloading sounds.
    *
    * This method can set both kinds of tokens
+   *
    * ```typescript
    * await freeSound.setToken('your-api-key', 'oauth');
    * ```
@@ -619,14 +620,15 @@ export default class FreeSound {
   }
 
   /**
+   * @param id your client ID, obtainable at https://freesound.org/apiv2/apply
+   * @param secret your client secret, obtainable at https://freesound.org/apiv2/apply
+   *
    * ```typescript
    * await freeSound.setClientSecrets(
    *   "your-client-id",
    *   "your-secret-key"
    * );
    * ```
-   * @param id your client ID, obtainable at https://freesound.org/apiv2/apply
-   * @param secret your client secret, obtainable at https://freesound.org/apiv2/apply
    */
   setClientSecrets(id: string, secret: string) {
     this.clientId = id;
@@ -636,6 +638,7 @@ export default class FreeSound {
   /**
    * This method allows you to get a new token using a refresh token or an auth
    * token
+   *
    * ```typescript
    * await freeSound.postAccessCode('your-temporary-code-from-login');
    * ```
@@ -660,6 +663,7 @@ export default class FreeSound {
    * Search sounds in Freesound by matching their tags and other kinds of metadata. See
    * https://freesound.org/docs/api/resources_apiv2.html#sound-text-search for more
    * information.
+   *
    * ```typescript
    * await freeSound.textSearch('violoncello', {
    *   page: 1,
@@ -681,6 +685,7 @@ export default class FreeSound {
    * Search sounds in Freesound based on their content descriptors. See
    * https://freesound.org/docs/api/resources_apiv2.html#content-search
    * for more information.
+   *
    * ```typescript
    * const result = await freeSound.contentSearch({
    *   target: 'lowlevel.pitch.mean:220',
@@ -702,6 +707,7 @@ export default class FreeSound {
    * Search sounds in Freesound based on their tags, metadata and content-based descriptiors via
    * a combination of text search and content search. See
    * https://freesound.org/docs/api/resources_apiv2.html#combined-search for more information.
+   *
    * ```typescript
    * const soundCollectionResults = await freeSound.combinedSearch(
    *   filter: 'tag:scale',
@@ -716,7 +722,7 @@ export default class FreeSound {
     return this.search(options, this.uris.combinedSearch);
   }
 
-   /**
+  /**
    * Upload an audio file into Freesound and optionally describe it.
    * If there is no file description, only the audio file will upload, and
    * the user will need to add a description later using
@@ -726,6 +732,7 @@ export default class FreeSound {
    * obtainable through the getPendingSounds() method. See
    * https://freesound.org/docs/api/resources_apiv2.html#upload-sound-oauth2-required
    * for more information. This method requires OAuth2 authentication.
+   *
    * @param audiofile the audio file to upload
    * @param filename the name of the audio file to upload
    * @param description the description of the audio file to upload
@@ -749,6 +756,7 @@ export default class FreeSound {
    * the getPendingSounds() method. This method requires OAuth2 authentication. See
    * https://freesound.org/docs/api/resources_apiv2.html#describe-sound-oauth2-required
    * for more information.
+   *
    * @param description a description for an uploaded sound
    */
   describe(description: { description: string }) {
@@ -770,6 +778,7 @@ export default class FreeSound {
    * requires OAuth2 authentication. See
    * https://freesound.org/docs/api/resources_apiv2.html#pending-uploads-oauth2-required
    * for more information.
+   *
    * ```typescript
    * const result = await freeSound.getPendingSounds()
    * ```
@@ -782,6 +791,7 @@ export default class FreeSound {
   /**
    * Return basic information about the user that is logged in via OAuth2.
    * This application can use it to identify which Freesound user has logged in.
+   *
    * ```typescript
    * const result = await freeSound.me();
    * ```
@@ -816,12 +826,14 @@ export default class FreeSound {
    * Retrieve information about a particular Freesound user. See
    * https://freesound.org/docs/api/resources_apiv2.html#user-instance
    * for more information.
+   *
+   * @param username the username of the Freesound user
+   * @returns information about a particular Freesound user
+   *
    * ```typescript
    * // Get information about the user https://freesound.org/people/MTG/.
    * const user = await freeSound.getUser('MTG');
    * ```
-   * @param username the username of the Freesound user
-   * @returns information about a particular Freesound user
    */
   getUser(username: string): Promise<User> {
     return this.makeRequest<RawUser>(this.makeUri(this.uris.user, [username])).then(e =>
@@ -832,13 +844,15 @@ export default class FreeSound {
   /**
    * Retrieve the list of sounds included in a pack. See
    * https://freesound.org/docs/api/resources_apiv2.html#pack-sounds for more information.
+   *
+   * @param packId the identification number of the pack to fetch
+   * @returns a list of sounds included in the pack that has packId as its identification number
+   *
    * ```typescript
    * // Fetch the pack
    * // https://freesound.org/people/vroomvro0om/packs/21143/.
    * const packObj = await freeSound.getPack(21143);
    * ```
-   * @param packId the identification number of the pack to fetch
-   * @returns a list of sounds included in the pack that has packId as its identification number
    */
   async getPack(packId: string | number, options = {}): Promise<Pack> {
     const pack = await this.makeRequest<RawPack>(this.makeUri(this.uris.pack, [packId]), 'GET', options);
@@ -849,13 +863,15 @@ export default class FreeSound {
    * Retrieve detailed information about a sound. See
    * https://freesound.org/docs/api/resources_apiv2.html#sound-resources
    * for more information.
+   *
+   * @param soundId the identification number of the sound
+   * @returns detailed information about a sound
+   *
    * ```typescript
    * // Fetch the sound
    * // https://freesound.org/people/vroomvro0om/sounds/376626/.
    * const fetchedSound = await freeSound.getSound(376626);
    * ```
-   * @param soundId the identification number of the sound
-   * @returns detailed information about a sound
    */
   async getSound(soundId: string | number): Promise<Sound> {
     const sound = await this.makeRequest<Sound>(this.makeUri(this.uris.sound, [soundId]));
