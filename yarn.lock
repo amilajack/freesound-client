@@ -928,13 +928,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^26.0.20":
-  version: 26.0.20
-  resolution: "@types/jest@npm:26.0.20"
+"@types/jest@npm:^26.0.23":
+  version: 26.0.23
+  resolution: "@types/jest@npm:26.0.23"
   dependencies:
     jest-diff: ^26.0.0
     pretty-format: ^26.0.0
-  checksum: 221e39c7c9ce8d71ae4b2ba6abeef1a5b04f1cd96419b9fbbb65534bef4c4215b650561183073dcf47584ff1888d1f4fa7d2af2a38492b7feb9a3bfdcd24c44f
+  checksum: a015676b78bdc51be6f6315acef10d9106ea8064e3e49143bca3c75b834b61285b45c5f5ccfd049a80107f1e2869a9183cdb5be85816c073ea8dd05852fafdc6
   languageName: node
   linkType: hard
 
@@ -3004,7 +3004,7 @@ __metadata:
   resolution: "freesound-client@workspace:."
   dependencies:
     "@tsconfig/node10": ^1.0.7
-    "@types/jest": ^26.0.20
+    "@types/jest": ^26.0.23
     "@types/node": ^14.14.29
     "@types/node-fetch": ^2.5.8
     cross-env: ^7.0.3
