@@ -976,10 +976,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.14.29":
-  version: 14.14.29
-  resolution: "@types/node@npm:14.14.29"
-  checksum: 65511c999404471686233ecedbc1faa8a31c4b6f551fdb2da92321364d54cc6b7d93f456efc110f003eb23d24ee3d0f03d59ba0d17d0d5e4781293bd77e0f9ff
+"@types/node@npm:^14.14.43":
+  version: 14.14.43
+  resolution: "@types/node@npm:14.14.43"
+  checksum: b7a9e6df7c2a6f90e783bfe6ef358cc2c3ff4e1dfcea56b83349cd3feefd02a9b6fa54b443983694b4398a06257d871c947abeae03bd0d39fd71981161d61765
   languageName: node
   linkType: hard
 
@@ -3005,7 +3005,7 @@ __metadata:
   dependencies:
     "@tsconfig/node10": ^1.0.7
     "@types/jest": ^26.0.23
-    "@types/node": ^14.14.29
+    "@types/node": ^14.14.43
     "@types/node-fetch": ^2.5.8
     cross-env: ^7.0.3
     dotenv: ^8.2.0
