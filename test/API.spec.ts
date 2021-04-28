@@ -17,28 +17,6 @@ import nodeFetch from 'node-fetch';
 
 require("dotenv").config();
 
-function removeVariableProperties(obj: any) {
-  /* eslint-disable */
-  delete obj.bookmarkCategories;
-  delete obj.bookmarkCategorySounds;
-  delete obj.download;
-  delete obj.getItem;
-  delete obj.getPack;
-  delete obj.getSound;
-  delete obj.nextOrPrev;
-  delete obj.nextPage;
-  delete obj.packs;
-  delete obj.previousPage;
-  delete obj.sounds;
-  delete obj.bitrate;
-  delete obj.id;
-  delete obj.average_rating;
-  delete obj.duration;
-  delete obj.ac_analysis;
-  /* eslint-enable */
-  return obj;
-}
-
 // Import the actual Response object from node-fetch, rather than a mocked version.
 // See https://jestjs.io/docs/bypassing-module-mocks for more information.
 const {Response} = jest.requireActual('node-fetch');
@@ -64,9 +42,7 @@ describe("API", function testApi() {
   describe("User", () => {
     it("should get user", async () => {
       makeNodeFetchReturn(mockUser);
-      expect(
-        removeVariableProperties(await freeSound.getUser("Jovica"))
-      ).toEqual(mockUser);
+      expect(await freeSound.getUser("Jovica")).toEqual(expect.objectContaining(mockUser));
     });
 
     it("should get a users data", async () => {
@@ -89,10 +65,10 @@ describe("API", function testApi() {
       expect(packs).toBeTruthy();
       expect(bookCat).toBeTruthy();
       expect(bookCatSounds).toBeTruthy();
-      expect(removeVariableProperties(sounds)).toEqual(mockUserSounds);
-      expect(removeVariableProperties(packs)).toEqual(mockUserPacks);
-      expect(removeVariableProperties(bookCat)).toEqual(mockUserBookCat);
-      expect(removeVariableProperties(bookCatSounds)).toEqual(mockUserBookCatSounds);
+      expect(sounds).toEqual(expect.objectContaining(mockUserSounds));
+      expect(packs).toEqual(expect.objectContaining(mockUserPacks));
+      expect(bookCat).toEqual(mockUserBookCat);
+      expect(bookCatSounds).toEqual(mockUserBookCatSounds);
     });
   });
 
@@ -100,7 +76,7 @@ describe("API", function testApi() {
     it("should get pack", async () => {
       makeNodeFetchReturn(mockPack);
       const pack = await freeSound.getPack(9678);
-      expect(removeVariableProperties(pack)).toEqual(mockPack);
+      expect(pack).toEqual(expect.objectContaining(mockPack));
     });
 
     it("should get pack data", async () => {
@@ -110,7 +86,7 @@ describe("API", function testApi() {
       makeNodeFetchReturn(mockPackSounds);
       const sounds = await pack.sounds();
 
-      expect(removeVariableProperties(sounds)).toEqual(mockPackSounds);
+      expect(sounds).toEqual(expect.objectContaining(mockPackSounds));
     });
   });
 
@@ -118,7 +94,7 @@ describe("API", function testApi() {
     it("should get sound", async () => {
       makeNodeFetchReturn(mockSound);
       const sound = await freeSound.getSound(96541);
-      expect(removeVariableProperties(sound)).toBeTruthy();
+      expect(sound).toBeTruthy();
     });
 
     it("should get sound data", async () => {
@@ -138,7 +114,7 @@ describe("API", function testApi() {
       expect(analysis).toBeTruthy();
       expect(similar).toBeTruthy();
       expect(comments).toBeTruthy();
-      expect(removeVariableProperties(analysis)).toEqual(mockAnalysis);
+      expect(analysis).toEqual(mockAnalysis);
     });
   });
 
@@ -156,7 +132,7 @@ describe("API", function testApi() {
         sort,
         fields,
       });
-      expect(removeVariableProperties(search)).toEqual(mockTextSearch);
+      expect(search).toEqual(expect.objectContaining(mockTextSearch));
     });
 
     it("should perform combined search", async () => {
@@ -176,7 +152,7 @@ describe("API", function testApi() {
         target: "lowlevel.pitch.mean:220",
       });
       expect(result).toBeTruthy();
-      expect(removeVariableProperties(result)).toEqual(mockContentSearchResult);
+      expect(result).toEqual(expect.objectContaining(mockContentSearchResult));
     });
   });
 
