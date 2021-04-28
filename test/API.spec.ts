@@ -24,9 +24,12 @@ const {Response} = jest.requireActual('node-fetch');
 // Mock node-fetch so we can call it without actually making a network request.
 jest.mock('node-fetch');
 
-const makeNodeFetchReturn = (returnVal: any): void => {
-  // @ts-ignore TS2339: Property 'mockReturnValue' does not exist on type 'typeof fetch'.
-  nodeFetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(returnVal))));
+// Add type information to mocked nodeFetch function.
+// See https://jestjs.io/docs/mock-function-api#typescript for more information.
+const mockNodeFetch = nodeFetch as jest.MockedFunction<typeof nodeFetch>;
+
+const mockResponse = (returnVal: object): void => {
+  mockNodeFetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(returnVal))));
 }
 
 describe("API", function testApi() {
@@ -41,24 +44,24 @@ describe("API", function testApi() {
 
   describe("User", () => {
     it("should get user", async () => {
-      makeNodeFetchReturn(mockUser);
+      mockResponse(mockUser);
       expect(await freeSound.getUser("Jovica")).toEqual(expect.objectContaining(mockUser));
     });
 
     it("should get a users data", async () => {
-      makeNodeFetchReturn(mockUser);
+      mockResponse(mockUser);
       const user = await freeSound.getUser("Jovica");
 
-      makeNodeFetchReturn(mockUserSounds);
+      mockResponse(mockUserSounds);
       const sounds =  await user.sounds();
 
-      makeNodeFetchReturn(mockUserPacks);
+      mockResponse(mockUserPacks);
       const packs = await user.packs();
 
-      makeNodeFetchReturn(mockUserBookCat);
+      mockResponse(mockUserBookCat);
       const bookCat = await user.bookmarkCategories();
 
-      makeNodeFetchReturn(mockUserBookCatSounds);
+      mockResponse(mockUserBookCatSounds);
       const bookCatSounds = await user.bookmarkCategorySounds();
 
       expect(sounds).toBeTruthy();
@@ -74,16 +77,16 @@ describe("API", function testApi() {
 
   describe("Pack", () => {
     it("should get pack", async () => {
-      makeNodeFetchReturn(mockPack);
+      mockResponse(mockPack);
       const pack = await freeSound.getPack(9678);
       expect(pack).toEqual(expect.objectContaining(mockPack));
     });
 
     it("should get pack data", async () => {
-      makeNodeFetchReturn(mockPack);
+      mockResponse(mockPack);
       const pack = await freeSound.getPack(9678);
 
-      makeNodeFetchReturn(mockPackSounds);
+      mockResponse(mockPackSounds);
       const sounds = await pack.sounds();
 
       expect(sounds).toEqual(expect.objectContaining(mockPackSounds));
@@ -92,22 +95,22 @@ describe("API", function testApi() {
 
   describe("Sound", () => {
     it("should get sound", async () => {
-      makeNodeFetchReturn(mockSound);
+      mockResponse(mockSound);
       const sound = await freeSound.getSound(96541);
       expect(sound).toBeTruthy();
     });
 
     it("should get sound data", async () => {
-      makeNodeFetchReturn(mockSound);
+      mockResponse(mockSound);
       const sound = await freeSound.getSound(96541);
 
-      makeNodeFetchReturn(mockAnalysis);
+      mockResponse(mockAnalysis);
       const analysis =  await sound.getAnalysis();
 
-      makeNodeFetchReturn(mockSimilarSounds);
+      mockResponse(mockSimilarSounds);
       const similar = await sound.getSimilar();
 
-      makeNodeFetchReturn(mockSoundComments);
+      mockResponse(mockSoundComments);
       // @ts-ignore TS2722: Cannot invoke an object which is possibly 'undefined'.
       const comments = await sound.getComments();
 
@@ -125,7 +128,7 @@ describe("API", function testApi() {
       const filter = "tag:tenuto duration:[1.0 TO 15.0]";
       const sort = "rating_desc";
       const fields = "id,name,url";
-      makeNodeFetchReturn(mockTextSearch);
+      mockResponse(mockTextSearch);
       const search = await freeSound.textSearch(query, {
         page,
         filter,
@@ -137,7 +140,7 @@ describe("API", function testApi() {
 
     it("should perform combined search", async () => {
       jest.setTimeout(10 ** 5)
-      makeNodeFetchReturn(mockCombinedSearchResult);
+      mockResponse(mockCombinedSearchResult);
       const result = await freeSound.combinedSearch({
         target: "rhythm.bpm:120",
         filter: "tag:loop",
@@ -147,7 +150,7 @@ describe("API", function testApi() {
     });
 
     it("should perform content search", async () => {
-      makeNodeFetchReturn(mockContentSearchResult);
+      mockResponse(mockContentSearchResult);
       const result = await freeSound.contentSearch({
         target: "lowlevel.pitch.mean:220",
       });
