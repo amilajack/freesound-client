@@ -28,7 +28,7 @@ jest.mock('node-fetch');
 // See https://jestjs.io/docs/mock-function-api#typescript for more information.
 const mockNodeFetch = nodeFetch as jest.MockedFunction<typeof nodeFetch>;
 
-const mockResponse = (response: object): void => {
+const mockResponse = <T extends Object>(response: T): void => {
   mockNodeFetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(response))));
 }
 
