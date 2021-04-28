@@ -1,1 +1,189 @@
-{"count":480447,"next":"http://freesound.org/apiv2/search/content/?&target=lowlevel.pitch.mean:220&page=2","results":[{"id":429100,"name":"Brylie Christopher Oxley sequencing 2018-05-18","tags":["fx","melody","electronic","syn","synth"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"brylie","distance_to_target":2.9802322387695312e-8},{"id":24880,"name":"Zarbcuts38.aif","tags":["cut","iran","percussion","zarb"],"license":"http://creativecommons.org/licenses/by-nc/3.0/","username":"loofa","distance_to_target":2.9802322387695312e-8},{"id":409998,"name":"Audios Voz Niño-01.wav","tags":["Foley","Tarea","Audio1"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"Efede","distance_to_target":5.960464477539063e-8},{"id":309371,"name":"Roland JX-8P - Sensitive Sync - C5 (72C4-QUES.aif)","tags":["multisample","single-note","synthesizer","Roland-JX-8P","midi-note-72","C5","midi-velocity-52"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"modularsamples","distance_to_target":8.940696716308594e-8},{"id":23816,"name":"SlapClariBasse21.aif","tags":["bass","clarinet","slap"],"license":"http://creativecommons.org/licenses/by-nc/3.0/","username":"loofa","distance_to_target":1.7881393432617188e-7},{"id":373763,"name":"Solo Violin - vibrato sustain - A3 (LLVln_ArcoVib_A3_f.wav)","tags":["vsco-2","midi-note-57","a3","multisample","midi-velocity-95","vibrato-sustain","violin","single-note","strings","solo-violin"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"Samulis","distance_to_target":2.980232238769531e-7},{"id":246898,"name":"Cello - A3 - other","tags":["A3","cello","single-note","good-sounds","multisample","neumann-U87"],"license":"http://creativecommons.org/licenses/by/3.0/","username":"MTG","distance_to_target":4.172325134277344e-7},{"id":338576,"name":"sample_exwe_0038_tr.mp3","tags":["generative","char-rnn","recurrent","network","neural"],"license":"http://creativecommons.org/licenses/by/3.0/","username":"x75","distance_to_target":4.76837158203125e-7},{"id":418087,"name":"Shaving hair 2","tags":["shave","hair","electric","machine","shaver","shaving"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"MancoMeio","distance_to_target":5.960464477539062e-7},{"id":310396,"name":"Roland SH-2 - Ghost Bass - A4 (69A3-A43G.aif)","tags":["multisample","single-note","synthesizer","Roland-SH-2","midi-note-69","A4"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"modularsamples","distance_to_target":6.854534149169922e-7},{"id":95360,"name":"gitarrr.wav","tags":["120","acoustic","bass","bpm","guitar","loop","nice","real","reverb","steel","sweet","tempo","tune"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"daatg","distance_to_target":7.450580596923828e-7},{"id":501164,"name":"earicull.wav","tags":["choir","mystic","drone","strings","ambient"],"license":"http://creativecommons.org/licenses/by-nc/3.0/","username":"tim.kahn","distance_to_target":8.940696716308594e-7},{"id":112388,"name":"darkreese.mp3","tags":["dark","glitch","reese","saw"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"Blackie666","distance_to_target":0.0000011324882507324219},{"id":3973,"name":"addsynth stereo echo3d.wav","tags":["3d","additive-synthesis","ambient","echo","low","spacial","stereo"],"license":"http://creativecommons.org/licenses/by/3.0/","username":"NoiseCollector","distance_to_target":0.0000011920928955078125},{"id":296581,"name":"Korg Z1 - Eat my wires - A4 (Eat my wires-69-127.wav)","tags":["multisample","single-note","synthesizer","Korg-Z1","midi-note-69","A4"],"license":"http://creativecommons.org/publicdomain/zero/1.0/","username":"modularsamples","distance_to_target":0.0000012218952178955078}],"previous":null}
+{
+  "count": 480447,
+  "next": "http://freesound.org/apiv2/search/content/?&target=lowlevel.pitch.mean:220&page=2",
+  "results": [
+    {
+      "id": 429100,
+      "name": "Brylie Christopher Oxley sequencing 2018-05-18",
+      "tags": ["fx", "melody", "electronic", "syn", "synth"],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "brylie",
+      "distance_to_target": 2.9802322387695312e-8
+    },
+    {
+      "id": 24880,
+      "name": "Zarbcuts38.aif",
+      "tags": ["cut", "iran", "percussion", "zarb"],
+      "license": "http://creativecommons.org/licenses/by-nc/3.0/",
+      "username": "loofa",
+      "distance_to_target": 2.9802322387695312e-8
+    },
+    {
+      "id": 409998,
+      "name": "Audios Voz Niño-01.wav",
+      "tags": ["Foley", "Tarea", "Audio1"],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "Efede",
+      "distance_to_target": 5.960464477539063e-8
+    },
+    {
+      "id": 309371,
+      "name": "Roland JX-8P - Sensitive Sync - C5 (72C4-QUES.aif)",
+      "tags": [
+        "multisample",
+        "single-note",
+        "synthesizer",
+        "Roland-JX-8P",
+        "midi-note-72",
+        "C5",
+        "midi-velocity-52"
+      ],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "modularsamples",
+      "distance_to_target": 8.940696716308594e-8
+    },
+    {
+      "id": 23816,
+      "name": "SlapClariBasse21.aif",
+      "tags": ["bass", "clarinet", "slap"],
+      "license": "http://creativecommons.org/licenses/by-nc/3.0/",
+      "username": "loofa",
+      "distance_to_target": 1.7881393432617188e-7
+    },
+    {
+      "id": 373763,
+      "name": "Solo Violin - vibrato sustain - A3 (LLVln_ArcoVib_A3_f.wav)",
+      "tags": [
+        "vsco-2",
+        "midi-note-57",
+        "a3",
+        "multisample",
+        "midi-velocity-95",
+        "vibrato-sustain",
+        "violin",
+        "single-note",
+        "strings",
+        "solo-violin"
+      ],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "Samulis",
+      "distance_to_target": 2.980232238769531e-7
+    },
+    {
+      "id": 246898,
+      "name": "Cello - A3 - other",
+      "tags": [
+        "A3",
+        "cello",
+        "single-note",
+        "good-sounds",
+        "multisample",
+        "neumann-U87"
+      ],
+      "license": "http://creativecommons.org/licenses/by/3.0/",
+      "username": "MTG",
+      "distance_to_target": 4.172325134277344e-7
+    },
+    {
+      "id": 338576,
+      "name": "sample_exwe_0038_tr.mp3",
+      "tags": ["generative", "char-rnn", "recurrent", "network", "neural"],
+      "license": "http://creativecommons.org/licenses/by/3.0/",
+      "username": "x75",
+      "distance_to_target": 4.76837158203125e-7
+    },
+    {
+      "id": 418087,
+      "name": "Shaving hair 2",
+      "tags": ["shave", "hair", "electric", "machine", "shaver", "shaving"],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "MancoMeio",
+      "distance_to_target": 5.960464477539062e-7
+    },
+    {
+      "id": 310396,
+      "name": "Roland SH-2 - Ghost Bass - A4 (69A3-A43G.aif)",
+      "tags": [
+        "multisample",
+        "single-note",
+        "synthesizer",
+        "Roland-SH-2",
+        "midi-note-69",
+        "A4"
+      ],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "modularsamples",
+      "distance_to_target": 6.854534149169922e-7
+    },
+    {
+      "id": 95360,
+      "name": "gitarrr.wav",
+      "tags": [
+        "120",
+        "acoustic",
+        "bass",
+        "bpm",
+        "guitar",
+        "loop",
+        "nice",
+        "real",
+        "reverb",
+        "steel",
+        "sweet",
+        "tempo",
+        "tune"
+      ],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "daatg",
+      "distance_to_target": 7.450580596923828e-7
+    },
+    {
+      "id": 501164,
+      "name": "earicull.wav",
+      "tags": ["choir", "mystic", "drone", "strings", "ambient"],
+      "license": "http://creativecommons.org/licenses/by-nc/3.0/",
+      "username": "tim.kahn",
+      "distance_to_target": 8.940696716308594e-7
+    },
+    {
+      "id": 112388,
+      "name": "darkreese.mp3",
+      "tags": ["dark", "glitch", "reese", "saw"],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "Blackie666",
+      "distance_to_target": 0.0000011324882507324219
+    },
+    {
+      "id": 3973,
+      "name": "addsynth stereo echo3d.wav",
+      "tags": [
+        "3d",
+        "additive-synthesis",
+        "ambient",
+        "echo",
+        "low",
+        "spacial",
+        "stereo"
+      ],
+      "license": "http://creativecommons.org/licenses/by/3.0/",
+      "username": "NoiseCollector",
+      "distance_to_target": 0.0000011920928955078125
+    },
+    {
+      "id": 296581,
+      "name": "Korg Z1 - Eat my wires - A4 (Eat my wires-69-127.wav)",
+      "tags": [
+        "multisample",
+        "single-note",
+        "synthesizer",
+        "Korg-Z1",
+        "midi-note-69",
+        "A4"
+      ],
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "username": "modularsamples",
+      "distance_to_target": 0.0000012218952178955078
+    }
+  ],
+  "previous": null
+}

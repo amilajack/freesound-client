@@ -1,1 +1,12 @@
-{"count":1,"next":null,"previous":null,"results":[{"username":"oooasparkly","comment":"Not bad, watch your cross fades.  There's an audible pop between the ng and ss sounds in the middle.  You might also try taking the SS portion of the clip and reducing the gain by 3-4dB.  I also noticed a couple of pops in the \"i\" sound of \"ing.\" did you stretch the audio at all?  It almost sounds like an artifact from either a quick copy/paste to cover a bad spot, or a time-stretch byproduct. ","created":"2012-06-13T09:11:34"}]}
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "username": "oooasparkly",
+      "comment": "Not bad, watch your cross fades.  There's an audible pop between the ng and ss sounds in the middle.  You might also try taking the SS portion of the clip and reducing the gain by 3-4dB.  I also noticed a couple of pops in the \"i\" sound of \"ing.\" did you stretch the audio at all?  It almost sounds like an artifact from either a quick copy/paste to cover a bad spot, or a time-stretch byproduct. ",
+      "created": "2012-06-13T09:11:34"
+    }
+  ]
+}
