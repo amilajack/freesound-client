@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@types/node-fetch": "^2.5.10",
-    "form-data": "^3.0.0",
+    "form-data": "^3.0.1",
     "node-fetch": "^2.6.1"
   },
   "scripts": {

@@ -2979,6 +2979,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"form-data@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "form-data@npm:3.0.1"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 6574ff4d2d845c47ba288151a6e0573767eefdee9da358be199e0f0b66aa5c454e7d62ed5e0daef6f84167ba1e9596e064f36f206488e460ef449ef7b653cdfc
+  languageName: node
+  linkType: hard
+
 "form-data@npm:~2.3.2":
   version: 2.3.2
   resolution: "form-data@npm:2.3.2"
@@ -3011,7 +3022,7 @@ __metadata:
     dotenv: ^8.2.0
     eslint: ^7.20.0
     eslint-config-bliss: ^5.0.0
-    form-data: ^3.0.0
+    form-data: ^3.0.1
     gh-pages: ^3.1.0
     jest: ^26.6.3
     node-fetch: ^2.6.1
