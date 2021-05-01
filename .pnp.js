@@ -45,7 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["dotenv", "npm:8.2.0"],
             ["eslint", "npm:7.20.0"],
             ["eslint-config-bliss", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:5.0.0"],
-            ["form-data", "npm:3.0.0"],
+            ["form-data", "npm:3.0.1"],
             ["gh-pages", "npm:3.1.0"],
             ["jest", "npm:26.6.3"],
             ["node-fetch", "npm:2.6.1"],
@@ -3599,6 +3599,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mime-types", "npm:2.1.20"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.1", {
+          "packageLocation": "./.yarn/cache/form-data-npm-3.0.1-d080d436e0-6574ff4d2d.zip/node_modules/form-data/",
+          "packageDependencies": [
+            ["form-data", "npm:3.0.1"],
+            ["asynckit", "npm:0.4.0"],
+            ["combined-stream", "npm:1.0.8"],
+            ["mime-types", "npm:2.1.20"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["fragment-cache", [
@@ -3624,7 +3634,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["dotenv", "npm:8.2.0"],
             ["eslint", "npm:7.20.0"],
             ["eslint-config-bliss", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:5.0.0"],
-            ["form-data", "npm:3.0.0"],
+            ["form-data", "npm:3.0.1"],
             ["gh-pages", "npm:3.1.0"],
             ["jest", "npm:26.6.3"],
             ["node-fetch", "npm:2.6.1"],
