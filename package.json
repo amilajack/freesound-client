@@ -24,10 +24,11 @@
   "dependencies": {
     "@types/node-fetch": "^2.5.10",
     "form-data": "^4.0.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "rimraf": "^3.0.2"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc",
+    "build": "rimraf dist && tsc",
     "docs:deploy": "gh-pages -d docs && rm -rf docs",
     "docs": "typedoc index.ts --excludeNotExported --excludePrivate --out docs --readme none --mode library",
     "lint": "eslint . --ignore-pattern dist",
