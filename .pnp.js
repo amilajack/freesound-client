@@ -42,7 +42,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:14.17.1"],
             ["@types/node-fetch", "npm:2.5.10"],
             ["cross-env", "npm:7.0.3"],
-            ["dotenv", "npm:8.2.0"],
+            ["dotenv", "npm:8.6.0"],
             ["eslint", "npm:7.20.0"],
             ["eslint-config-bliss", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:5.0.0"],
             ["form-data", "npm:4.0.0"],
@@ -2659,10 +2659,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["dotenv", [
-        ["npm:8.2.0", {
-          "packageLocation": "./.yarn/cache/dotenv-npm-8.2.0-6b21df4d37-16cb89cbd7.zip/node_modules/dotenv/",
+        ["npm:8.6.0", {
+          "packageLocation": "./.yarn/cache/dotenv-npm-8.6.0-2ce3e9f7bb-f4649999a1.zip/node_modules/dotenv/",
           "packageDependencies": [
-            ["dotenv", "npm:8.2.0"]
+            ["dotenv", "npm:8.6.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3632,7 +3632,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:14.17.1"],
             ["@types/node-fetch", "npm:2.5.10"],
             ["cross-env", "npm:7.0.3"],
-            ["dotenv", "npm:8.2.0"],
+            ["dotenv", "npm:8.6.0"],
             ["eslint", "npm:7.20.0"],
             ["eslint-config-bliss", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:5.0.0"],
             ["form-data", "npm:4.0.0"],

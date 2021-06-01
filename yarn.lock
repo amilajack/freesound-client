@@ -2145,10 +2145,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^8.2.0":
-  version: 8.2.0
-  resolution: "dotenv@npm:8.2.0"
-  checksum: 16cb89cbd7b98b053899b8aba8c5044c8fb61a2db8a81fe70360b75035fce5fed53bd7a34d772be717d0880c0321122a4c09423f518025e1b52d96791521b1a7
+"dotenv@npm:^8.6.0":
+  version: 8.6.0
+  resolution: "dotenv@npm:8.6.0"
+  checksum: f4649999a157061dd169118f459d88db56380b2eef68e87fa9de7201796e5f6d94fa337658d7e148f404b48652a0eefe11222d9eba0cd464497911ae56cd6f93
   languageName: node
   linkType: hard
 
@@ -2970,7 +2970,7 @@ __metadata:
     "@types/node": ^14.17.1
     "@types/node-fetch": ^2.5.10
     cross-env: ^7.0.3
-    dotenv: ^8.2.0
+    dotenv: ^8.6.0
     eslint: ^7.20.0
     eslint-config-bliss: ^5.0.0
     form-data: ^4.0.0
