@@ -797,10 +797,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/node10@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "@tsconfig/node10@npm:1.0.7"
-  checksum: a1ca75224357c60829533061f9be6898a2df02cb0e360a356112070596ffa6102c56964d195023d5abb451e22473ceb7e138c82025ae84c7b5a1f69259e5f8a4
+"@tsconfig/node10@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "@tsconfig/node10@npm:1.0.8"
+  checksum: 0336493b89fb7c06409a1247a3fb00fac2755f21f3f8ae4b9dd2457859abfc5e8ca42b6d9ca5a279fe81bc70fe1f3450eef61e5dd5a63a7b4a6946ff31874816
   languageName: node
   linkType: hard
 
@@ -2985,7 +2985,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "freesound-client@workspace:."
   dependencies:
-    "@tsconfig/node10": ^1.0.7
+    "@tsconfig/node10": ^1.0.8
     "@types/jest": ^26.0.23
     "@types/node": ^14.17.1
     "@types/node-fetch": ^2.5.10

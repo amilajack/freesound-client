@@ -8,7 +8,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@tsconfig/node10": "^1.0.7",
+    "@tsconfig/node10": "^1.0.8",
     "@types/jest": "^26.0.23",
     "@types/node": "^14.17.1",
     "cross-env": "^7.0.3",

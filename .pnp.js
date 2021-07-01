@@ -37,7 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
-            ["@tsconfig/node10", "npm:1.0.7"],
+            ["@tsconfig/node10", "npm:1.0.8"],
             ["@types/jest", "npm:26.0.23"],
             ["@types/node", "npm:14.17.1"],
             ["@types/node-fetch", "npm:2.5.10"],
@@ -1017,10 +1017,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@tsconfig/node10", [
-        ["npm:1.0.7", {
-          "packageLocation": "./.yarn/cache/@tsconfig-node10-npm-1.0.7-06be8de131-a1ca752243.zip/node_modules/@tsconfig/node10/",
+        ["npm:1.0.8", {
+          "packageLocation": "./.yarn/cache/@tsconfig-node10-npm-1.0.8-90a8cce25d-0336493b89.zip/node_modules/@tsconfig/node10/",
           "packageDependencies": [
-            ["@tsconfig/node10", "npm:1.0.7"]
+            ["@tsconfig/node10", "npm:1.0.8"]
           ],
           "linkType": "HARD",
         }]
@@ -3646,7 +3646,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["freesound-client", "workspace:."],
-            ["@tsconfig/node10", "npm:1.0.7"],
+            ["@tsconfig/node10", "npm:1.0.8"],
             ["@types/jest", "npm:26.0.23"],
             ["@types/node", "npm:14.17.1"],
             ["@types/node-fetch", "npm:2.5.10"],
