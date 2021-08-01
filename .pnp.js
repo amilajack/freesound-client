@@ -38,7 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@tsconfig/node10", "npm:1.0.8"],
-            ["@types/jest", "npm:26.0.23"],
+            ["@types/jest", "npm:26.0.24"],
             ["@types/node", "npm:14.17.4"],
             ["@types/node-fetch", "npm:2.5.10"],
             ["cross-env", "npm:7.0.3"],
@@ -1127,10 +1127,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/jest", [
-        ["npm:26.0.23", {
-          "packageLocation": "./.yarn/cache/@types-jest-npm-26.0.23-f0d419e70e-a015676b78.zip/node_modules/@types/jest/",
+        ["npm:26.0.24", {
+          "packageLocation": "./.yarn/cache/@types-jest-npm-26.0.24-47c570294f-e5d3651c1e.zip/node_modules/@types/jest/",
           "packageDependencies": [
-            ["@types/jest", "npm:26.0.23"],
+            ["@types/jest", "npm:26.0.24"],
             ["jest-diff", "npm:26.6.1"],
             ["pretty-format", "npm:26.6.1"]
           ],
@@ -3617,7 +3617,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["freesound-client", "workspace:."],
             ["@tsconfig/node10", "npm:1.0.8"],
-            ["@types/jest", "npm:26.0.23"],
+            ["@types/jest", "npm:26.0.24"],
             ["@types/node", "npm:14.17.4"],
             ["@types/node-fetch", "npm:2.5.10"],
             ["cross-env", "npm:7.0.3"],
@@ -7609,7 +7609,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/$$virtual/ts-jest-virtual-cbf060d5ad/0/cache/ts-jest-npm-26.5.6-fa1909416a-fd32a8b256.zip/node_modules/ts-jest/",
           "packageDependencies": [
             ["ts-jest", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:26.5.6"],
-            ["@types/jest", "npm:26.0.23"],
+            ["@types/jest", "npm:26.0.24"],
             ["@types/typescript", null],
             ["bs-logger", "npm:0.2.6"],
             ["buffer-from", "npm:1.1.1"],
