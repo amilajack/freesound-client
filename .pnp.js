@@ -51,7 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-fetch", "npm:2.6.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:26.5.6"],
-            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.21.2"],
+            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.21.5"],
             ["typescript", "patch:typescript@npm%3A4.1.3#builtin<compat/typescript>::version=4.1.3&hash=a45b0e"]
           ],
           "linkType": "SOFT",
@@ -3630,7 +3630,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-fetch", "npm:2.6.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:26.5.6"],
-            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.21.2"],
+            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.21.5"],
             ["typescript", "patch:typescript@npm%3A4.1.3#builtin<compat/typescript>::version=4.1.3&hash=a45b0e"]
           ],
           "linkType": "SOFT",
@@ -5430,13 +5430,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash-npm-4.17.20-c0db62021c-c62101d250.zip/node_modules/lodash/",
           "packageDependencies": [
             ["lodash", "npm:4.17.20"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:4.17.21", {
-          "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-4983720b9a.zip/node_modules/lodash/",
-          "packageDependencies": [
-            ["lodash", "npm:4.17.21"]
           ],
           "linkType": "HARD",
         }]
@@ -7765,21 +7758,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["typedoc", [
-        ["npm:0.21.2", {
-          "packageLocation": "./.yarn/cache/typedoc-npm-0.21.2-0fa9f1f0e9-5d9a29b93d.zip/node_modules/typedoc/",
+        ["npm:0.21.5", {
+          "packageLocation": "./.yarn/cache/typedoc-npm-0.21.5-4a3c2ca5d2-3b8dae9c81.zip/node_modules/typedoc/",
           "packageDependencies": [
-            ["typedoc", "npm:0.21.2"]
+            ["typedoc", "npm:0.21.5"]
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.21.2", {
-          "packageLocation": "./.yarn/$$virtual/typedoc-virtual-839af18c9c/0/cache/typedoc-npm-0.21.2-0fa9f1f0e9-5d9a29b93d.zip/node_modules/typedoc/",
+        ["virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.21.5", {
+          "packageLocation": "./.yarn/$$virtual/typedoc-virtual-e6db373a62/0/cache/typedoc-npm-0.21.5-4a3c2ca5d2-3b8dae9c81.zip/node_modules/typedoc/",
           "packageDependencies": [
-            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.21.2"],
+            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.21.5"],
             ["@types/typescript", null],
             ["glob", "npm:7.1.7"],
             ["handlebars", "npm:4.7.7"],
-            ["lodash", "npm:4.17.21"],
             ["lunr", "npm:2.3.9"],
             ["marked", "npm:2.1.3"],
             ["minimatch", "npm:3.0.4"],
