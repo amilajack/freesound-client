@@ -2992,7 +2992,7 @@ __metadata:
     node-fetch: ^2.6.1
     rimraf: ^3.0.2
     ts-jest: ^26.5.6
-    typedoc: ^0.21.5
+    typedoc: ^0.21.9
     typescript: ^4.1.3
   languageName: unknown
   linkType: soft
@@ -4743,12 +4743,12 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"marked@npm:^2.1.1":
-  version: 2.1.3
-  resolution: "marked@npm:2.1.3"
+"marked@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "marked@npm:3.0.2"
   bin:
     marked: bin/marked
-  checksum: 9779b758ae413186be535109fe695be4fac23a671c6565b855606bb1ea70f796b580f10a9588a130e7b676a085916ef90c82982ef6a382a06b14864cbf802afb
+  checksum: 6e32c4a1cecb165f4c0a6d5386106c7604af267b51f0f7f803f88e7b9a7a97595bbb36b1117785b25ec48a6942c39a705838c49302d22efdc831214f663a33df
   languageName: node
   linkType: hard
 
@@ -6032,14 +6032,14 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"shiki@npm:^0.9.3":
-  version: 0.9.5
-  resolution: "shiki@npm:0.9.5"
+"shiki@npm:^0.9.8":
+  version: 0.9.9
+  resolution: "shiki@npm:0.9.9"
   dependencies:
     json5: ^2.2.0
     onigasm: ^2.2.5
     vscode-textmate: 5.2.0
-  checksum: e4ca684e37cc47c64e451e7f09bdd440e7a8fccbbe2cc051e283dd3a4582a921ec9fa47568498c3fc3838a0ae67916769e9f4e7310161c8cd5503192be7d1eae
+  checksum: 14210eed55a1fd83855e3f4c29b82b38872a5334a5036c78da182afb38f58afeb664635f4d0df52c7f8086a5b89b0f90ac6286915d126ab7be4d1eda297e0ca8
   languageName: node
   linkType: hard
 
@@ -6746,23 +6746,23 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.21.5":
-  version: 0.21.5
-  resolution: "typedoc@npm:0.21.5"
+"typedoc@npm:^0.21.9":
+  version: 0.21.9
+  resolution: "typedoc@npm:0.21.9"
   dependencies:
     glob: ^7.1.7
     handlebars: ^4.7.7
     lunr: ^2.3.9
-    marked: ^2.1.1
+    marked: ^3.0.2
     minimatch: ^3.0.0
     progress: ^2.0.3
-    shiki: ^0.9.3
+    shiki: ^0.9.8
     typedoc-default-themes: ^0.12.10
   peerDependencies:
-    typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x
+    typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x
   bin:
     typedoc: bin/typedoc
-  checksum: 3b8dae9c8151ed9d553ba965a76ebb4903b7ee7e90784ea702f1397531b7a2d1e67cff62b801cfe034b875205a31bdeba07d82dbf1e65af4d2a0c34e379c5e64
+  checksum: b6589e052d42957b183b7500d8c40e40cad02774e3577dac6d8bb73afcce1df03b07ee7d0f69c6e488dc47221cdb416884fbb6e62dbf4627bf94c2a85e55a219
   languageName: node
   linkType: hard
 
