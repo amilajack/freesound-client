@@ -2989,7 +2989,7 @@ __metadata:
     form-data: ^4.0.0
     gh-pages: ^3.2.3
     jest: ^26.6.3
-    node-fetch: ^2.6.5
+    node-fetch: ^2.6.6
     rimraf: ^3.0.2
     ts-jest: ^26.5.6
     typedoc: ^0.22.7
@@ -4908,12 +4908,12 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.5":
-  version: 2.6.5
-  resolution: "node-fetch@npm:2.6.5"
+"node-fetch@npm:^2.6.6":
+  version: 2.6.6
+  resolution: "node-fetch@npm:2.6.6"
   dependencies:
     whatwg-url: ^5.0.0
-  checksum: bc4b2859d9cf2bb57011a0dc416fd9a648d1e0d119bcd4d8f8cae604dd5d0727951dca944212ce3f51de46ff906003fef42baeb3bbf53caef7fc8e40b31ac22d
+  checksum: c0a4450cca0568be1e75911a850758f7b78b0687b720cdb337f9729ceaa7af76d37b637472893e11d3cee8dfa7916d94aeb0a64f96b597234c2e1a8717eb4be9
   languageName: node
   linkType: hard
 
