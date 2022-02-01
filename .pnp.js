@@ -51,7 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-fetch", "npm:2.6.6"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:26.5.6"],
-            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.22.10"],
+            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.22.11"],
             ["typescript", "patch:typescript@npm%3A4.1.3#builtin<compat/typescript>::version=4.1.3&hash=a45b0e"]
           ],
           "linkType": "SOFT",
@@ -3652,7 +3652,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-fetch", "npm:2.6.6"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:26.5.6"],
-            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.22.10"],
+            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.22.11"],
             ["typescript", "patch:typescript@npm%3A4.1.3#builtin<compat/typescript>::version=4.1.3&hash=a45b0e"]
           ],
           "linkType": "SOFT",
@@ -5488,16 +5488,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["lru-cache", [
-        ["npm:5.1.1", {
-          "packageLocation": "./.yarn/cache/lru-cache-npm-5.1.1-f475882a51-ffd9a280fa.zip/node_modules/lru-cache/",
-          "packageDependencies": [
-            ["lru-cache", "npm:5.1.1"],
-            ["yallist", "npm:3.1.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["lunr", [
         ["npm:2.3.9", {
           "packageLocation": "./.yarn/cache/lunr-npm-2.3.9-fa3aa9c2d6-a2b66320c2.zip/node_modules/lunr/",
@@ -5556,10 +5546,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["marked", [
-        ["npm:3.0.8", {
-          "packageLocation": "./.yarn/cache/marked-npm-3.0.8-bc173430e9-a56e571e9a.zip/node_modules/marked/",
+        ["npm:4.0.12", {
+          "packageLocation": "./.yarn/cache/marked-npm-4.0.12-1fc6e0ed31-b026d6dc5a.zip/node_modules/marked/",
           "packageDependencies": [
-            ["marked", "npm:3.0.8"]
+            ["marked", "npm:4.0.12"]
           ],
           "linkType": "HARD",
         }]
@@ -6063,16 +6053,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["onetime", "npm:5.1.0"],
             ["mimic-fn", "npm:2.1.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["onigasm", [
-        ["npm:2.2.5", {
-          "packageLocation": "./.yarn/unplugged/onigasm-npm-2.2.5-55c6d729c4/node_modules/onigasm/",
-          "packageDependencies": [
-            ["onigasm", "npm:2.2.5"],
-            ["lru-cache", "npm:5.1.1"]
           ],
           "linkType": "HARD",
         }]
@@ -6959,12 +6939,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["shiki", [
-        ["npm:0.9.12", {
-          "packageLocation": "./.yarn/cache/shiki-npm-0.9.12-be787620f6-c6c3617052.zip/node_modules/shiki/",
+        ["npm:0.10.0", {
+          "packageLocation": "./.yarn/cache/shiki-npm-0.10.0-fc0b9f8d84-efe1e0de67.zip/node_modules/shiki/",
           "packageDependencies": [
-            ["shiki", "npm:0.9.12"],
+            ["shiki", "npm:0.10.0"],
             ["jsonc-parser", "npm:3.0.0"],
-            ["onigasm", "npm:2.2.5"],
+            ["vscode-oniguruma", "npm:1.6.1"],
             ["vscode-textmate", "npm:5.2.0"]
           ],
           "linkType": "HARD",
@@ -7759,23 +7739,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["typedoc", [
-        ["npm:0.22.10", {
-          "packageLocation": "./.yarn/cache/typedoc-npm-0.22.10-6c1c23f26d-dfbace1098.zip/node_modules/typedoc/",
+        ["npm:0.22.11", {
+          "packageLocation": "./.yarn/cache/typedoc-npm-0.22.11-aa5ea7b88b-53aed47793.zip/node_modules/typedoc/",
           "packageDependencies": [
-            ["typedoc", "npm:0.22.10"]
+            ["typedoc", "npm:0.22.11"]
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.22.10", {
-          "packageLocation": "./.yarn/$$virtual/typedoc-virtual-02d22b5f13/0/cache/typedoc-npm-0.22.10-6c1c23f26d-dfbace1098.zip/node_modules/typedoc/",
+        ["virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.22.11", {
+          "packageLocation": "./.yarn/$$virtual/typedoc-virtual-7103cd7dc8/0/cache/typedoc-npm-0.22.11-aa5ea7b88b-53aed47793.zip/node_modules/typedoc/",
           "packageDependencies": [
-            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.22.10"],
+            ["typedoc", "virtual:8c8b596d731963c7b675ad88fd1d5b94983d84c9fa10c107c1a21a3df83543b4b74c51a60984b253857bbe8a6d1682891b6025f25ec7c0a374a62ce5105dd1c0#npm:0.22.11"],
             ["@types/typescript", null],
             ["glob", "npm:7.2.0"],
             ["lunr", "npm:2.3.9"],
-            ["marked", "npm:3.0.8"],
+            ["marked", "npm:4.0.12"],
             ["minimatch", "npm:3.0.4"],
-            ["shiki", "npm:0.9.12"],
+            ["shiki", "npm:0.10.0"],
             ["typescript", "patch:typescript@npm%3A4.1.3#builtin<compat/typescript>::version=4.1.3&hash=a45b0e"]
           ],
           "packagePeers": [
@@ -7920,6 +7900,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["assert-plus", "npm:1.0.0"],
             ["core-util-is", "npm:1.0.2"],
             ["extsprintf", "npm:1.4.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["vscode-oniguruma", [
+        ["npm:1.6.1", {
+          "packageLocation": "./.yarn/cache/vscode-oniguruma-npm-1.6.1-5af2337283-ae73f0b470.zip/node_modules/vscode-oniguruma/",
+          "packageDependencies": [
+            ["vscode-oniguruma", "npm:1.6.1"]
           ],
           "linkType": "HARD",
         }]
@@ -8169,13 +8158,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["yallist", [
-        ["npm:3.1.1", {
-          "packageLocation": "./.yarn/cache/yallist-npm-3.1.1-a568a556b4-f352c93b92.zip/node_modules/yallist/",
-          "packageDependencies": [
-            ["yallist", "npm:3.1.1"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:4.0.0", {
           "packageLocation": "./.yarn/cache/yallist-npm-4.0.0-b493d9e907-a2960ef879.zip/node_modules/yallist/",
           "packageDependencies": [
