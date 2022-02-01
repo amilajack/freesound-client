@@ -39,7 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@tsconfig/node10", "npm:1.0.8"],
             ["@types/jest", "npm:26.0.24"],
-            ["@types/node", "npm:14.18.3"],
+            ["@types/node", "npm:14.18.9"],
             ["@types/node-fetch", "npm:2.5.12"],
             ["cross-env", "npm:7.0.3"],
             ["dotenv", "npm:8.6.0"],
@@ -1184,10 +1184,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:14.18.3", {
-          "packageLocation": "./.yarn/cache/@types-node-npm-14.18.3-f6c93bea12-6e592ab47c.zip/node_modules/@types/node/",
+        ["npm:14.18.9", {
+          "packageLocation": "./.yarn/cache/@types-node-npm-14.18.9-c11bc1565a-f82e7528c5.zip/node_modules/@types/node/",
           "packageDependencies": [
-            ["@types/node", "npm:14.18.3"]
+            ["@types/node", "npm:14.18.9"]
           ],
           "linkType": "HARD",
         }]
@@ -3640,7 +3640,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["freesound-client", "workspace:."],
             ["@tsconfig/node10", "npm:1.0.8"],
             ["@types/jest", "npm:26.0.24"],
-            ["@types/node", "npm:14.18.3"],
+            ["@types/node", "npm:14.18.9"],
             ["@types/node-fetch", "npm:2.5.12"],
             ["cross-env", "npm:7.0.3"],
             ["dotenv", "npm:8.6.0"],
