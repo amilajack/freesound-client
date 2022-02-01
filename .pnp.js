@@ -40,7 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tsconfig/node10", "npm:1.0.8"],
             ["@types/jest", "npm:26.0.24"],
             ["@types/node", "npm:14.18.9"],
-            ["@types/node-fetch", "npm:2.5.12"],
+            ["@types/node-fetch", "npm:3.0.2"],
             ["cross-env", "npm:7.0.3"],
             ["dotenv", "npm:8.6.0"],
             ["eslint", "npm:7.32.0"],
@@ -1193,12 +1193,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/node-fetch", [
-        ["npm:2.5.12", {
-          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-2.5.12-e9530d4758-f648728116.zip/node_modules/@types/node-fetch/",
+        ["npm:3.0.2", {
+          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-3.0.2-3899ef9c13-1c62dcfcfb.zip/node_modules/@types/node-fetch/",
           "packageDependencies": [
-            ["@types/node-fetch", "npm:2.5.12"],
-            ["@types/node", "npm:14.0.25"],
-            ["form-data", "npm:3.0.0"]
+            ["@types/node-fetch", "npm:3.0.2"],
+            ["node-fetch", "npm:3.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -2426,6 +2425,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["data-uri-to-buffer", [
+        ["npm:4.0.0", {
+          "packageLocation": "./.yarn/cache/data-uri-to-buffer-npm-4.0.0-e7a49f58f7-51e8ba73a4.zip/node_modules/data-uri-to-buffer/",
+          "packageDependencies": [
+            ["data-uri-to-buffer", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["data-urls", [
         ["npm:2.0.0", {
           "packageLocation": "./.yarn/cache/data-urls-npm-2.0.0-2b80c32b82-42239927c6.zip/node_modules/data-urls/",
@@ -3461,6 +3469,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["fetch-blob", [
+        ["npm:3.1.4", {
+          "packageLocation": "./.yarn/cache/fetch-blob-npm-3.1.4-478ba5034d-69e1d5ac9c.zip/node_modules/fetch-blob/",
+          "packageDependencies": [
+            ["fetch-blob", "npm:3.1.4"],
+            ["node-domexception", "npm:1.0.0"],
+            ["web-streams-polyfill", "npm:3.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["file-entry-cache", [
         ["npm:6.0.1", {
           "packageLocation": "./.yarn/cache/file-entry-cache-npm-6.0.1-31965cf0af-af83a41214.zip/node_modules/file-entry-cache/",
@@ -3602,16 +3621,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:3.0.0", {
-          "packageLocation": "./.yarn/cache/form-data-npm-3.0.0-b01f488350-1af88217b4.zip/node_modules/form-data/",
-          "packageDependencies": [
-            ["form-data", "npm:3.0.0"],
-            ["asynckit", "npm:0.4.0"],
-            ["combined-stream", "npm:1.0.8"],
-            ["mime-types", "npm:2.1.20"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:4.0.0", {
           "packageLocation": "./.yarn/cache/form-data-npm-4.0.0-916facec2d-ecbe8f41bc.zip/node_modules/form-data/",
           "packageDependencies": [
@@ -3619,6 +3628,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["asynckit", "npm:0.4.0"],
             ["combined-stream", "npm:1.0.8"],
             ["mime-types", "npm:2.1.20"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["formdata-polyfill", [
+        ["npm:4.0.10", {
+          "packageLocation": "./.yarn/cache/formdata-polyfill-npm-4.0.10-e03013c013-525e045498.zip/node_modules/formdata-polyfill/",
+          "packageDependencies": [
+            ["formdata-polyfill", "npm:4.0.10"],
+            ["fetch-blob", "npm:3.1.4"]
           ],
           "linkType": "HARD",
         }]
@@ -3641,7 +3660,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tsconfig/node10", "npm:1.0.8"],
             ["@types/jest", "npm:26.0.24"],
             ["@types/node", "npm:14.18.9"],
-            ["@types/node-fetch", "npm:2.5.12"],
+            ["@types/node-fetch", "npm:3.0.2"],
             ["cross-env", "npm:7.0.3"],
             ["dotenv", "npm:8.6.0"],
             ["eslint", "npm:7.32.0"],
@@ -5763,12 +5782,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["node-domexception", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/node-domexception-npm-1.0.0-e1e813b76f-b014e82005.zip/node_modules/node-domexception/",
+          "packageDependencies": [
+            ["node-domexception", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["node-fetch", [
         ["npm:2.6.6", {
           "packageLocation": "./.yarn/cache/node-fetch-npm-2.6.6-056db6b778-c0a4450cca.zip/node_modules/node-fetch/",
           "packageDependencies": [
             ["node-fetch", "npm:2.6.6"],
             ["whatwg-url", "npm:5.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.2.0", {
+          "packageLocation": "./.yarn/cache/node-fetch-npm-3.2.0-43b96df788-5a96c2226d.zip/node_modules/node-fetch/",
+          "packageDependencies": [
+            ["node-fetch", "npm:3.2.0"],
+            ["data-uri-to-buffer", "npm:4.0.0"],
+            ["fetch-blob", "npm:3.1.4"],
+            ["formdata-polyfill", "npm:4.0.10"]
           ],
           "linkType": "HARD",
         }]
@@ -7959,6 +7997,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["walker", "npm:1.0.7"],
             ["makeerror", "npm:1.0.11"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["web-streams-polyfill", [
+        ["npm:3.2.0", {
+          "packageLocation": "./.yarn/cache/web-streams-polyfill-npm-3.2.0-d541199f29-f9b77f282b.zip/node_modules/web-streams-polyfill/",
+          "packageDependencies": [
+            ["web-streams-polyfill", "npm:3.2.0"]
           ],
           "linkType": "HARD",
         }]
