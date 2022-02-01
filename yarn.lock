@@ -2992,7 +2992,7 @@ __metadata:
     node-fetch: ^2.6.6
     rimraf: ^3.0.2
     ts-jest: ^26.5.6
-    typedoc: ^0.22.10
+    typedoc: ^0.22.11
     typescript: ^4.1.3
   languageName: unknown
   linkType: soft
@@ -4664,15 +4664,6 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "lru-cache@npm:5.1.1"
-  dependencies:
-    yallist: ^3.0.2
-  checksum: ffd9a280fa3400e731265db502270c2a65432f3fbfac23d480c72f675ec16dbbeddd57d4baf7aca70ab7af49949fad1bcaaf5a5e6e1cfed7316de71bb5dddf1c
-  languageName: node
-  linkType: hard
-
 "lunr@npm:^2.3.9":
   version: 2.3.9
   resolution: "lunr@npm:2.3.9"
@@ -4721,12 +4712,12 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"marked@npm:^3.0.8":
-  version: 3.0.8
-  resolution: "marked@npm:3.0.8"
+"marked@npm:^4.0.10":
+  version: 4.0.12
+  resolution: "marked@npm:4.0.12"
   bin:
-    marked: bin/marked
-  checksum: a56e571e9a407a39a45045cdc21a1d13e2382c253a4e0014d785bc613f8f8b48cda3aa0a5e47f304e49ae0d5d9bae5bc9e3480594584658a0ea9df854120f000
+    marked: bin/marked.js
+  checksum: b026d6dc5ab8beb6fbb3bac6d20061aa1d845b8668a077797a1fd985c973da7be819c6fd29f7054d0d644a1ba32bd4fa4789b8cb254b299e7bf4ad3629f63560
   languageName: node
   linkType: hard
 
@@ -5181,15 +5172,6 @@ fsevents@^2.1.2:
   dependencies:
     mimic-fn: ^2.1.0
   checksum: 1781c3cf88afbdea849f00fc42dbb560fecf27169135326d615aa2781ae9bdd5a59af82b21d9c3ed348424ec097d2b764b15b43b807d099230d7b8803335a482
-  languageName: node
-  linkType: hard
-
-"onigasm@npm:^2.2.5":
-  version: 2.2.5
-  resolution: "onigasm@npm:2.2.5"
-  dependencies:
-    lru-cache: ^5.1.1
-  checksum: 9db74810f55bc0b9718991d36ea445e2095f09743f22d5e76bc37a31e34b9b5204b1224ea2fb30253e810fe57222bf86274d5b38073b1c14534fee4c6da300b4
   languageName: node
   linkType: hard
 
@@ -5998,14 +5980,14 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"shiki@npm:^0.9.12":
-  version: 0.9.12
-  resolution: "shiki@npm:0.9.12"
+"shiki@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "shiki@npm:0.10.0"
   dependencies:
     jsonc-parser: ^3.0.0
-    onigasm: ^2.2.5
+    vscode-oniguruma: ^1.6.1
     vscode-textmate: 5.2.0
-  checksum: c6c3617052313caa947b32700c19a61a464a472d7e026987b8c133739f8af06ad5ff1a789bb4a437b75acacbcb9973dd8f9d5e11a42e33125cca8d2698d3a57c
+  checksum: efe1e0de6747810c45b73fe3de62b01754f2f776328d51b0a0fc4a10a6ba1694bed57c6a0aaed1584bb963b4d0d1d3bd0c652037ccb5656e7487315086f0c724
   languageName: node
   linkType: hard
 
@@ -6712,20 +6694,20 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.22.10":
-  version: 0.22.10
-  resolution: "typedoc@npm:0.22.10"
+"typedoc@npm:^0.22.11":
+  version: 0.22.11
+  resolution: "typedoc@npm:0.22.11"
   dependencies:
     glob: ^7.2.0
     lunr: ^2.3.9
-    marked: ^3.0.8
+    marked: ^4.0.10
     minimatch: ^3.0.4
-    shiki: ^0.9.12
+    shiki: ^0.10.0
   peerDependencies:
     typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x
   bin:
     typedoc: bin/typedoc
-  checksum: dfbace10980ab52a44e9c0186203f0390070a62ea603efaefe3c854630db5ee5f771f3174ad3932a26f585b798d068d11570c55fc2124f94328a3e312c221f19
+  checksum: 53aed47793844f3a947322d6cc643b2fe511ae00a68f292e24646a5a1d7391a857cc5bc1d8fc2bbf7f7af10d420e5ee0da718b01a13637581a388952e5cfd86c
   languageName: node
   linkType: hard
 
@@ -6862,6 +6844,13 @@ typescript@^4.1.3:
     core-util-is: 1.0.2
     extsprintf: ^1.2.0
   checksum: 38ea80312cb42e5e8b4ac562d108d675b2354a79f8f125d363671f692657461b9181fd26f4fc9acdca433f8afee099cb78058806e1303e6b15b8fb022affba94
+  languageName: node
+  linkType: hard
+
+"vscode-oniguruma@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "vscode-oniguruma@npm:1.6.1"
+  checksum: ae73f0b470c620568290ca0dffd49eb28a61d50696b419635f9ed32fb233ee2172af81000cb02bbd2a13dbc41b39c71fb0e874d3089c230c1d71276e932e2d59
   languageName: node
   linkType: hard
 
@@ -7072,13 +7061,6 @@ typescript@^4.1.3:
   version: 4.0.0
   resolution: "y18n@npm:4.0.0"
   checksum: 5b7434c95d31ffa2b9b97df98e2d786446a0ff21c30e0265088caa4818a3335559a425763e55b6d9370d9fcecb75a36ae5bb901184676bd255f96ee3c743f667
-  languageName: node
-  linkType: hard
-
-"yallist@npm:^3.0.2":
-  version: 3.1.1
-  resolution: "yallist@npm:3.1.1"
-  checksum: f352c93b92f601bb0399210bca37272e669c961e9bd886bac545380598765cbfdfb4f166e7b6c57ca4ec8a5af4ab3fa0fd78a47f9a7d655a3d580ff0fc9e7d79
   languageName: node
   linkType: hard
 
