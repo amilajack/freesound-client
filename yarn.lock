@@ -2992,7 +2992,7 @@ __metadata:
     node-fetch: ^2.6.6
     rimraf: ^3.0.2
     ts-jest: ^26.5.6
-    typedoc: ^0.22.11
+    typedoc: ^0.22.12
     typescript: ^4.1.3
   languageName: unknown
   linkType: soft
@@ -6694,9 +6694,9 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.22.11":
-  version: 0.22.11
-  resolution: "typedoc@npm:0.22.11"
+"typedoc@npm:^0.22.12":
+  version: 0.22.12
+  resolution: "typedoc@npm:0.22.12"
   dependencies:
     glob: ^7.2.0
     lunr: ^2.3.9
@@ -6707,7 +6707,7 @@ resolve@^1.3.2:
     typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x
   bin:
     typedoc: bin/typedoc
-  checksum: 53aed47793844f3a947322d6cc643b2fe511ae00a68f292e24646a5a1d7391a857cc5bc1d8fc2bbf7f7af10d420e5ee0da718b01a13637581a388952e5cfd86c
+  checksum: d4d4f023f09672b3617eaaa3284c2e14f5c940773056a7f1f200e52badb9b6081bd28b082ac2e9e6a2b2b07f380c148512ae17141da51a0c25cd8691242fd4e9
   languageName: node
   linkType: hard
 
