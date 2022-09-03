@@ -15,7 +15,6 @@
     "dotenv": "^16.0.2",
     "eslint": "^8.23.0",
     "eslint-config-bliss": "^6.0.4",
-    "gh-pages": "^4.0.0",
     "jest": "^28.1.3",
     "rimraf": "^3.0.2",
     "ts-jest": "^28.0.8",
@@ -29,7 +28,6 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc",
-    "docs:deploy": "gh-pages -d docs && rm -rf docs",
     "docs": "typedoc index.ts --out docs --readme none",
     "lint": "eslint . --ignore-pattern dist",
     "lint-fix": "npm run lint --fix",
