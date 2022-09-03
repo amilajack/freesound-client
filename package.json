@@ -34,7 +34,7 @@
     "lint": "eslint . --ignore-pattern dist",
     "lint-fix": "npm run lint --fix",
     "test": "npm run build && jest",
-    "version": "npm run build && npm run docs && npm run docs:deploy"
+    "version": "npm run build"
   },
   "eslintConfig": {
     "extends": [
