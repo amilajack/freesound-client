@@ -19,11 +19,11 @@ jobs:
         with:
           node-version: 15
 
-      - name: yarn install
-        run: yarn --immutable
+      - name: npm install
+        run: npm ci
 
-      - name: yarn test
+      - name: npm test
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        run: yarn test
+        run: npm test
