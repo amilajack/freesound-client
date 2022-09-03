@@ -5,7 +5,8 @@
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "index.tsx"
   ],
   "devDependencies": {
     "@tsconfig/node10": "^1.0.9",
