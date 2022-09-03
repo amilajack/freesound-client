@@ -30,7 +30,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "docs:deploy": "gh-pages -d docs && rm -rf docs",
-    "docs": "typedoc index.ts --excludeNotExported --excludePrivate --out docs --readme none --mode library",
+    "docs": "typedoc index.ts --out docs --readme none",
     "lint": "eslint . --ignore-pattern dist",
     "lint-fix": "npm run lint --fix",
     "test": "npm run build && jest",
