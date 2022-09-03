@@ -55,5 +55,10 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
