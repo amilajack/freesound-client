@@ -6,7 +6,7 @@
   "license": "MIT",
   "files": [
     "dist",
-    "index.tsx"
+    "index.ts"
   ],
   "devDependencies": {
     "@tsconfig/node10": "^1.0.9",
