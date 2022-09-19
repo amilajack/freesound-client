@@ -9,9 +9,10 @@ A freesound v2 client that works in node and the browser
 ## Installation
 
 ```bash
-# npm
 npm install freesound-client
-# yarn
+```
+
+```bash
 yarn add freesound-client
 ```
 
